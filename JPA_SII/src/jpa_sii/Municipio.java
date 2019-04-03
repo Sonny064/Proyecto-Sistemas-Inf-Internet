@@ -27,28 +27,28 @@ public class Municipio implements Serializable {
     private String poblacion;
     @OneToMany
     private List<Centro> socios;
-    
+
     public Short getCodigoPostal() {
         return codigoPostal;
     }
-    public void setId(Short codigoPostal) {
+    public void setCodigoPostal(Short codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-    
+
     public String getPoblacion() {
         return poblacion;
     }
-    public void setId(String poblacion) {
+    public void setPoblacion(String poblacion) {
         this.poblacion = poblacion;
     }
-    
+
     public List<Centro> getSocios() {
         return socios;
     }
     public void setSocios(List<Centro> socios) {
         this.socios = socios;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -70,5 +70,5 @@ public class Municipio implements Serializable {
     public String toString() {
         return "jpa_sii.Municipio[ id=" + codigoPostal + " ]";
     }
-    
+
 }

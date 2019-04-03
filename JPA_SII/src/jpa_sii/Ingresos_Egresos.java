@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jpa_sii;
 
 import java.io.Serializable;
@@ -10,10 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 /**
  *
- * @author Carlos
+ * @author Jesús Márquez
  */
 @Entity
 public class Ingresos_Egresos implements Serializable {
@@ -22,6 +18,23 @@ public class Ingresos_Egresos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nulleable = false)
+    private String tipo;
+    @Column(nulleable = false)
+    private Date fecha;
+    @Column(nulleable = false)
+    private Date fechaDePago;
+    @Column(nulleable = false)
+    private int cantidad;
+    private String descripcion;
+
+    public Ingresos_Egresos(String t, Date f, Date fp, int c, String d){
+      tipo = t;
+      fecha = f;
+      fechaDePago = fp;
+      cantidad = c;
+      descripcion = d;
+    }
 
     public Long getId() {
         return id;
@@ -29,6 +42,46 @@ public class Ingresos_Egresos implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTipo(){
+      return tipo;
+    }
+
+    public void setTipo(String t){
+      tipo = t;
+    }
+
+    public Date getFecha(){
+      return fecha;
+    }
+
+    public void setFecha(Date d){
+      fecha = d;
+    }
+
+    public Date getFechaDePago(){
+      return fechaDePago;
+    }
+
+    public void setFechaDePago(Date d){
+      fechaDePago = d;
+    }
+
+    public int getCantidad(){
+      return cantidad;
+    }
+
+    public void setCantidad(int c){
+      cantidad = c;
+    }
+
+    public String getDescripcion(){
+      return descripcion;
+    }
+
+    public void setDescripcion(String t){
+      descripcion = t;
     }
 
     @Override
@@ -55,5 +108,5 @@ public class Ingresos_Egresos implements Serializable {
     public String toString() {
         return "jpa_sii.Ingresos_Egresos[ id=" + id + " ]";
     }
-    
+
 }
