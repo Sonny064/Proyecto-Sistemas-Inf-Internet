@@ -5,17 +5,24 @@
  */
 package jpa_sii;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
- * @author Carlos
+ * Grupo M
  */
-public class JPA_SII {
+public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] string) {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Goncalves");
+        EntityManager em = emf.createEntityManager();
+
+        em.close();
+        emf.close();
+
     }
-    
+
 }
