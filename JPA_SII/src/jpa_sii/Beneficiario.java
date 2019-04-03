@@ -1,40 +1,171 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+**
+ *
+ * @author Dario Jesus Flores Sevilla
  */
+
 package jpa_sii;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-/**
- *
- * @author Carlos
- */
+
 @Entity
 public class Beneficiario implements Serializable {
 
+    //Atributos//
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long Codigo;
+    private String Nombre;
+    private String Apellidos;
+    private String Sexo;
+    @Temporal(TemporalType.DATE)
+    private Date Fecha_de_nacimiento;
+    private String Comunidad_de_procedencia;
+    private String Comunidad_en_la_que_vive;
+    private String Beca;
+    private int Grado_del_curso;
+    @Temporal(TemporalType.DATE)
+    private Date Fecha_de_entrada_en_acoes;
+    @Temporal(TemporalType.DATE)
+    private Date Fecha_de_salida_en_acoes;
+    //private Image Foto;
+    private String Estado;
+    private String Observaciones;
+    
+    //Relaciones//
+    @OneToMany (mappedby = "beneficiario")
+    private List <Socios> socio;
+    @OneToMany
+    private List <Envios> envian;
+    @ManyToMany (mappedby = "propietario_proyecto")
+    private List <Proyecto> proyecto;
+    @ManyToMany (mappedby = "propietario_centro")
+    private List <Centro> centro;
+    @ManyToMany (mappedby = "propietario_casa_populorum")
+    private List <Casa_populorum> casa_populorum;
+    
+    
+    //Getters y setters//
 
-    public Long getId() {
-        return id;
+    public Long getCodigo() {
+        return Codigo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCodigo(Long id) {
+        this.Codigo = id;
+    }
+    
+    public String getNombre() {
+        return Nombre;
     }
 
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.Apellidos = Apellidos;
+    }
+
+    public String getSexo() {
+        return Sexo;
+    }
+
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
+    }
+
+    public Date getFecha_de_nacimiento() {
+        return Fecha_de_nacimiento;
+    }
+
+    public void setFecha_de_nacimiento(Date Fecha_de_nacimiento) {
+        this.Fecha_de_nacimiento = Fecha_de_nacimiento;
+    }
+
+    public String getComunidad_de_procedencia() {
+        return Comunidad_de_procedencia;
+    }
+
+    public void setComunidad_de_procedencia(String Comunidad_de_procedencia) {
+        this.Comunidad_de_procedencia = Comunidad_de_procedencia;
+    }
+
+    public String getComunidad_en_la_que_vive() {
+        return Comunidad_en_la_que_vive;
+    }
+
+    public void setComunidad_en_la_que_vive(String Comunidad_en_la_que_vive) {
+        this.Comunidad_en_la_que_vive = Comunidad_en_la_que_vive;
+    }
+
+    public String getBeca() {
+        return Beca;
+    }
+
+    public void setBeca(String Beca) {
+        this.Beca = Beca;
+    }
+
+    public int getGrado_del_curso() {
+        return Grado_del_curso;
+    }
+
+    public void setGrado_del_curso(int Grado_del_curso) {
+        this.Grado_del_curso = Grado_del_curso;
+    }
+
+    public Date getFecha_de_entrada_en_acoes() {
+        return Fecha_de_entrada_en_acoes;
+    }
+
+    public void setFecha_de_entrada_en_acoes(Date Fecha_de_entrada_en_acoes) {
+        this.Fecha_de_entrada_en_acoes = Fecha_de_entrada_en_acoes;
+    }
+
+    public Date getFecha_de_salida_en_acoes() {
+        return Fecha_de_salida_en_acoes;
+    }
+
+    public void setFecha_de_salida_en_acoes(Date Fecha_de_salida_en_acoes) {
+        this.Fecha_de_salida_en_acoes = Fecha_de_salida_en_acoes;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+    public String getObservaciones() {
+        return Observaciones;
+    }
+
+    public void setObservaciones(String Observaciones) {
+        this.Observaciones = Observaciones;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (Codigo!= null ? Codigo.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +176,7 @@ public class Beneficiario implements Serializable {
             return false;
         }
         Beneficiario other = (Beneficiario) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.Codigo == null && other.Codigo != null) || (this.Codigo != null && !this.Codigo.equals(other.Codigo))) {
             return false;
         }
         return true;
@@ -53,7 +184,7 @@ public class Beneficiario implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa_sii.Beneficiario[ id=" + id + " ]";
+        return "jpa_sii.Beneficiario[ id=" + Codigo + " ]";
     }
     
 }
