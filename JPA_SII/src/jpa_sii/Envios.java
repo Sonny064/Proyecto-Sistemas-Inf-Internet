@@ -3,7 +3,7 @@
  * @author Dario Jesus Flores Sevilla
  */
 
-@Entity
+
 package jpa_sii;
 
 import java.io.Serializable;
@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.TemporalType;
 import javax.persistence.ManyToOne;
 
-
+@Entity
 public class Envios implements Serializable {
 
     //Atributos
