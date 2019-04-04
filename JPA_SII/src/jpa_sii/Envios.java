@@ -22,6 +22,7 @@ public class Envios implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nulleable=false)
     private String Tipo_de_envio;
     private String Contenido;
     @Temporal(TemporalType.DATE)
@@ -33,6 +34,11 @@ public class Envios implements Serializable {
     @ManyToOne
     private List <Beneficiario> receptores;
 
+    //Constructor
+    public Envios (String t, Date f){
+    Tipo_de_envio = t;
+    Fecha = f;
+    }
     
     //Getters y setters
     public Long getId() {
