@@ -22,7 +22,6 @@ public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Short codigoPostal;
     @Column(nulleable=false)
     private String poblacion;
@@ -30,7 +29,8 @@ public class Municipio implements Serializable {
     @OneToMany(mappedBy ="municipio")
     private List<Socio> socios_municipio;
 
-    private Municipio(String p){
+    private Municipio(Short cp, String p){
+      codigoPostal = cp;
       poblacion = p;
     }
 

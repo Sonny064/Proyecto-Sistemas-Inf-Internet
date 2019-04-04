@@ -18,7 +18,7 @@ import java.sql.Date;
 
 /**
  *
- * @author Marina Mu�oz
+ * @author Marina Muñoz
  */
 @Entity
 public class Proyecto implements Serializable {

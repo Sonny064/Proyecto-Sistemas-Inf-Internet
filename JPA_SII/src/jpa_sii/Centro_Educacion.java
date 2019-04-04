@@ -7,7 +7,6 @@ import javax.persistence.Id;
 /**
  *
  * @author Jesús Márquez
- * TODO constructor
  */
 @Entity
 public class Centro_Educacion implements Serializable extends Centro {
@@ -16,6 +15,12 @@ public class Centro_Educacion implements Serializable extends Centro {
     @Column(nulleable = false)
     private int alumnos;
     private String tipo;
+
+    public Centro_Educacion(String n, Date c, String l, int a, int t){
+      super(n, c, l);
+      alumnos = a;
+      tipo = t;
+    }
 
     public int getAlumnos() {
         return alumnos;

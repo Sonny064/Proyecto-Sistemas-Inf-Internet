@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Jesús Márquez
- * TODO relacion centros -> pagos
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

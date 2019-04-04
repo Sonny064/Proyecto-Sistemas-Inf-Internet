@@ -38,7 +38,6 @@ public class Ingresos_Egresos implements Serializable {
     @ManyToOne
     private Centro ingresos_centro;
 
-
     public Ingresos_Egresos(String t, Date f, Date fp, int c){
       tipo = t;
       fecha = f;

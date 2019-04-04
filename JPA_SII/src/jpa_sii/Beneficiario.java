@@ -60,8 +60,6 @@ public class Beneficiario implements Serializable {
     private List <Proyecto> proyecto;
     @ManyToMany (mappedBy= "propietario_centro")
     private List <Centro> centro;
-    @ManyToMany (mappedBy="propietario_casa_populorum")
-    private List <Casa_populorum> casa_populorum;
 
     //Constructor
 

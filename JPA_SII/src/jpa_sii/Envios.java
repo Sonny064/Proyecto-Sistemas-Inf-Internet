@@ -35,8 +35,8 @@ public class Envios implements Serializable {
 
     //Constructor
     public Envios (String t, Date f){
-    Tipo_de_envio = t;
-    Fecha = f;
+      Tipo_de_envio = t;
+      Fecha = f;
     }
 
     //Getters y setters

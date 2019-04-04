@@ -9,7 +9,6 @@ import java.util.List;
 /**
  *
  * @author Jesús Márquez
- * TODO constructor
  */
 @Entity
 public class Casa_Populorum implements Serializable extends Centro {
@@ -19,8 +18,11 @@ public class Casa_Populorum implements Serializable extends Centro {
     private int camas;
     private String extension;
 
-    @ManyToMany
-    private List<Beneficiario> propietario_casa_populorum;
+    public Casa_Populorum(String n, Date c, String l, int ca, int e){
+      super(n, c, l);
+      camas = ca;
+      extension = e;
+    }
 
     public int getCamas() {
         return camas;
