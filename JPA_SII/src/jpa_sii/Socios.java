@@ -71,6 +71,26 @@ public class Socios implements Serializable {
     @ManyToOne
     private Municipio municipio;
 
+    public Socios(Long ni,String n, String p, String e, String pro, Short cp, String d, Long tf,
+     Long tm,String em, String rel, String sec, String cert, Date fa){
+
+      nif = ni;
+      nombre = n;
+      apellidos =p;
+      estado = e;
+      provincia = pro;
+      codigoPostal = cp;
+      direccion = d;
+      tlfFijo = tf;
+      tlfMovil = tm;
+      email = em;
+      relacion = rel;
+      sector = sec;
+      certificado = cert;
+      fechaAlta = fa;
+
+    }
+
 
 
     public Long getId_Socio() {

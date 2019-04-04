@@ -39,12 +39,11 @@ public class Ingresos_Egresos implements Serializable {
     private Centro ingresos_centro;
 
 
-    public Ingresos_Egresos(String t, Date f, Date fp, int c, String d){
+    public Ingresos_Egresos(String t, Date f, Date fp, int c){
       tipo = t;
       fecha = f;
       fechaDePago = fp;
       cantidad = c;
-      descripcion = d;
     }
 
     public Long getId() {

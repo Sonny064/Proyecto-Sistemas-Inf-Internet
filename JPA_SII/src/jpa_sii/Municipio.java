@@ -30,6 +30,10 @@ public class Municipio implements Serializable {
     @OneToMany(mappedBy ="municipio")
     private List<Socio> socios_municipio;
 
+    private Municipio(String p){
+      poblacion = p;
+    }
+
     public Short getCodigoPostal() {
         return codigoPostal;
     }
