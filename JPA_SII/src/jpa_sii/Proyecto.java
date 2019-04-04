@@ -6,46 +6,105 @@
 package jpa_sii;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.sql.Date;
 
 /**
  *
- * @author Carlos
+ * @author Marina Muñoz
  */
 @Entity
 public class Proyecto implements Serializable {
+	
+	
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long codigo;
+    @Column(nullable = false, unique=true)
+    private String nombreProyecto;
+    @Column(nullable = false, unique=true)
+    private Date fechaCreacion;
+    @Column(nullable = false)
+    private String descripcionProyecto;
+    
+    
+    @ManyToMany
+    private List<Beneficiario> propietario_proyecto;
+    
+    @ManyToMany
+    private List<Ingresos_Egresos> listaIngresos;
+    
+    @ManyToMany
+    private List<Personal_Asociacion> personalProyecto;
+    
+   
 
-    public Long getId() {
-        return id;
+    public Proyecto(String n, Date fc, String dp) {
+    	nombreProyecto = n;
+    	fechaCreacion = fc;
+    	descripcionProyecto = dp;
+    	
     }
+    
+    public Long getCodigo() {
+		return codigo;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombreProyecto() {
+		return nombreProyecto;
+	}
+
+	public void setNombreProyecto(String nombreProyecto) {
+		this.nombreProyecto = nombreProyecto;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getDescripcionProyecto() {
+		return descripcionProyecto;
+	}
+
+	public void setDescripcionProyecto(String descripcionProyecto) {
+		this.descripcionProyecto = descripcionProyecto;
+	}
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
-    @Override
+    
+
+	@Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Proyecto)) {
             return false;
         }
         Proyecto other = (Proyecto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -53,7 +112,7 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa_sii.Proyecto[ id=" + id + " ]";
+        return "jpa_sii.Proyecto[ codigo=" + codigo + " ]";
     }
     
 }

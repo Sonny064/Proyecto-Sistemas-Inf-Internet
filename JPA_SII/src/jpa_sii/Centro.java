@@ -1,4 +1,4 @@
-package jpa_sii;
+﻿package jpa_sii;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -26,6 +26,9 @@ public class Centro implements Serializable {
     private Date creacion;
     @Column(nulleable = false)
     private String localizacion;
+
+    @ManyToMany (mappedBy = "listadoCentros")
+    private List<Personal_Asociacion> personal;
 
     public Centro(String n, Date c, String l){
       nombre = n;
