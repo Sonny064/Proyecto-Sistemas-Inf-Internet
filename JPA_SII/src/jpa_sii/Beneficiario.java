@@ -6,7 +6,7 @@
 package jpa_sii;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 
 @Entity
@@ -26,23 +25,29 @@ public class Beneficiario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Codigo;
+    @Column(nulleable=false)
     private String Nombre;
+    @Column(nulleable=false)
     private String Apellidos;
+    @Column(nulleable=false)
     private String Sexo;
-    @Temporal(TemporalType.DATE)
+    @Column(nulleable=false)
     private Date Fecha_de_nacimiento;
+    @Column(nulleable=false)
     private String Comunidad_de_procedencia;
+    @Column(nulleable=false)
     private String Comunidad_en_la_que_vive;
+    @Column(nulleable=false)
     private String Beca;
+    @Column(nulleable=false)
     private int Grado_del_curso;
-    @Temporal(TemporalType.DATE)
+    @Column(nulleable=false)
     private Date Fecha_de_entrada_en_acoes;
-    @Temporal(TemporalType.DATE)
     private Date Fecha_de_salida_en_acoes;
-    //private Image Foto;
+    private String Foto;
     private String Estado;
     private String Observaciones;
-    
+
     //Relaciones//
     @OneToMany (mappedby = "beneficiario")
     private List <Socios> socio;
@@ -54,8 +59,13 @@ public class Beneficiario implements Serializable {
     private List <Centro> centro;
     @ManyToMany (mappedby = "propietario_casa_populorum")
     private List <Casa_populorum> casa_populorum;
-    
-    
+
+    //Constructor
+
+    public Beneficiario(){
+
+    }
+
     //Getters y setters//
 
     public Long getCodigo() {
@@ -65,7 +75,7 @@ public class Beneficiario implements Serializable {
     public void setCodigo(Long id) {
         this.Codigo = id;
     }
-    
+
     public String getNombre() {
         return Nombre;
     }
@@ -161,7 +171,7 @@ public class Beneficiario implements Serializable {
     public void setObservaciones(String Observaciones) {
         this.Observaciones = Observaciones;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,5 +196,5 @@ public class Beneficiario implements Serializable {
     public String toString() {
         return "jpa_sii.Beneficiario[ id=" + Codigo + " ]";
     }
-    
+
 }
