@@ -62,7 +62,16 @@ public class Beneficiario implements Serializable {
 
     //Constructor
 
-    public Beneficiario(){
+    public Beneficiario(String n, String a, String s, Date f, String cp, String cv, String b, int g, Date fe){
+        Nombre = n;
+        Apellidos = a;
+        Sexo = s;
+        Fecha_de_nacimiento = f;
+        Comunidad_de_procedencia = cp;
+        Comunidad_en_la_que_vive = cv;
+        Beca = b;
+        Grado_del_curso = g;
+        Fecha_de_entrada_en_acoes = fe;
 
     }
 
