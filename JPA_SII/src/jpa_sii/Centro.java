@@ -1,11 +1,14 @@
 ﻿package jpa_sii;
 
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,6 +32,12 @@ public class Centro implements Serializable {
 
     @ManyToMany (mappedBy = "listadoCentros")
     private List<Personal_Asociacion> personal;
+
+    @ManyToMany
+    private List<Beneficiario> propietario_centro;
+
+    @OneToMany(mappedBy="ingresos_centro")
+    private List<Ingresos_Egresos> ingresos;
 
     public Centro(String n, Date c, String l){
       nombre = n;

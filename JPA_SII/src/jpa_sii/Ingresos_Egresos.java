@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,6 +28,16 @@ public class Ingresos_Egresos implements Serializable {
     @Column(nulleable = false)
     private int cantidad;
     private String descripcion;
+
+    @ManyToOne
+    private Socios ingresos_socio;
+
+    @ManyToOne
+    private Proyecto ingresos_proyecto;
+
+    @ManyToOne
+    private Centro ingresos_centro;
+
 
     public Ingresos_Egresos(String t, Date f, Date fp, int c, String d){
       tipo = t;

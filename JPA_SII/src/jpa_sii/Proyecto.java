@@ -7,7 +7,6 @@ package jpa_sii;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,12 +35,12 @@ public class Proyecto implements Serializable {
     private Date fechaCreacion;
     @Column(nullable = false)
     private String descripcionProyecto;
-    
+
 
     @ManyToMany
     private List<Beneficiario> propietario_proyecto;
 
-    @OneToMany
+    @OneToMany(mappedBy="ingresos_proyecto")
     private List<Ingresos_Egresos> listaIngresos;
 
     @ManyToMany

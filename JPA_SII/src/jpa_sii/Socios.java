@@ -13,8 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -58,12 +58,20 @@ public class Socios implements Serializable {
     private Date fechaBaja;
     private String observaciones;
 
-    @OneToMany
+    // Relaciones
+    @OneToMany(mappedBy="emisor")
     private List<Envios> envios;
-    @OneToMany
-    private List<Beneficiario> beneficiario;
-    @OneToMany
+
+    @OneToMany(mappedBy="socio")
+    private List<Beneficiario> beneficiarios;
+
+    @OneToMany(mappedBy="ingresos_socio")
     private List<Ingresos_Egresos> ingresos_egresos;
+
+    @ManyToOne
+    private Municipio municipio;
+
+
 
     public Long getId_Socio() {
         return id_Socio;

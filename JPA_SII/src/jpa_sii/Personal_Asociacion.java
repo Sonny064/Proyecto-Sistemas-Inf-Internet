@@ -8,7 +8,6 @@ package jpa_sii;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,6 +47,8 @@ public class Personal_Asociacion implements Serializable {
 
     @ManyToMany
     private List<Centro> listadoCentros;
+
+
 
     public Personal_Asociacion(String n, String a, Date fn, Date fe, String c) {
     	nombre = n;

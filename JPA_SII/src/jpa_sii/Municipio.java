@@ -27,8 +27,8 @@ public class Municipio implements Serializable {
     @Column(nulleable=false)
     private String poblacion;
 
-    @OneToMany
-    private List<Centro> socios;
+    @OneToMany(mappedBy ="municipio")
+    private List<Socio> socios_municipio;
 
     public Short getCodigoPostal() {
         return codigoPostal;

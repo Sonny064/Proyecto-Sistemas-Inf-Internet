@@ -27,11 +27,11 @@ public class Envios implements Serializable {
     @Column(nulleable=false)
     private Date Fecha;
 
-    //Relación
-    @ManyToOne(mappedby = "envios")
-    private List <Socios> emisores;
+    //Relaciones
     @ManyToOne
-    private List <Beneficiario> receptores;
+    private Socios emisor;
+    @ManyToOne
+    private Beneficiario receptor;
 
     //Constructor
     public Envios (String t, Date f){

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
 
 
@@ -49,15 +50,17 @@ public class Beneficiario implements Serializable {
     private String Observaciones;
 
     //Relaciones//
-    @OneToMany (mappedby = "beneficiario")
-    private List <Socios> socio;
-    @OneToMany
+    @ManyToOne
+    private Socios socio;
+
+    @OneToMany(mappedBy="receptor")
     private List <Envios> envian;
-    @ManyToMany (mappedby = "propietario_proyecto")
+
+    @ManyToMany (mappedBy= "propietario_proyecto")
     private List <Proyecto> proyecto;
-    @ManyToMany (mappedby = "propietario_centro")
+    @ManyToMany (mappedBy= "propietario_centro")
     private List <Centro> centro;
-    @ManyToMany (mappedby = "propietario_casa_populorum")
+    @ManyToMany (mappedBy="propietario_casa_populorum")
     private List <Casa_populorum> casa_populorum;
 
     //Constructor

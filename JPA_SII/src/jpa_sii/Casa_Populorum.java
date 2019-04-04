@@ -3,6 +3,8 @@ package jpa_sii;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 /**
  *
@@ -16,6 +18,9 @@ public class Casa_Populorum implements Serializable extends Centro {
     @Column(nulleable = false)
     private int camas;
     private String extension;
+
+    @ManyToMany
+    private List<Beneficiario> propietario_casa_populorum;
 
     public int getCamas() {
         return camas;
