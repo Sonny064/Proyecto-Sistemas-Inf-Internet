@@ -5,13 +5,12 @@
 
 
 package jpa_sii;
-
+import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.TemporalType;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -25,10 +24,10 @@ public class Envios implements Serializable {
     @Column(nulleable=false)
     private String Tipo_de_envio;
     private String Contenido;
-    @Temporal(TemporalType.DATE)
+    @Column(nulleable=false)
     private Date Fecha;
-    
-    //Relación 
+
+    //Relación
     @ManyToOne(mappedby = "envios")
     private List <Socios> emisores;
     @ManyToOne
@@ -39,7 +38,7 @@ public class Envios implements Serializable {
     Tipo_de_envio = t;
     Fecha = f;
     }
-    
+
     //Getters y setters
     public Long getId() {
         return id;
@@ -72,8 +71,8 @@ public class Envios implements Serializable {
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
-    
-    
+
+
 
     @Override
     public int hashCode() {
@@ -99,6 +98,5 @@ public class Envios implements Serializable {
     public String toString() {
         return "jpa_sii.Envios[ id=" + id + " ]";
     }
-    
-}
 
+}

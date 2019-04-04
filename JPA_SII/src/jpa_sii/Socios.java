@@ -6,7 +6,7 @@
 package jpa_sii;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,22 +27,34 @@ public class Socios implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_Socio;
+    @Column(nulleable=false, unique=true)
     private Long nif;
+    @Column(nulleable=false)
     private String nombre;
+    @Column(nulleable=false)
     private String apellidos;
+    @Column(nulleable=false)
     private String estado;
+    @Column(nulleable=false)
     private String provincia;
+    @Column(nulleable=false)
     private Short codigoPostal;
+    @Column(nulleable=false)
     private String direccion;
+    @Column(nulleable=false, unique=true)
     private Long tlfFijo;
+    @Column(nulleable=false, unique=true)
     private Long tlfMovil;
+    @Column(nulleable=false, unique=true)
     private String email;
+    @Column(nulleable=false)
     private String relacion;
+    @Column(nulleable=false)
     private String sector;
+    @Column(nulleable=false)
     private String certificado;
-    @Temporal(TemporalType.DATE)
+    @Column(nulleable=false)
     private Date fechaAlta;
-    @Temporal(TemporalType.DATE)
     private Date fechaBaja;
     private String observaciones;
 
@@ -52,7 +64,7 @@ public class Socios implements Serializable {
     private List<Beneficiario> beneficiario;
     @OneToMany
     private List<Ingresos_Egresos> ingresos_egresos;
-    
+
     public Long getId_Socio() {
         return id_Socio;
     }
@@ -192,8 +204,8 @@ public class Socios implements Serializable {
     public void setIngresos_egresos(List<Ingresos_Egresos> ingresos_egresos) {
         this.ingresos_egresos = ingresos_egresos;
     }
-    
-    
+
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -218,5 +230,5 @@ public class Socios implements Serializable {
     public String toString() {
         return "jpa_sii.Centro[ id=" + id_Socio + " ]";
     }
-    
+
 }

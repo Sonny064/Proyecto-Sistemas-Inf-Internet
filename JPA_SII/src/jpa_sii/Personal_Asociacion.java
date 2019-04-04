@@ -19,7 +19,7 @@ import javax.persistence.ManyToMany;
 
 /**
  *
- * @author Marina Muñoz
+ * @author Marina Muï¿½oz
  */
 @Entity
 public class Personal_Asociacion implements Serializable {
@@ -28,7 +28,7 @@ public class Personal_Asociacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long itentificador;
-    
+
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
@@ -42,22 +42,22 @@ public class Personal_Asociacion implements Serializable {
     private String foto;
     private String experiencia;
     private String descripcion;
-    
+
     @ManyToMany (mappedBy ="personalProyecto")
     private List <Proyecto> proyectos;
-    
+
     @ManyToMany
     private List<Centro> listadoCentros;
-    
+
     public Personal_Asociacion(String n, String a, Date fn, Date fe, String c) {
     	nombre = n;
     	apellidos = a;
     	fechaNacimiento = fn;
     	fechaEntrada = fe;
     	cargo = c;
-    	
+
     }
-    
+
     public Long getItentificador() {
 		return itentificador;
 	}
@@ -147,5 +147,5 @@ public class Personal_Asociacion implements Serializable {
     public String toString() {
         return "jpa_sii.Personal_Asociaci\u00f3n[ identificador=" + itentificador + " ]";
     }
-    
+
 }

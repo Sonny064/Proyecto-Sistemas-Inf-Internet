@@ -24,7 +24,9 @@ public class Municipio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Short codigoPostal;
+    @Column(nulleable=false)
     private String poblacion;
+
     @OneToMany
     private List<Centro> socios;
 

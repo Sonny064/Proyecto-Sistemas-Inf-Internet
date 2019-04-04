@@ -19,12 +19,12 @@ import java.sql.Date;
 
 /**
  *
- * @author Marina Muñoz
+ * @author Marina Muï¿½oz
  */
 @Entity
 public class Proyecto implements Serializable {
-	
-	
+
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,25 +37,25 @@ public class Proyecto implements Serializable {
     @Column(nullable = false)
     private String descripcionProyecto;
     
-    
+
     @ManyToMany
     private List<Beneficiario> propietario_proyecto;
-    
-    @ManyToMany
+
+    @OneToMany
     private List<Ingresos_Egresos> listaIngresos;
-    
+
     @ManyToMany
     private List<Personal_Asociacion> personalProyecto;
-    
-   
+
+
 
     public Proyecto(String n, Date fc, String dp) {
     	nombreProyecto = n;
     	fechaCreacion = fc;
     	descripcionProyecto = dp;
-    	
+
     }
-    
+
     public Long getCodigo() {
 		return codigo;
 	}
@@ -95,7 +95,7 @@ public class Proyecto implements Serializable {
         return hash;
     }
 
-    
+
 
 	@Override
     public boolean equals(Object object) {
@@ -114,5 +114,5 @@ public class Proyecto implements Serializable {
     public String toString() {
         return "jpa_sii.Proyecto[ codigo=" + codigo + " ]";
     }
-    
+
 }
