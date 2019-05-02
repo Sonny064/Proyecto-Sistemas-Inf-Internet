@@ -13,16 +13,16 @@
             <table class='table-responsive'>
             <tr>
                 <td><h:outputLabel  value="NIF" lang="es"></h:outputLabel></td>
-                <td><h:inputText  lang="es"></h:inputText></td>
+                <td><h:inputText  lang="es" value="#{entrada.nif}"></h:inputText></td>
             </tr>
             
             <tr>
                 <td><h:outputLabel  value="Contraseña" lang="es"></h:outputLabel></td>
-                <td><h:inputSecret lang="es"></h:inputSecret></td>
+                <td><h:inputSecret lang="es" value="#{entrada.contra}"></h:inputSecret></td>
             </tr>
             
             <tr>
-                <td><h:commandButton  value="Continuar"></h:commandButton></td>
+                <td><h:commandButton  value="Continuar" action="#{entrada.log}"></h:commandButton></td>
             </tr>
                 
             <tr>
