@@ -14,15 +14,15 @@
                 
             <tr>
                 <td><h:outputLabel  value="Contraseña" lang="es"></h:outputLabel></td>
-                <td><h:inputSecret lang="es"></h:inputSecret></td>
+                <td><h:inputSecret lang="es" value="#{user.contra}" required="true"></h:inputSecret></td>
             </tr>
             
             <tr>
                 <td><h:outputLabel  value="Repita su contraseña" lang="es"></h:outputLabel></td>
-                <td><h:inputSecret lang="es"></h:inputSecret></td>
+                <td><h:inputSecret lang="es" value="#{user.reContra}" required="true"></h:inputSecret></td>
             </tr>
             <tr>
-                <td><h:commandButton  value="Continuar"></h:commandButton></td>
+                <td><h:commandButton  value="Continuar" action="#{user.fin()}"></h:commandButton></td>
             </tr>
             </table>
         </h:form>
