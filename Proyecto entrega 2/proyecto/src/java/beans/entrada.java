@@ -45,9 +45,9 @@ public class entrada {
     }
     
     public String log (){
-        if (contra.equals("admin") && nif.equals("admin")){return "admin.xhtml";}
-        else if (contra.equals("privilegio") && nif.equals("privilegio")){return "privilegio.xhtml";}
-        else if (contra.equals("usuario") && nif.equals("usuario")){return "usuarionormal.xhtml";}
+        if (contra.equals("admin") && nif.equals("admin")){return "administracion/admin.xhtml";}
+        else if (contra.equals("privilegio") && nif.equals("privilegio")){return "empleados/privilegio.xhtml";}
+        else if (contra.equals("usuario") && nif.equals("usuario")){return "socios/usuarionormal.xhtml";}
         return null;
     }
 }
