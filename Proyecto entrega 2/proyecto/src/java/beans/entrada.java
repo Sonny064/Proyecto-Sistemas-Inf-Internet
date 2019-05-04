@@ -21,6 +21,8 @@ public class entrada {
 
     private String nif;
     private String contra;
+    private String permiso;
+
     
     /**
      * Creates a new instance of entrada
@@ -44,10 +46,19 @@ public class entrada {
         this.contra = contra;
     }
     
+    public String getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(String permiso) {
+        this.permiso = permiso;
+    }
+    
     public String log (){
-        if (contra.equals("admin") && nif.equals("admin")){return "administracion/admin.xhtml";}
-        else if (contra.equals("privilegio") && nif.equals("privilegio")){return "empleados/privilegio.xhtml";}
-        else if (contra.equals("usuario") && nif.equals("usuario")){return "socios/usuarionormal.xhtml";}
+        permiso = nif;
+        if (contra.equals("admin") && nif.equals("admin")){return "admin.xhtml";}
+        else if (contra.equals("personal") && nif.equals("personal")){return "personal_asociacion.xhtml";}
+        else if (contra.equals("socio") && nif.equals("socio")){return "socio.xhtml";}
         return null;
     }
 }
