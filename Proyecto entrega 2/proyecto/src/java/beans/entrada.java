@@ -8,6 +8,7 @@ package beans;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
+import javax.inject.Inject;
 
 
 /**
@@ -18,7 +19,7 @@ import javax.inject.Named;
 @ManagedBean
 @SessionScoped
 public class entrada {
-
+    
     private String nif;
     private String contra;
     private String permiso;
@@ -54,11 +55,24 @@ public class entrada {
         this.permiso = permiso;
     }
     
+    //Terminar de implementar
     public String log (){
         permiso = nif;
         if (contra.equals("admin") && nif.equals("admin")){return "admin.xhtml";}
         else if (contra.equals("personal") && nif.equals("personal")){return "personal_asociacion.xhtml";}
         else if (contra.equals("socio") && nif.equals("socio")){return "socio.xhtml";}
         return null;
+    }
+    
+    public String invalidarSesion()
+    {
+        if (nif != null)
+        {
+            nif = null;
+            permiso = null;
+            contra = null;
+            //Terminar de implementar
+        }
+        return "index.xhtml";
     }
 }

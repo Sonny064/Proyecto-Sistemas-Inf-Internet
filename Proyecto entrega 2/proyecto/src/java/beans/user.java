@@ -114,8 +114,6 @@ public class user {
     public void setCorr(String corr) {
         this.corr = corr;
     }
-
-    
     
     public String run(){
         return "registrocon.xhtml";

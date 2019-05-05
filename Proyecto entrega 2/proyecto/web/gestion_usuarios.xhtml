@@ -2,33 +2,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
     <h:head>
         <title>Administración de Usuarios</title>
     </h:head>
     <h:body>
+        <h:form>
          <c:choose> 
              <c:when test="#{entrada.permiso == 'admin'}">
-                    Esto va bien
+                 <h1> Gestionar Personal</h1>
+                 <h1> Gestionar Socios </h1>
+                 <h1> Gestionar Beneficiarios</h1>    
+                 
              </c:when>
              
-             
-             <c:when test="#{entrada.permiso == 'personal'}">
-                    Esto va bien
+            <c:when test="#{entrada.permiso == 'personal' }">
+                  <h1> Modificar mis datos</h1>
+                  <h1> Eliminar mi cuenta</h1>
+                  <h1> Gestionar Socios </h1>
+                  <h1> Gestionar Beneficiarios</h1>
+                  
              </c:when>
-             
              
              <c:when test="#{entrada.permiso == 'socio'}">
-                    Esto va bien
+                 <h1> Modificar mis datos</h1>
+                 <h1> Eliminar mi cuenta</h1>
              </c:when>
-             
-             
+                                      
              <c:otherwise>
                  <h2> Entrada irregular</h2>  
              </c:otherwise>
              
-        </c:choose>
              
+        </c:choose>
+             <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+        </h:form>
     </h:body>
 </html>
 

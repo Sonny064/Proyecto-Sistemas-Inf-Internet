@@ -10,13 +10,12 @@
         
             <h:form>
             <tr>
-                <td><h:commandButton  value="Modificar mis datos" action="gestion_usuarios.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Administrar Socios" action="gestion_socios.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Administrar Beneficiarios" action="gestion_beneficiarios.xhtml"></h:commandButton></td>
+                <td><h:commandButton  value="Modificar datos de usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
                 <td><h:commandButton  value="Consultar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
                 <td><h:commandButton  value="Administrar Hojas de Gastos" action="gestion_fondos.xhtml"></h:commandButton></td>
                 <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml"></h:commandButton></td>
                 <td><h:commandButton  value="Consultar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
+                <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
             </tr>
         </h:form>
     </h:body>
