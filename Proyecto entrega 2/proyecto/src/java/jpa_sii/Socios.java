@@ -26,10 +26,10 @@ public class Socios implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_Socio;
     @Column(nullable=false, unique=true)
     private Long nif;
+    @Column(nullable=false)
+    private String password;
     @Column(nullable=false)
     private String nombre;
     @Column(nullable=false)
@@ -101,20 +101,21 @@ public class Socios implements Serializable {
 
     //Getters and Setters
 
-    public Long getId_Socio() {
-        return id_Socio;
-    }
-    public void setId_Socio(Long id_Socio) {
-        this.id_Socio = id_Socio;
-    }
-
+   
     public Long getNif() {
         return nif;
     }
     public void setNif(Long nif) {
         this.nif = nif;
     }
+    
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -253,7 +254,7 @@ public class Socios implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id_Socio != null ? id_Socio.hashCode() : 0);
+        hash += (nif != null ? nif.hashCode() : 0);
         return hash;
     }
 
@@ -264,7 +265,7 @@ public class Socios implements Serializable {
             return false;
         }
         Socios other = (Socios) object;
-        if ((this.id_Socio == null && other.id_Socio != null) || (this.id_Socio != null && !this.id_Socio.equals(other.id_Socio))) {
+        if ((this.nif == null && other.nif != null) || (this.nif != null && !this.nif.equals(other.nif))) {
             return false;
         }
         return true;
@@ -272,7 +273,7 @@ public class Socios implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa_sii.Centro[ id=" + id_Socio + " ]";
+        return "jpa_sii.Centro[ id=" + nif + " ]";
     }
 
 }

@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
 /**
  *
  * @author Marina Mu�oz
@@ -25,13 +24,13 @@ public class Personal_Asociacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long itentificador;
-
+    private Long nif;
+    @Column(nullable = false)
+    private String password;
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
-   	private String apellidos;
+    private String apellidos;
     @Column(nullable = false)
     private Date fechaNacimiento;
     @Column(nullable = false)
@@ -42,92 +41,99 @@ public class Personal_Asociacion implements Serializable {
     private String experiencia;
     private String descripcion;
 
-    @ManyToMany (mappedBy ="personalProyecto")
-    private List <Proyecto> proyectos;
+    @ManyToMany(mappedBy = "personalProyecto")
+    private List<Proyecto> proyectos;
 
     @ManyToMany
     private List<Centro> listadoCentros;
 
     //Constructores
-    
-    public Personal_Asociacion(){
-        
+    public Personal_Asociacion() {
+
     }
 
     public Personal_Asociacion(String n, String a, Date fn, Date fe, String c) {
-    	nombre = n;
-    	apellidos = a;
-    	fechaNacimiento = fn;
-    	fechaEntrada = fe;
-    	cargo = c;
+        nombre = n;
+        apellidos = a;
+        fechaNacimiento = fn;
+        fechaEntrada = fe;
+        cargo = c;
 
     }
 
-    public Long getItentificador() {
-		return itentificador;
-	}
+    public Long getNif() {
+        return nif;
+    }
 
-	public void setItentificador(Long itentificador) {
-		this.itentificador = itentificador;
-	}
+    public void setNif(Long nif) {
+        this.nif = nif;
+    }
+    
+     public String getPassword() {
+        return password;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getApellidos() {
-		return apellidos;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
+    public String getApellidos() {
+        return apellidos;
+    }
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
 
-	public Date getFechaEntrada() {
-		return fechaEntrada;
-	}
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
-	public void setFechaEntrada(Date fechaEntrada) {
-		this.fechaEntrada = fechaEntrada;
-	}
+    public Date getFechaEntrada() {
+        return fechaEntrada;
+    }
 
-	public String getCargo() {
-		return cargo;
-	}
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
+    public String getCargo() {
+        return cargo;
+    }
 
-	public String getExperiencia() {
-		return experiencia;
-	}
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 
-	public void setExperiencia(String experiencia) {
-		this.experiencia = experiencia;
-	}
+    public String getExperiencia() {
+        return experiencia;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-        
-        public String getFoto() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getFoto() {
         return foto;
     }
 
@@ -151,11 +157,10 @@ public class Personal_Asociacion implements Serializable {
         this.listadoCentros = listadoCentros;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (itentificador != null ? itentificador.hashCode() : 0);
+        hash += (nif != null ? nif.hashCode() : 0);
         return hash;
     }
 
@@ -166,7 +171,7 @@ public class Personal_Asociacion implements Serializable {
             return false;
         }
         Personal_Asociacion other = (Personal_Asociacion) object;
-        if ((this.itentificador == null && other.itentificador != null) || (this.itentificador != null && !this.itentificador.equals(other.itentificador))) {
+        if ((this.nif == null && other.nif != null) || (this.nif != null && !this.nif.equals(other.nif))) {
             return false;
         }
         return true;
@@ -174,7 +179,7 @@ public class Personal_Asociacion implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa_sii.Personal_Asociaci\u00f3n[ identificador=" + itentificador + " ]";
+        return "jpa_sii.Personal_Asociaci\u00f3n[ identificador=" + nif + " ]";
     }
 
 }
