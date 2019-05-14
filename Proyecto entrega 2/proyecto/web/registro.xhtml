@@ -13,10 +13,7 @@
             <table class='table-responsive'>
             <tr>
                 <td><h:outputLabel  value="NIF/NIE" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="nif" maxlength="9"  lang="es" value="#{user.nif}" required="true">
-                        <f:convertNumber integerOnly="true"></f:convertNumber>
-                        <f:validateRegex pattern="[0-9]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="nif" lang="es" value="#{user.nif}" required="true"/></td>
             </tr>
             
             <tr>
@@ -41,40 +38,27 @@
                 
             <tr>
                 <td><h:outputLabel  value="Codigo Postal" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="pos" maxlength="10" lang="es" value="#{user.pos}" required="true">
-                    <f:convertNumber integerOnly="true"></f:convertNumber>
-                    <f:validateRegex pattern="[0-9]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="pos" lang="es" value="#{user.pos}" required="true"/></td>
             </tr>
                 
             <tr>
                 <td><h:outputLabel  value="Calle/numero" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="dir" lang="es" value="#{user.dir}" required="true">
-                    <f:validateRegex pattern="[a-zA-Z]+/[0-9]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="dir" lang="es" value="#{user.dir}" required="true"/></td>
             </tr>
                 
             <tr>
                 <td><h:outputLabel  value="Teléfono fijo" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="fijo" maxlength="9" lang="es" value="#{user.fijo}" required="true">
-                    <f:convertNumber integerOnly="true"></f:convertNumber>
-                    <f:validateRegex pattern="[0-9]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="fijo" lang="es" value="#{user.fijo}" required="true"/></td>
             </tr>
                 
             <tr>
                 <td><h:outputLabel  value="Teléfono móvil" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="movil" maxlength="9" lang="es" value="#{user.movil}" required="true">
-                    <f:convertNumber integerOnly="true"></f:convertNumber>
-                    <f:validateRegex pattern="[0-9]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="movil" lang="es" value="#{user.movil}" required="true"/></td>
             </tr>
             
             <tr>
                 <td><h:outputLabel  value="Correo electrónico" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="email" lang="es" value="#{user.corr}" required="true">
-                    <f:validateRegex pattern="[0-9a-zA-Z._-]+@[0-9a-zA-Z._-].[0-9a-zA-Z._-]"/>
-                    </h:inputText></td>
+                <td><h:inputText id="email" lang="es" value="#{user.corr}" required="true"/></td>
             </tr>
             
             <tr>
