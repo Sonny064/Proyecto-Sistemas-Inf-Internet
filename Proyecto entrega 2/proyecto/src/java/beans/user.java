@@ -5,8 +5,8 @@
  */
 package beans;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 /**
@@ -15,7 +15,7 @@ import javax.inject.Named;
  */
 @Named(value = "user")
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class user {
 
     
@@ -29,6 +29,9 @@ public class user {
     private int fijo;
     private int movil;
     private String corr;
+    
+    private String contra;
+    private String reContra;
     /**
      * Creates a new instance of user
      */
@@ -114,8 +117,31 @@ public class user {
     public void setCorr(String corr) {
         this.corr = corr;
     }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+
+    public String getReContra() {
+        return reContra;
+    }
+
+    public void setReContra(String reContra) {
+        this.reContra = reContra;
+    }
     
+
     public String run(){
         return "registrocon.xhtml";
+    }
+    
+    public String fin(){
+        
+        if (this.getContra().equals(reContra)){return "index.xhtml";}
+        else{return null;}
     }
 }
