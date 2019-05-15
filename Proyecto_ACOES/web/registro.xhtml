@@ -2,70 +2,117 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <link rel='stylesheet' type='text/css' href='css/bootstrap.min.css'></link>
+        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Pagina de registro</title>
     </h:head>
     <h:body>
-        <h2>Formulario de registro web ACOES</h2>
-        <h:form>
-            <table class='table-responsive'>
-            <tr>
-                <td><h:outputLabel  value="NIF/NIE" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="nif" lang="es" value="#{user.nif}" required="true"/></td>
-            </tr>
+      <div class="container">
+       <div class="d-flex justify-content-center h-100">
+         <div class="cardregistro">
+            <h:form>
+                
+              <div class="card-header">
+              <h3 class="especial">Formulario de registro</h3>
+              </div>
+                
+              <div class="card-body">
+                  
+               <div class="form-row">
+                
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="NIF/NIE" class="especial" lang="es"/>
+                <h:inputText id="nif" lang="es" class="form-control"  value="#{user.nif}" required="true"/>
+                </div>
             
-            <tr>
-                <td><h:outputLabel  value="Nombre" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="name" lang="es" value="#{user.name}" required="true"></h:inputText></td>
-            </tr>
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Contraseña" class="especial" lang="es"/>
+                <h:inputSecret lang="es" class="form-control" value="#{user.contra}" required="true"/>
+                </div>
                 
-            <tr>
-                <td><h:outputLabel  value="Apellidos" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="subname" lang="es" value="#{user.subname}" required="true"></h:inputText></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Provincia" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="prov" lang="es" value="#{user.prov}" required="true"></h:inputText></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Población" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="pop" lang="es" value="#{user.pop}" required="true"></h:inputText></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Codigo Postal" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="pos" lang="es" value="#{user.pos}" required="true"/></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Calle/numero" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="dir" lang="es" value="#{user.dir}" required="true"/></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Teléfono fijo" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="fijo" lang="es" value="#{user.fijo}" required="true"/></td>
-            </tr>
-                
-            <tr>
-                <td><h:outputLabel  value="Teléfono móvil" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="movil" lang="es" value="#{user.movil}" required="true"/></td>
-            </tr>
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Repita su contraseña" class="especial" lang="es"/>
+                <h:inputSecret lang="es" class="form-control" value="#{user.reContra}" required="true"/>
+                </div>
+                   
+               </div>
+                  
+               <div class="form-row">
             
-            <tr>
-                <td><h:outputLabel  value="Correo electrónico" lang="es"></h:outputLabel></td>
-                <td><h:inputText id="email" lang="es" value="#{user.corr}" required="true"/></td>
-            </tr>
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Nombre" class="especial" lang="es"/>
+                <h:inputText id="name" lang="es" class="form-control" value="#{user.name}"  required="true"/>
+                </div>
+                
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Apellidos" class="especial" lang="es"/>
+                <h:inputText id="subname" lang="es" class="form-control" value="#{user.subname}" required="true"/>
+                </div>
+                   
+               </div>
+                
+               <div class="form-row">
+                    
+                <div class="form-group col-md-3">
+                <h:outputLabel  value="Provincia" class="especial" lang="es"/>
+                <h:inputText id="prov" lang="es" class="form-control" value="#{user.prov}" required="true"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Población" class="especial" lang="es"/>
+                <h:inputText id="pop" lang="es" class="form-control" value="#{user.pop}" required="true"/>
+                </div>
+                    
+               </div>   
             
-            <tr>
-                <td><h:commandButton  value="Continuar" action="#{user.run()}"></h:commandButton></td>
-            </tr>
-            </table>
-        </h:form>
-    </h:body>
+                <div class="form-row">
+                    
+                  <div class="form-group col-md-3">
+                  <h:outputLabel  value="Codigo Postal" class="especial" lang="es"/>
+                  <h:inputText id="pos" lang="es" class="form-control" value="#{user.pos}" required="true"/>
+                  </div>
+                
+                  <div class="form-group col-md-4">
+                  <h:outputLabel  value="Calle/numero" class="especial" lang="es"/>
+                  <h:inputText id="dir" lang="es" class="form-control" value="#{user.dir}" required="true"/>
+                  </div>
+                    
+                </div>
+                
+               <div class="form-row">
+                
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Teléfono fijo" class="especial" lang="es"/>
+                <h:inputText id="fijo" lang="es" class="form-control" value="#{user.fijo}" required="true"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                <h:outputLabel  value="Teléfono móvil" class="especial" lang="es"/>
+                <h:inputText id="movil" lang="es" class="form-control" value="#{user.movil}" required="true"/>
+                </div>
+                     
+               </div>
+                 
+               <div class="form-row">
+                <div class="form-group col-md-7">
+                <h:outputLabel  value="Correo electrónico" class="especial" lang="es"/>
+                <h:inputText id="email" lang="es" class="form-control" value="#{user.corr}" required="true"/>
+                </div>
+                
+               </div>
+                  
+                <div class="form-group">
+                <h:commandButton  value="Continuar" class="btn btn-primary btn-sm"  action="#{user.fin()}"/>
+                </div>
+                  
+              </div>
+           </h:form>
+         </div>
+       </div>
+     </div>
+   </h:body>
 </html>
 
