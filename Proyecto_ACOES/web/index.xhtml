@@ -20,22 +20,22 @@
                
                <div class="card-body">
                 <div class="form-group row">
-                    <h:inputText class="form-control" lang="es" value="#{entrada.nif}" a:placeholder="NIF"></h:inputText>
+                    <h:inputText class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{entrada.nif}" a:placeholder="NIF"/>
                 </div>
 
                 <div class="form-group row">
-                   <h:inputSecret class="form-control" lang="es" value="#{entrada.contra}" a:placeholder="Contraseña"></h:inputSecret>  
+                   <h:inputSecret class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{entrada.contra}" a:placeholder="Contraseña"/> 
                 </div>
 
                 <div class="form-group row">
-                   <h:commandButton value="Continuar" class="btn btn-primary btn-sm" action="#{entrada.log}"></h:commandButton>
+                   <h:commandButton value="Continuar" class="btn btn-primary btn-sm" style="margin-left: 1em" action="#{entrada.log}"/>
                 </div>
                </div>
                
                <div class="card-fotter">
                 <div class="form-text">
-                    <h:commandLink class="d-flex justify-content-center links" value="Registro" action="registro.xhtml"></h:commandLink>
-                    <h:commandLink class="d-flex justify-content-center links"  value="¿Olvido su contraseña?" lang="es" action="olvido.xhtml"></h:commandLink>
+                    <h:commandLink class="d-flex justify-content-center links" value="Registro" action="registro.xhtml"/>
+                    <h:commandLink class="d-flex justify-content-center links"  value="¿Olvido su contraseña?" lang="es" action="olvido.xhtml"/>
                 </div>
                </div>
            </h:form>
