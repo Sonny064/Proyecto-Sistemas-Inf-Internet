@@ -15,7 +15,13 @@ margin-bottom: auto;
 width: 300px;
 background-color: rgba(103,207,242,0.45) !important;
 }
-
+.cardregistro{
+height: 650px;
+margin-top: 50px;
+margin-bottom: auto;
+width: 500px;
+background-color: rgba(103,207,242,0.45) !important;  
+}
 html,body{
 background-image: url('https://ayudaenaccion.org/ong/wp-content/uploads/2017/06/apadrinar-un-ni%C3%B1o.jpg');
 background-size: cover;
