@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Página para el Personal de la Asociación</title>
+    </h:head>
+    <h:body>
+        <h2>Página de administración para el personal de la Asociación</h2>
+        
+            <h:form>
+            <tr>
+                <td><h:commandButton  value="Modificar datos de usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
+                <td><h:commandButton  value="Consultar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
+                <td><h:commandButton  value="Administrar Hojas de Gastos" action="gestion_fondos.xhtml"></h:commandButton></td>
+                <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml"></h:commandButton></td>
+                <td><h:commandButton  value="Consultar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
+                <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+            </tr>
+        </h:form>
+    </h:body>
+</html>
+
