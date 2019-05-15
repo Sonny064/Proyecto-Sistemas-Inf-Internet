@@ -133,12 +133,7 @@ public class user {
     public void setReContra(String reContra) {
         this.reContra = reContra;
     }
-    
 
-    public String run(){
-        return "registrocon.xhtml";
-    }
-    
     public String fin(){
         
         if (this.getContra().equals(reContra)){return "index.xhtml";}
