@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition template="/templates/paginaPrincipal.xhtml">
+        <ui:define name="title">Página de Administración</ui:define>
+        
+        <ui:define name="cabecera">
+            
+            <h:form>
+                <tr>
+                    <td><h:commandButton  value="Administrar Usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
+                    <td><h:commandButton  value="Administrar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
+                    <td><h:commandButton  value="Administrar Fondos" action="gestion_fondos.xhtml"></h:commandButton></td>
+                    <td><h:commandButton  value="Administrar Envíos" action="gestion_envios.xhtml"></h:commandButton></td>
+                    <td><h:commandButton  value="Administrar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
+                </tr>
+            </h:form>
+        
+        </ui:define>
+        
+    </ui:composition>
+</html>
