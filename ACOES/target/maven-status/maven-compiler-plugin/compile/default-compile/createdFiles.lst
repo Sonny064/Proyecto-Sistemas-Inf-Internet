@@ -1,0 +1,10 @@
+objects\Project.class
+objects\Beneficiary.class
+objects\Transaction.class
+objects\Worker$Profile.class
+objects\Worker.class
+objects\Shipment.class
+objects\Center$Type.class
+acoes\Test.class
+acoes\Modelo.class
+objects\Center.class
