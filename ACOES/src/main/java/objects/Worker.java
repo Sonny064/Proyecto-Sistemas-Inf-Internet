@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import java.sql.Date;
@@ -24,12 +22,8 @@ public class Worker implements Serializable {
       MEMBER
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
     // Login info
-    @Column(unique = true, nullable = false)
+    @Id
     private String email;
 
     @Column(nullable = false)
@@ -86,10 +80,6 @@ public class Worker implements Serializable {
     }
 
     // Getters
-    public int getId(){
-        return id;
-    }
-
     public String getEmail(){
         return email;
     }
@@ -143,10 +133,6 @@ public class Worker implements Serializable {
     }
 
     // Setters
-    public void setEmail(String e){
-        email = e;
-    }
-
     public void setProfile(Profile p){
         profile = p;
     }
@@ -209,7 +195,7 @@ public class Worker implements Serializable {
         }
     }
 
-    public void changePassword(String old, String _new){
+    public boolean changePassword(String old, String _new){
         if(password.length() == 0 || checkPassword(old)){
             try {
                 String _pwd = salt + _new;
@@ -224,6 +210,10 @@ public class Worker implements Serializable {
                 password = sb.toString();
                 
             } catch(NoSuchAlgorithmException e){}
+            
+            return true;
+        } else {
+            return false;
         }
     }
 }
