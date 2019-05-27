@@ -3,14 +3,16 @@
   <persistence-unit name="proyectoWebPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <non-jta-data-source>jdbC:derby://localhost:1527/sample [app on APP]</non-jta-data-source>
-    <class>jpa_sii.Beneficiario</class>
-    <class>jpa_sii.Centro</class>
-    <class>jpa_sii.Envios</class>
-    <class>jpa_sii.Ingresos_Egresos</class>
-    <class>jpa_sii.Municipio</class>
-    <class>jpa_sii.Personal_Asociacion</class>
-    <class>jpa_sii.Proyecto</class>
-    <class>jpa_sii.Socios</class>
+    <class>Entidades.Beneficiario</class>
+    <class>Entidades.Casapopulorum</class>
+    <class>Entidades.Centro</class>
+    <class>Entidades.Centroeducacion</class>
+    <class>Entidades.Envios</class>
+    <class>Entidades.Ingresosegresos</class>
+    <class>Entidades.Municipio</class>
+    <class>Entidades.Personal</class>
+    <class>Entidades.Proyecto</class>
+    <class>Entidades.Socio</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

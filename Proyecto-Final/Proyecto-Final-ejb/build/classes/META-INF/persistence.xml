@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Proyecto-Final-ejbPU" transaction-type="JTA">
+    <jta-data-source>java:module/ACOES</jta-data-source>
+    <class>Entidades.Beneficiario</class>
+    <class>Entidades.Casapopulorum</class>
+    <class>Entidades.Centro</class>
+    <class>Entidades.Centroeducacion</class>
+    <class>Entidades.Envios</class>
+    <class>Entidades.Ingresosegresos</class>
+    <class>Entidades.Municipio</class>
+    <class>Entidades.Personal</class>
+    <class>Entidades.Proyecto</class>
+    <class>Entidades.Socio</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>
