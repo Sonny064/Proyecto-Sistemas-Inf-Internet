@@ -88,6 +88,11 @@ public class Socio implements Serializable {
     private String provincia;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "POBLACION")
+    private String poblacion;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "CODIGOPOSTAL")
     private String codigopostal;
@@ -144,7 +149,7 @@ public class Socio implements Serializable {
         this.nif = nif;
     }
 
-    public Socio(String nif, String password, String nombre, String apellidos, Date fechadenacimiento, String estado, String provincia, String codigopostal, String direccion, String telefonofijo, String telefonomovil, String email, String relacion, String sector, Boolean certificado, Date fechadealta) {
+    public Socio(String nif, String password, String nombre, String apellidos, Date fechadenacimiento, String estado, String provincia, String poblacion, String codigopostal, String direccion, String telefonofijo, String telefonomovil, String email, String relacion, String sector, Boolean certificado, Date fechadealta) {
 
         this.nif = nif;
         this.password = password;
@@ -153,6 +158,7 @@ public class Socio implements Serializable {
         this.fechadenacimiento = fechadenacimiento;
         this.estado = estado;
         this.provincia = provincia;
+        this.poblacion=poblacion;
         this.codigopostal = codigopostal;
         this.direccion = direccion;
         this.telefonofijo = telefonofijo;
@@ -218,6 +224,14 @@ public class Socio implements Serializable {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+    
+    public String getPoblacion (){
+    return poblacion;
+    }
+    
+    public void setPoblacion(String poblacion){
+    this.poblacion=poblacion;
     }
 
     public String getCodigopostal() {

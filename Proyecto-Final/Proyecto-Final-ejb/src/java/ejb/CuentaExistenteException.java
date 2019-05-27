@@ -5,14 +5,10 @@
  */
 package ejb;
 
-import javax.ejb.Local;
-import Entidades.Socio;
-
 /**
  *
  * @author jesus
  */
-@Local
-public interface Interfaz {
-    public void registrarUsuario(Socio socio) throws AplicacionException;
+public class CuentaExistenteException extends AplicacionException {
+    
 }

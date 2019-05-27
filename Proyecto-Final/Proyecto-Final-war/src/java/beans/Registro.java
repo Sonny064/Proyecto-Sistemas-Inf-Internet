@@ -5,11 +5,16 @@
  */
 package beans;
 
-import Entidades.Municipio;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import Entidades.Socio;
+import ejb.AplicacionException;
+import ejb.CuentaExistenteException;
+import ejb.Interfaz;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -19,8 +24,10 @@ import Entidades.Socio;
 @SessionScoped
 public class Registro implements Serializable {
 
+    @EJB
+    private Interfaz negocio;
+    
     private Socio socio;
-    private Municipio municipio;
 
     private String reContra;
     /**
@@ -28,7 +35,6 @@ public class Registro implements Serializable {
      */
     public Registro() {
      socio = new Socio() ;
-     municipio =  new Municipio();
     }
 
     public Socio getSocio(){
@@ -38,15 +44,7 @@ public class Registro implements Serializable {
     public void setSocio(Socio s){
      socio = s;
     }
-    
-    public Municipio getMunicipio(){
-    return municipio;
-    }
-    
-    public void setMunicipio (Municipio municipio){
-       this.municipio=municipio;
-    }
-    
+
     public String getReContra() {
         return reContra;
     }
@@ -55,9 +53,24 @@ public class Registro implements Serializable {
         this.reContra = reContra;
     }
 
-    public String fin(){
+    public String fin() throws AplicacionException{
         
-        if (socio.getPassword().equals(reContra)){return "login.xhtml";}
-        else{return null;}
+      try{
+        
+        if (socio.getPassword().equals(reContra)){
+            negocio.registrarUsuario(socio);
+            return "login.xhtml";
+        }else{
+            FacesMessage fm = new FacesMessage("Compruebe que las contraseñas sean iguales");
+            FacesContext.getCurrentInstance().addMessage("registro:reContra", fm);
+            return null;
+        }
+        
+      }catch (CuentaExistenteException e){
+            FacesMessage fm = new FacesMessage("Ya existe una cuenta para este nif");
+            FacesContext.getCurrentInstance().addMessage("registro:socio", fm);
+      }catch (AplicacionException e){}
+      
+      return null;
     }
 }

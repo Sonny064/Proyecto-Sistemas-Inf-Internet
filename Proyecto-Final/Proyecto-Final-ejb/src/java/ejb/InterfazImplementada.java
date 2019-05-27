@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entidades.Socio;
+import java.util.Date;
+
 
 /**
  *
@@ -20,8 +22,23 @@ public class InterfazImplementada implements Interfaz {
     private EntityManager em;
     
     @Override
-    public void registrarUsuario(Socio socio){
-    em.persist(socio);
+    public void registrarUsuario(Socio socio)throws AplicacionException{
     
+        Socio user = em.find(Socio.class, socio.getNif());
+        
+        if (user != null){
+          throw new CuentaExistenteException ();
+        }
+        
+        else{
+        socio.setEstado("Activo");
+        socio.setRelacion("Miembro");
+        socio.setSector("");
+        socio.setCertificado(Boolean.FALSE);
+        socio.setFechadealta(new Date());
+        em.persist(socio);
+        }
     }
+    
+    
 }
