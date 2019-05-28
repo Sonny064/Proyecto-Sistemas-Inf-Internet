@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import Entidades.Personal;
 import javax.ejb.Local;
 import Entidades.Socio;
 
@@ -14,5 +15,10 @@ import Entidades.Socio;
  */
 @Local
 public interface Interfaz {
+    
     public void registrarUsuario(Socio socio) throws AplicacionException;
+    
+    public Socio buscarSocio (String nif) throws AplicacionException;
+    
+    public Personal buscarPersonal (String id) throws AplicacionException;
 }
