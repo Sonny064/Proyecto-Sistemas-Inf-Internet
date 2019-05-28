@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Socio.findAll", query = "SELECT s FROM Socio s")
-    , @NamedQuery(name = "Socio.findById", query = "SELECT s FROM Socio s WHERE s.id = :id")
     , @NamedQuery(name = "Socio.findByNif", query = "SELECT s FROM Socio s WHERE s.nif = :nif")
     , @NamedQuery(name = "Socio.findByPassword", query = "SELECT s FROM Socio s WHERE s.password = :password")
     , @NamedQuery(name = "Socio.findByNombre", query = "SELECT s FROM Socio s WHERE s.nombre = :nombre")
