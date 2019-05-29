@@ -23,7 +23,7 @@ import javax.inject.Named;
 public class Login {
     
     private Socio socio;
-    private Personal personal;
+    private Personal empleado;
     
     @EJB
     private Interfaz interfaz;
@@ -39,7 +39,7 @@ public class Login {
      */
     public Login() {
         socio = new Socio();
-        personal = new Personal();
+        empleado = new Personal();
     }
 
     public String getNif() {
@@ -75,24 +75,29 @@ public class Login {
     }
 
     public Personal getPersonal() {
-        return personal;
+        return empleado;
     }
 
     public void setPersonal(Personal personal) {
-        this.personal = personal;
+        this.empleado = personal;
     }
     
     //Terminar de implementar
     public String log () throws AplicacionException{
         
-        Socio user = interfaz.buscarSocio(getNif());
-        Personal pl = interfaz.buscarPersonal(getNif());
+       empleado = interfaz.buscarPersonal(getNif());
+       socio = interfaz.buscarSocio(getNif());
         
-        if (contra.equals("admin") && nif.equals("admin")){return "admin.xhtml";}
-        else if (user != null && user.getPassword().equals(contra)){return "socio.xhtml";}
-        else if (pl != null && pl.getPassword().equals(contra)){return "personal_asociacion.xhtml";}
-        else {return null;}
-
+        if(empleado != null && empleado.getCargo().equals("ADMIN") && empleado.getPassword().equals(contra)){
+            return "admin.xhtml";
+        }
+        else if(empleado != null && empleado.getCargo().equals("EMPLEADO") && empleado.getPassword().equals(contra)){
+            return "personal_asociacion.xhtml";
+        }
+        else if(socio != null){
+            return "socio.xhtml";
+        }
+        return null;
     }
     
     public String invalidarSesion()
