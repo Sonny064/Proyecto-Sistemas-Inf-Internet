@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -70,19 +69,7 @@ public class Ingresosegresos implements Serializable {
     @Size(max = 200)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    
-    //Relaciones //
-     @ManyToOne
-    private Socio ingresos_socio;
 
-    @ManyToOne
-    private Proyecto ingresos_proyecto;
-
-    @ManyToOne
-    private Centro ingresos_centro;
-
-    
-    
     public Ingresosegresos() {
     }
 
@@ -145,31 +132,6 @@ public class Ingresosegresos implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Socio getIngresos_socio() {
-        return ingresos_socio;
-    }
-
-    public void setIngresos_socio(Socio ingresos_socio) {
-        this.ingresos_socio = ingresos_socio;
-    }
-
-    public Proyecto getIngresos_proyecto() {
-        return ingresos_proyecto;
-    }
-
-    public void setIngresos_proyecto(Proyecto ingresos_proyecto) {
-        this.ingresos_proyecto = ingresos_proyecto;
-    }
-
-    public Centro getIngresos_centro() {
-        return ingresos_centro;
-    }
-
-    public void setIngresos_centro(Centro ingresos_centro) {
-        this.ingresos_centro = ingresos_centro;
-    }
-    
-    
 
     @Override
     public int hashCode() {

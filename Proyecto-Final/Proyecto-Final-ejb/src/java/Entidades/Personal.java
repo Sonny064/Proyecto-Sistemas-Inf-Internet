@@ -7,7 +7,6 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -91,14 +89,6 @@ public class Personal implements Serializable {
     @Size(max = 200)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    
-    //Relaciones
-    @ManyToMany(mappedBy = "personalProyecto")
-    private List<Proyecto> proyectos;
-
-    @ManyToMany
-    private List<Centro> listadoCentros;
-
 
     public Personal() {
     }
@@ -195,22 +185,6 @@ public class Personal implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    
-    public List<Proyecto> getProyectos() {
-        return proyectos;
-    }
-
-    public void setProyectos(List<Proyecto> proyectos) {
-        this.proyectos = proyectos;
-    }
-
-    public List<Centro> getListadoCentros() {
-        return listadoCentros;
-    }
-
-    public void setListadoCentros(List<Centro> listadoCentros) {
-        this.listadoCentros = listadoCentros;
     }
 
     @Override

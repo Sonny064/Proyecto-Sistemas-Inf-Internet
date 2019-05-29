@@ -7,7 +7,6 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,11 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -118,19 +114,6 @@ public class Beneficiario implements Serializable {
     @Size(max = 200)
     @Column(name = "OBSERVACIONES")
     private String observaciones;
-    
-    //Relaciones//
-    @ManyToOne
-    private Socio socio;
-
-    @OneToMany(mappedBy="receptor")
-    private List <Envios> envian;
-
-    @ManyToMany (mappedBy= "propietario_proyecto")
-    private List <Proyecto> proyecto;
-    
-    @ManyToMany (mappedBy= "propietario_centro")
-    private List <Centro> centro;
 
     public Beneficiario() {
     }
@@ -263,39 +246,6 @@ public class Beneficiario implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
-    }
-    
-    
-    public Socio getSocio() {
-        return socio;
-    }
-
-    public void setSocio(Socio socio) {
-        this.socio = socio;
-    }
-
-    public List<Envios> getEnvian() {
-        return envian;
-    }
-
-    public void setEnvian(List<Envios> envian) {
-        this.envian = envian;
-    }
-
-    public List<Proyecto> getProyecto() {
-        return proyecto;
-    }
-
-    public void setProyecto(List<Proyecto> proyecto) {
-        this.proyecto = proyecto;
-    }
-
-    public List<Centro> getCentro() {
-        return centro;
-    }
-
-    public void setCentro(List<Centro> centro) {
-        this.centro = centro;
     }
 
     @Override
