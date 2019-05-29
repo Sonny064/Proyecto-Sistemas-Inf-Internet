@@ -32,12 +32,12 @@ public class InterfazImplementada implements Interfaz {
         }
         
         else{
-        socio.setEstado("Activo");
-        socio.setRelacion("Miembro");
-        socio.setSector("");
-        socio.setCertificado(Boolean.FALSE);
-        socio.setFechadealta(new Date());
-        em.persist(socio);
+            socio.setEstado("Activo");
+            socio.setRelacion("Miembro");
+            socio.setSector("A");
+            socio.setCertificado(Boolean.FALSE);
+            socio.setFechadealta(new Date());
+            em.persist(socio);
         }
     }
     
