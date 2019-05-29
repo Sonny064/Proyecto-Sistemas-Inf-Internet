@@ -7,12 +7,14 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -140,10 +142,22 @@ public class Socio implements Serializable {
     @Size(max = 100)
     @Column(name = "OBSERVACIONES")
     private String observaciones;
+    
+    // Relaciones //
+    @OneToMany(mappedBy="emisor")
+    private List<Envios> envios;
 
-    public Socio() {
+    @OneToMany(mappedBy="socio")
+    private List<Beneficiario> beneficiarios;
+
+
+    @OneToMany(mappedBy="ingresos_socio")
+    private List<Ingresosegresos> ingresos_egresos;
+    
+    public Socio(){
+        
     }
-
+  
     public Socio(String nif) {
         this.nif = nif;
     }
@@ -319,6 +333,30 @@ public class Socio implements Serializable {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+    
+     public List<Envios> getEnvios() {
+        return envios;
+    }
+
+    public void setEnvios(List<Envios> envios) {
+        this.envios = envios;
+    }
+
+    public List<Beneficiario> getBeneficiarios() {
+        return beneficiarios;
+    }
+
+    public void setBeneficiarios(List<Beneficiario> beneficiarios) {
+        this.beneficiarios = beneficiarios;
+    }
+
+    public List<Ingresosegresos> getIngresos_egresos() {
+        return ingresos_egresos;
+    }
+
+    public void setIngresos_egresos(List<Ingresosegresos> ingresos_egresos) {
+        this.ingresos_egresos = ingresos_egresos;
     }
 
     @Override

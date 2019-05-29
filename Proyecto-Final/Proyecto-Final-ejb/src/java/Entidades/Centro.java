@@ -7,14 +7,17 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,6 +63,21 @@ public class Centro implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "LOCALIZACION")
     private String localizacion;
+    
+    //Relaciones//
+    @ManyToMany (mappedBy = "listadoCentros")
+    private List<Personal> personal;
+
+    @ManyToMany
+    private List<Beneficiario> propietario_centro;
+
+
+    @OneToMany(mappedBy="ingresos_centro")
+    private List<Ingresosegresos> ingresos;
+
+   
+    
+    
 
     public Centro() {
     }
@@ -105,6 +123,30 @@ public class Centro implements Serializable {
 
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
+    }
+    
+    public List<Personal> getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(List<Personal> personal) {
+        this.personal = personal;
+    }
+
+    public List<Beneficiario> getPropietario_centro() {
+        return propietario_centro;
+    }
+
+    public void setPropietario_centro(List<Beneficiario> propietario_centro) {
+        this.propietario_centro = propietario_centro;
+    }
+
+    public List<Ingresosegresos> getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(List<Ingresosegresos> ingresos) {
+        this.ingresos = ingresos;
     }
 
     @Override
