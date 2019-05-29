@@ -109,8 +109,16 @@
                 
                </div>
                   
-                <div class="form-group">
-                <h:commandButton  value="Continuar" class="btn btn-primary btn-sm"  action="#{registro.fin()}"/>
+                <div class="form-row">
+                
+                   <div class="form-group col-md">
+                   <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="login.xhtml"/>
+                   </div> 
+                    
+                   <div class="form-group col-md">
+                    <h:commandButton  value="Continuar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{registro.fin()}"/>
+                   </div>  
+                    
                 </div>
                   
               </div>

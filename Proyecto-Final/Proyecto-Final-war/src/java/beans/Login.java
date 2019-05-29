@@ -5,26 +5,41 @@
  */
 package beans;
 
+import Entidades.Personal;
+import Entidades.Socio;
+import ejb.AplicacionException;
+import ejb.Interfaz;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+
 
 /**
  *
  * @author jesus
  */
-@Named (value="login")
+@Named(value="login")
 @RequestScoped
 public class Login {
+    
+    private Socio socio;
+    private Personal personal;
+    
+    @EJB
+    private Interfaz interfaz;
+    
     
     private String nif;
     private String contra;
     private String permiso;
 
-    
+
     /**
      * Creates a new instance of entrada
      */
     public Login() {
+        socio = new Socio();
+        personal = new Personal();
     }
 
     public String getNif() {
@@ -50,14 +65,34 @@ public class Login {
     public void setPermiso(String permiso) {
         this.permiso = permiso;
     }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
     
     //Terminar de implementar
-    public String log (){
-        permiso = nif;
+    public String log () throws AplicacionException{
+        
+        Socio user = interfaz.buscarSocio(getNif());
+        Personal pl = interfaz.buscarPersonal(getNif());
+        
         if (contra.equals("admin") && nif.equals("admin")){return "admin.xhtml";}
-        else if (contra.equals("personal") && nif.equals("personal")){return "personal_asociacion.xhtml";}
-        else if (contra.equals("socio") && nif.equals("socio")){return "socio.xhtml";}
-        return null;
+        else if (user != null && user.getPassword().equals(contra)){return "socio.xhtml";}
+        else if (pl != null && pl.getPassword().equals(contra)){return "personal_asociacion.xhtml";}
+        else {return null;}
+
     }
     
     public String invalidarSesion()
