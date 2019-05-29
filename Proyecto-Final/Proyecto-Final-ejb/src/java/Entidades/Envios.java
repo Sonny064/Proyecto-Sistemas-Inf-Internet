@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -52,6 +53,13 @@ public class Envios implements Serializable {
     @Column(name = "FECHA")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    
+    //Relaciones
+    @ManyToOne
+    private Socio emisor;
+    
+    @ManyToOne
+    private Beneficiario receptor;
 
     public Envios() {
     }
@@ -87,6 +95,21 @@ public class Envios implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public Socio getEmisor() {
+        return emisor;
+    }
+
+    public void setEmisor(Socio emisor) {
+        this.emisor = emisor;
+    }
+
+    public Beneficiario getReceptor() {
+        return receptor;
+    }
+
+    public void setReceptor(Beneficiario receptor) {
+        this.receptor = receptor;
     }
 
     @Override

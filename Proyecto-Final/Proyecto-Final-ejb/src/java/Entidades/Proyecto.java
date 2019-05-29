@@ -7,14 +7,17 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,7 +63,19 @@ public class Proyecto implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "DESCRIPCIONDELPROYECTO")
     private String descripciondelproyecto;
+    
+    //Relaciones //
+    @ManyToMany
+    private List<Beneficiario> propietario_proyecto;
 
+    @OneToMany(mappedBy="ingresos_proyecto")
+    private List<Ingresosegresos> listaIngresos;
+
+    @ManyToMany
+    private List<Personal> personalProyecto;
+
+  
+    
     public Proyecto() {
     }
 
@@ -105,6 +120,30 @@ public class Proyecto implements Serializable {
 
     public void setDescripciondelproyecto(String descripciondelproyecto) {
         this.descripciondelproyecto = descripciondelproyecto;
+    }
+    
+     public List<Beneficiario> getPropietario_proyecto() {
+        return propietario_proyecto;
+    }
+
+    public void setPropietario_proyecto(List<Beneficiario> propietario_proyecto) {
+        this.propietario_proyecto = propietario_proyecto;
+    }
+
+    public List<Ingresosegresos> getListaIngresos() {
+        return listaIngresos;
+    }
+
+    public void setListaIngresos(List<Ingresosegresos> listaIngresos) {
+        this.listaIngresos = listaIngresos;
+    }
+
+    public List<Personal> getPersonalProyecto() {
+        return personalProyecto;
+    }
+
+    public void setPersonalProyecto(List<Personal> personalProyecto) {
+        this.personalProyecto = personalProyecto;
     }
 
     @Override

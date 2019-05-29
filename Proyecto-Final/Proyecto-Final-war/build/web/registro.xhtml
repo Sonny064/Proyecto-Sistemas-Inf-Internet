@@ -54,7 +54,10 @@
                    
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Fecha de nacimiento" class="especial" lang="es"/>
-                <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.socio.fechadenacimiento}" a:placeholder="DD/MM/AAAA" required="true"/>
+                <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.socio.fechadenacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                
                 </div>
                    
                </div>
