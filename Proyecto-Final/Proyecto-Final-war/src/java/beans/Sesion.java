@@ -73,4 +73,17 @@ public class Sesion implements Serializable {
         }
         else throw new AplicacionException();
     }
+    
+    public synchronized String tipoUsuario() throws AplicacionException{
+        if(empleado != null && empleado.getCargo().equals("ADMIN")){
+            return "ADMIN";
+        }
+        else if(empleado != null && empleado.getCargo().equals("EMPLEADO")){
+            return "EMPLEADO";
+        }
+        else if(socio != null){
+            return "SOCIO";
+        }
+        else throw new AplicacionException();
+    }
 }
