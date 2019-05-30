@@ -45,8 +45,6 @@ public class Registro implements Serializable {
     
     //Campos exclusivos del personal 
     private String cargo;
-    private String experiencia;
-    private String descripcion;
     
     /**
      * Creates a new instance of user
@@ -183,27 +181,11 @@ public class Registro implements Serializable {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
-    public String getExperiencia() {
-        return experiencia;
-    }
-
-    public void setExperiencia(String experiencia) {
-        this.experiencia = experiencia;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
     
      public String registrar(){        
         if(contraseña.equals(reContra)){
             
-            Socio user = new Socio(nif,contraseña,nombre,apellidos,fechaNacimiento,provincia,poblacion,codigopostal,direccion,telefonofijo,telefonomovil,email);
+            Socio user = new Socio(nif,contraseña,nombre,apellidos,fechaNacimiento,"activo",provincia,poblacion,codigopostal,direccion,telefonofijo,telefonomovil,email,"socio","",false,new Date());
             
             try {
                 negocio.registrar(user);
@@ -219,10 +201,10 @@ public class Registro implements Serializable {
      
      public String registrarPersonal(){
      
-         Personal pl = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento);
+         Personal pl = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento,new Date(),cargo);
          
          try {
-             negocio.registrarPersonal(pl, cargo, experiencia,descripcion);
+             negocio.registrarPersonal(pl);
              return "INSERTAR WEB A LA QUE VOLVER";
              
          }catch(Exception e){
