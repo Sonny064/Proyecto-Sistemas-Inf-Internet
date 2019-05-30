@@ -93,7 +93,7 @@ public class Login {
        
        if(socio != null && socio.getPassword().equals(contra)){
            sesion.setUsuario(interfaz.refrescarUsuario(socio));
-            return "socio.xhtml";
+            return "socio.xhtml?faces-redirect=true";
  
         }else if(empleado != null && empleado.getCargo().equalsIgnoreCase("ADMIN") && empleado.getPassword().equals(contra)){
             sesion.setUsuario(interfaz.refrescarUsuario(empleado));
