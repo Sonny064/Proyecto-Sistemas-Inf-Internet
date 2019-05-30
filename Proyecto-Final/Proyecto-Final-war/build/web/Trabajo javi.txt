@@ -1,0 +1,136 @@
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	<h:body>
+        <h2 align="center">Datos Personales </h2>
+            <h:dataTable   value="#{sesion.getUsuario}" var="s">
+               <!-- Aqui falta el choose para comprobar y mostrar que tipo de usuario accede -->
+                        <h:column >
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{s.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{s.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Teléfono</f:facet>
+                            <h:outputText value="#{s.telefonomovil}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{s.email}"/>
+                        </h:column>
+                         
+                        <h:column>
+                            <f:facet name="header">Estado</f:facet>
+                            <h:outputText value="#{s.cargo}"/>
+                        </h:column>
+                 <h:column>
+                            <f:facet name="header">Direccion</f:facet>
+                            <h:outputText value="#{s.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Provincia</f:facet>
+                            <h:outputText value="#{s.provincia}"/>
+                        </h:column>
+                
+                 
+                    </h:dataTable>
+                       <h:column>
+                            <h:commandButton value="Modificar" action="#{sesion.modificar(s)}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <h:commandButton value="Eliminar" action="#{sesion.eliminar(s)}"/>
+                        </h:column>
+        
+    </h:body>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    <h:body>
+        <h2>Donativos ACOES</h2>
+        
+         <h3>Colabore con nuestra organización</h3>
+        <form action="" method="post">
+            Inserte la cantidad que desea donar:
+            <input type="text" name="Cantidad" value="" />
+            <br/>
+            <br/>
+            Numero de tarjeta:
+            <input type="text" name="Número de tarjeta" value="" />
+            <br/>
+            <br/>
+            Código de seguridad:
+            <input type="text" name="CV tarjeta" value="" />
+            <br/>
+            <br/>
+            
+            <input  type="submit" value="Enviar"  />
+        </form>
+        
+    </h:body>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    <h:body>
+        <h2>Datos de Envios</h2>
+        <h:dataTable   value="#{envios}" var="e">
+               <!-- Aqui falta la funcion que nos devuelve los datos  del envio-->
+               
+                        <h:column >
+                            <f:facet name="header">Tipo de envío</f:facet>
+                            <h:outputText value="#{e.tipodeenvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Contenido</f:facet>
+                            <h:outputText value="#{e.contenido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{e.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Emisor</f:facet>
+                            <h:outputText value="#{e.emisor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Receptor</f:facet>
+                            <h:outputText value="#{e.receptor}"/>
+                        </h:column>
+                        </h:dataTable>
+        
+    </h:body>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    <h:body>
+        <h2>Datos del Empleado</h2>
+                            <h:dataTable value="#{empleado.socio}" var="s">
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{s.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{s.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Teléfono</f:facet>
+                            <h:outputText value="#{s.telefono}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">email</f:facet>
+                            <h:outputText value="#{s.email}"/>
+                        </h:column>
+                         
+                        <h:column>
+                            <f:facet name="header">Cargo</f:facet>
+                            <h:outputText value="#{s.cargo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">FechaEntrada</f:facet>
+                            <h:outputText value="#{s.fechaentradaacoes}"/>
+                        </h:column>
+                       
+                    </h:dataTable>
+        
+    </h:body>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

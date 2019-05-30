@@ -90,19 +90,20 @@ public class Login {
         
        empleado = interfaz.buscarPersonal(getNif());
        socio = interfaz.buscarSocio(getNif());
-        
-        if(empleado != null && empleado.getCargo().equals("ADMIN") && empleado.getPassword().equals(contra)){
+       
+       if(socio != null && socio.getPassword().equals(contra)){
+           sesion.setUsuario(interfaz.refrescarUsuario(socio));
+            return "socio.xhtml";
+ 
+        }else if(empleado != null && empleado.getCargo().equalsIgnoreCase("ADMIN") && empleado.getPassword().equals(contra)){
             sesion.setUsuario(interfaz.refrescarUsuario(empleado));
             return "admin.xhtml?faces-redirect=true";
         }
-        else if(empleado != null && empleado.getCargo().equals("EMPLEADO") && empleado.getPassword().equals(contra)){
+        else if(empleado != null && empleado.getPassword().equals(contra)){
             sesion.setUsuario(interfaz.refrescarUsuario(empleado));
             return "personal_asociacion.xhtml?faces-redirect=true";
         }
-        else if(socio != null && socio.getPassword().equals(contra)){
-            sesion.setUsuario(interfaz.refrescarUsuario(socio));
-            return "socio.xhtml";
-        }
+       
         return null;
     }
 }

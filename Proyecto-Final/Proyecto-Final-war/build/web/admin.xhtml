@@ -1,36 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
         <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Página Administración</title>
     </h:head>
-    <h:body>
-       
-        <h2>Página de administrador de la plataforma</h2> <br></br>
-         <div class="d-flex justify-content-center h-100">
-        <h:form>
-            <tr>
-               
-                <td><h:commandButton  value="Administrar Usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
-                
-                     <td><h:commandButton  value="Administrar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
-          
-                    <td><h:commandButton  value="Administrar Fondos" action="gestion_fondos.xhtml"></h:commandButton></td>
-                
-                    <td><h:commandButton  value="Administrar Envíos" action="gestion_envios.xhtml"></h:commandButton></td>
-               
-                    <td><h:commandButton  value="Administrar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
-                
-                
-                    <p><h:commandLink action="#{login.invalidarSesion()}">Log out</h:commandLink></p>
+    <h:body><!--
+        <c:choose>
+            <c:when test="#{sesion.tipoUsuario() == "EMPLEADO"}">
+                <h2>Página de empleados de la plataforma</h2> <br></br>
+            </c:when>
+            <c:when test="#{sesion.tipoUsuario() == "SOCIO"}">
+                <h2>Página de socios de la plataforma</h2> <br></br>
+            </c:when>
+        </c:choose>-->
+        
+        
+        
+        
+        <c:choose>
             
+            <c:when test="#{!empty sesion.empleado}">
+                <h2>Página de administrador de la plataforma</h2> <br></br>
+                <div class="d-flex justify-content-center h-100">
+                    <h:form>
+                    <tr>
+               
+                        <td><h:commandButton  value="Administrar Usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
                 
-               </tr>
-        </h:form>
-        </div>
+                        <td><h:commandButton  value="Administrar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
+          
+                        <td><h:commandButton  value="Administrar Fondos" action="gestion_fondos.xhtml"></h:commandButton></td>
+                
+                        <td><h:commandButton  value="Administrar Envíos" action="gestion_envios.xhtml"></h:commandButton></td>
+               
+                        <td><h:commandButton  value="Administrar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
+                    
+                        <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
+                    </tr>
+                    </h:form>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <p>No está autorizado para ver está página.</p>
+            </c:otherwise>
+        </c:choose>
     </h:body>
 </html>
 
