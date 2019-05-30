@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
+        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
+        <title>Página de Socio</title>
+    </h:head>
+    <h2>Página para socios de la plataforma</h2> <br></br>
+     <div class="d-flex justify-content-center h-100">
+    <h:body>
+        <h:form>
+            <tr>
+                <td><h:commandButton  value="Modificar mi cuenta" action="gestion_usuarios.xhtml"></h:commandButton></td>
+                <!-- <td><h:commandButton  value="Realizar Donativo" action=""></h:commandButton></td> -->
+                <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml"></h:commandButton></td>
+                <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+            </tr>
+        </h:form> 
+        
+    </h:body>
+     </div>
+</html>
+
