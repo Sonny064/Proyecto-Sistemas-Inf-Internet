@@ -162,13 +162,13 @@ public class Socio implements Serializable {
         this.nif = nif;
     }
 
-    public Socio(String nif, String password, String nombre, String apellidos, Date fechadenacimiento, String provincia, String poblacion, String codigopostal, String direccion, String telefonofijo, String telefonomovil, String email) {
-
+    public Socio(String nif, String password, String nombre, String apellidos, Date fechadenacimiento, String estado, String provincia, String poblacion, String codigopostal, String direccion, String telefonofijo, String telefonomovil, String email, String relacion, String sector, Boolean certificado, Date fechadealta) {
         this.nif = nif;
         this.password = password;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechadenacimiento = fechadenacimiento;
+        this.estado=estado;
         this.provincia = provincia;
         this.poblacion=poblacion;
         this.codigopostal = codigopostal;
@@ -176,6 +176,10 @@ public class Socio implements Serializable {
         this.telefonofijo = telefonofijo;
         this.telefonomovil = telefonomovil;
         this.email = email;
+        this.relacion = relacion;
+        this.sector = sector;
+        this.certificado = certificado;
+        this.fechadealta = fechadealta;
     }
 
     public String getNif() {
