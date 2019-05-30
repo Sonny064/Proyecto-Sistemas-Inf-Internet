@@ -30,5 +30,5 @@ public interface Interfaz {
     
     public Object refrescarUsuario(Object usuario) throws AplicacionException ;
         
-    
+    public void registrarPersonal (Personal personal,String cargo,String experiencia,String descripcion) throws Exception;
 }
