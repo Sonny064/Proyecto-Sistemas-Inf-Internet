@@ -1,12 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Seguimiento de Envios</title>
     </h:head>
     <h:body>
         <h2>Datos de Envios</h2>
+        <h:dataTable   value="#{envios}" var="e">
+               <!-- Aqui falta la funcion que nos devuelve los datos  del envio-->
+               
+                        <h:column >
+                            <f:facet name="header">Tipo de envío</f:facet>
+                            <h:outputText value="#{e.tipodeenvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Contenido</f:facet>
+                            <h:outputText value="#{e.contenido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{e.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Emisor</f:facet>
+                            <h:outputText value="#{e.emisor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Receptor</f:facet>
+                            <h:outputText value="#{e.receptor}"/>
+                        </h:column>
+                        </h:dataTable>
         
     </h:body>
 </html>
