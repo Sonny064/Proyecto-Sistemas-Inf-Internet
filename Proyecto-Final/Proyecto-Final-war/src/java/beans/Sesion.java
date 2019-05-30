@@ -5,14 +5,15 @@
  */
 package beans;
 
+import Entidades.Beneficiario;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ejb.Interfaz;
 import Entidades.Personal;
+import Entidades.Proyecto;
 import Entidades.Socio;
-import Entidades.Beneficiario;
 import ejb.AplicacionException;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -116,6 +117,7 @@ public class Sesion implements Serializable {
       return permiso;
     }
     
+    /* BÚSQUEDAS */
     public synchronized List<Personal> getListado_personal() {
         return negocio.listar_personal();
     }
@@ -126,4 +128,15 @@ public class Sesion implements Serializable {
     public synchronized List<Beneficiario> getListado_beneficiarios() {
         return negocio.listar_beneficiarios();
     }
+    
+    public synchronized List<Proyecto> getProyectos() {
+        if (empleado != null)
+        {
+            return empleado.getProyectos();
+        }
+        return null;
+    }
+    
+    
+    
 }
