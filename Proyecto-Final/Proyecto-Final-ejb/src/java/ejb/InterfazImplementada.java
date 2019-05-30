@@ -115,22 +115,18 @@ public class InterfazImplementada implements Interfaz {
     public void registrar(Socio socio) throws Exception { 
         Socio user = em.find(Socio.class, socio.getNif());
         
-        if(user == null){add(socio);} 
-        else {
+        if(user == null){
+            socio.setEstado("Activo");
+            socio.setRelacion("Miembro");
+            socio.setSector("A");
+            socio.setCertificado(Boolean.FALSE);
+            socio.setFechadealta(new Date());
+        
+            add(socio);
+        } else {
             throw new CuentaExistenteException();
-             }
+        }
     }
-    
-    @Override	
-    public void registrarPersonal (Personal personal) throws Exception{	
-
-         Personal user = em.find(Personal.class,personal.getId());	
-
-           if(user==null){add(personal);}
-           else {	
-            throw new CuentaExistenteException();	
-        }	
-     }	
     
     /**
      *
@@ -157,19 +153,33 @@ public class InterfazImplementada implements Interfaz {
         return null;
     }
     
+    
     public synchronized List<Personal> listar_personal(){
         Query query = em.createQuery("SELECT e FROM Personal e");
         return query.getResultList();
     }
-    
+
     public synchronized List<Beneficiario> listar_beneficiarios(){
         Query query = em.createQuery("SELECT e FROM Beneficiario e");
         return query.getResultList();
     }
-    
+
     public synchronized List<Socio> listar_socios(){
         Query query = em.createQuery("SELECT e FROM Socio e");
         return query.getResultList();
+    }
+    
+    
+    @Override
+    public void añadirProyecto(Proyecto proyecto) throws Exception { 
+        Proyecto project = em.find(Proyecto.class, proyecto.getId());
+        
+        if(project == null){
+            proyecto.setFechadecreacion(new Date());
+            add(proyecto);
+        } else {
+            throw new AplicacionException();
+        }
     }
     
 }
