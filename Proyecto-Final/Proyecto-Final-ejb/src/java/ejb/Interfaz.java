@@ -27,4 +27,7 @@ public interface Interfaz {
     public void delete(Object obj);
     
     public void registrar(Socio socio)throws Exception;
+    
+    public Object refrescarUsuario(Object usuario) throws AplicacionException;
+    
 }
