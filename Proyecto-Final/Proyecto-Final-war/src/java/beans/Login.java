@@ -11,6 +11,7 @@ import ejb.AplicacionException;
 import ejb.Interfaz;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 
@@ -24,6 +25,8 @@ public class Login {
     
     private Socio socio;
     private Personal empleado;
+    @Inject
+    private Sesion sesion;
     
     @EJB
     private Interfaz interfaz;
@@ -89,26 +92,17 @@ public class Login {
        socio = interfaz.buscarSocio(getNif());
         
         if(empleado != null && empleado.getCargo().equals("ADMIN") && empleado.getPassword().equals(contra)){
-            return "admin.xhtml";
+            sesion.setUsuario(interfaz.refrescarUsuario(empleado));
+            return "admin.xhtml?faces-redirect=true";
         }
         else if(empleado != null && empleado.getCargo().equals("EMPLEADO") && empleado.getPassword().equals(contra)){
-            return "personal_asociacion.xhtml";
+            sesion.setUsuario(interfaz.refrescarUsuario(empleado));
+            return "personal_asociacion.xhtml?faces-redirect=true";
         }
-        else if(socio != null){
+        else if(socio != null && socio.getPassword().equals(contra)){
+            sesion.setUsuario(interfaz.refrescarUsuario(socio));
             return "socio.xhtml";
         }
         return null;
-    }
-    
-    public String invalidarSesion()
-    {
-        if (nif != null)
-        {
-            nif = null;
-            permiso = null;
-            contra = null;
-            //Terminar de implementar
-        }
-        return "login.xhtml";
     }
 }
