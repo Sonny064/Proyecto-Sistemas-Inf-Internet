@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head>
         <title>Administración de Usuarios</title>
@@ -12,9 +13,26 @@
          <c:choose> 
              <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
                  <h1> Gestionar Personal</h1>
-                 <h1> Gestionar Socios </h1>
-                 <h1> Gestionar Beneficiarios</h1>    
+                 <h:dataTable value="#{sesion.listado_personal}" var="p">
+                     <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{p.nombre}"/>
+                        </h:column>
+                 </h:dataTable>
                  
+                 
+                 <h1> Gestionar Socios </h1>
+                 <h:dataTable value="#{sesion.listado_socios}" var="c">
+                     <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{c.nombre}"/>
+                        </h:column>
+                 </h:dataTable>
+                
+                 
+                 <h1> Gestionar Beneficiarios</h1>
+                 
+                
              </c:when>
              
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">

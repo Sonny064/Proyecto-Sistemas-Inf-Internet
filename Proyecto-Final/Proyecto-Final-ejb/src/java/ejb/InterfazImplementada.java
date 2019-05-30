@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entidades.*;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Query;
 
 
 /**
@@ -153,6 +155,21 @@ public class InterfazImplementada implements Interfaz {
         }
         else throw new AplicacionException();
         return null;
+    }
+    
+    public synchronized List<Personal> listar_personal(){
+        Query query = em.createQuery("SELECT e FROM Personal e");
+        return query.getResultList();
+    }
+    
+    public synchronized List<Beneficiario> listar_beneficiarios(){
+        Query query = em.createQuery("SELECT e FROM Beneficiario e");
+        return query.getResultList();
+    }
+    
+    public synchronized List<Socio> listar_socios(){
+        Query query = em.createQuery("SELECT e FROM Socio e");
+        return query.getResultList();
     }
     
 }

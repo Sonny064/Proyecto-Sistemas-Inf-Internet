@@ -12,7 +12,9 @@ import javax.inject.Named;
 import ejb.Interfaz;
 import Entidades.Personal;
 import Entidades.Socio;
+import Entidades.Beneficiario;
 import ejb.AplicacionException;
+import java.util.List;
 import javax.faces.context.FacesContext;
 /**
  *
@@ -112,5 +114,16 @@ public class Sesion implements Serializable {
             permiso = "personal";
         }
       return permiso;
+    }
+    
+    public synchronized List<Personal> getListado_personal() {
+        return negocio.listar_personal();
+    }
+     
+    public synchronized List<Socio> getListado_socios() {
+        return negocio.listar_socios();
+    }
+    public synchronized List<Beneficiario> getListado_beneficiarios() {
+        return negocio.listar_beneficiarios();
     }
 }

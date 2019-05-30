@@ -1,26 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
         <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Página para el Personal de la Asociación</title>
     </h:head>
-    <h:body>
-        <h2>Página de administración para el personal de la Asociación</h2><br></br>
-        <div class="d-flex justify-content-center h-100">
-            <h:form>
-            <tr>
-                <td><h:commandButton  value="Modificar datos de usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Consultar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Administrar Hojas de Gastos" action="gestion_fondos.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml"></h:commandButton></td>
-                <td><h:commandButton  value="Consultar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
-                <p><h:commandLink action="#{login.invalidarSesion()}">Log out</h:commandLink></p>
-            </tr>
-        </h:form>
-        </div>
+    <h:body>        
+        
+        <c:choose>
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
+                <h2>Página de personal de la plataforma</h2> <br></br>
+                <div class="d-flex justify-content-center h-100">
+                    <h2>Bienvenid@: </h2> <h:outputText value="#{sesion.empleado.nombre}"/>
+                    <h:form>
+                    <tr>
+                        <td><h:commandButton  value="Modificar datos de usuarios" action="gestion_usuarios.xhtml?faces-redirect=true"></h:commandButton></td>
+                
+                        <td><h:commandButton  value="Consultar Proyectos" action="gestion_proyectos.xhtml?faces-redirect=true"></h:commandButton></td>
+                
+                        <td><h:commandButton  value="Administrar Hojas de Gastos" action="gestion_fondos.xhtml?faces-redirect=true"></h:commandButton></td>
+                
+                        <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml?faces-redirect=true"></h:commandButton></td>
+                
+                        <td><h:commandButton  value="Consultar Centros" action="gestion_centros.xhtml?faces-redirect=true"></h:commandButton></td>
+                
+                        <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
+                    </tr>
+                    </h:form>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <p><h1>No está autorizado para ver está página.</h1></p>
+            </c:otherwise>
+        </c:choose>
     </h:body>
 </html>
 

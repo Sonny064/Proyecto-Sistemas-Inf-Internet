@@ -8,36 +8,24 @@
         <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Página Administración</title>
     </h:head>
-    <h:body><!--
+    <h:body>
         <c:choose>
-            <c:when test="#{sesion.tipoUsuario() == "EMPLEADO"}">
-                <h2>Página de empleados de la plataforma</h2> <br></br>
-            </c:when>
-            <c:when test="#{sesion.tipoUsuario() == "SOCIO"}">
-                <h2>Página de socios de la plataforma</h2> <br></br>
-            </c:when>
-        </c:choose>-->
-        
-        
-        
-        
-        <c:choose>
-            
-            <c:when test="#{!empty sesion.empleado}">
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
                 <h2>Página de administrador de la plataforma</h2> <br></br>
                 <div class="d-flex justify-content-center h-100">
+                    <h2>Bienvenid@: </h2> <h:outputText value="#{sesion.empleado.nombre}"/>
                     <h:form>
                     <tr>
                
-                        <td><h:commandButton  value="Administrar Usuarios" action="gestion_usuarios.xhtml"></h:commandButton></td>
+                        <td><h:commandButton  value="Administrar Usuarios" action="gestion_usuarios.xhtml?faces-redirect=true"></h:commandButton></td>
                 
-                        <td><h:commandButton  value="Administrar Proyectos" action="gestion_proyectos.xhtml"></h:commandButton></td>
+                        <td><h:commandButton  value="Administrar Proyectos" action="gestion_proyectos.xhtml?faces-redirect=true"></h:commandButton></td>
           
-                        <td><h:commandButton  value="Administrar Fondos" action="gestion_fondos.xhtml"></h:commandButton></td>
+                        <td><h:commandButton  value="Administrar Fondos" action="gestion_fondos.xhtml?faces-redirect=true"></h:commandButton></td>
                 
-                        <td><h:commandButton  value="Administrar Envíos" action="gestion_envios.xhtml"></h:commandButton></td>
+                        <td><h:commandButton  value="Administrar Envíos" action="gestion_envios.xhtml?faces-redirect=true"></h:commandButton></td>
                
-                        <td><h:commandButton  value="Administrar Centros" action="gestion_centros.xhtml"></h:commandButton></td>
+                        <td><h:commandButton  value="Administrar Centros" action="gestion_centros.xhtml?faces-redirect=true"></h:commandButton></td>
                     
                         <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
                     </tr>
@@ -45,7 +33,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <p>No está autorizado para ver está página.</p>
+                <p><h1>No está autorizado para ver está página.</h1></p>
             </c:otherwise>
         </c:choose>
     </h:body>

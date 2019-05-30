@@ -5,9 +5,11 @@
  */
 package ejb;
 
+import Entidades.Beneficiario;
 import Entidades.Personal;
 import javax.ejb.Local;
 import Entidades.Socio;
+import java.util.List;
 
 /**
  *
@@ -32,4 +34,9 @@ public interface Interfaz {
     
     public Object refrescarUsuario(Object usuario) throws AplicacionException;
     
+    public List<Personal> listar_personal();
+    
+    public List<Beneficiario> listar_beneficiarios();
+    
+    public List<Socio> listar_socios();
 }
