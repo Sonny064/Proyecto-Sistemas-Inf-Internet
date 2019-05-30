@@ -151,5 +151,33 @@ public class InterfazImplementada implements Interfaz {
         return null;
     }
     
+    @Override
+    public void registrarPersonal (Personal personal,String cargo,String experiencia,String descripcion) throws Exception{
+      
+        Personal user = em.find(Personal.class,personal.getId());
+      
+      if (user ==null && !cargo.equalsIgnoreCase("admin")){
+      
+          personal.setFechaentradaacoes(new Date());
+          personal.setCargo(cargo);
+          personal.setExperiencia(experiencia);
+          personal.setDescripcion(descripcion);
+          
+          add(personal);
+      }else if(user==null && cargo.equalsIgnoreCase("admin")) {
+      
+          personal.setFechaentradaacoes(new Date());
+          personal.setCargo("ADMIN");
+          personal.setExperiencia(experiencia);
+          personal.setDescripcion(descripcion);
+      
+          add(personal);
+      
+      } else {
+            throw new CuentaExistenteException();
+        }
+    
+    }
+    
 }
 
