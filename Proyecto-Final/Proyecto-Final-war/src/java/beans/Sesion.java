@@ -29,6 +29,24 @@ public class Sesion implements Serializable {
     private Socio socio;
     
     public Sesion(){}
+
+    public Personal getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Personal empleado) {
+        this.empleado = empleado;
+    }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+    
+    
     
     public synchronized void setUsuario(Object usuario) throws AplicacionException {
         if(usuario instanceof Personal){
@@ -61,7 +79,7 @@ public class Sesion implements Serializable {
             socio = null;
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         }
-        return "login.xhtml";
+        return "login.xhtml?faces-redirect=true";
     }
     
     public synchronized void refrescarUsuario() throws AplicacionException {
@@ -74,16 +92,13 @@ public class Sesion implements Serializable {
         else throw new AplicacionException();
     }
     
-    public synchronized String tipoUsuario() throws AplicacionException{
+    public synchronized boolean tipoUsuario() throws AplicacionException{
         if(empleado != null && empleado.getCargo().equals("ADMIN")){
-            return "ADMIN";
+            return true;
         }
         else if(empleado != null && empleado.getCargo().equals("EMPLEADO")){
-            return "EMPLEADO";
+            return false;
         }
-        else if(socio != null){
-            return "SOCIO";
-        }
-        else throw new AplicacionException();
+        return false;
     }
 }
