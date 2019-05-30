@@ -16,9 +16,15 @@ import Entidades.Socio;
 @Local
 public interface Interfaz {
     
-    public void registrarUsuario(Socio socio) throws AplicacionException;
-    
     public Socio buscarSocio (String nif) throws AplicacionException;
     
     public Personal buscarPersonal (String id) throws AplicacionException;
+    
+    public void add(Object obj);
+    
+    public void update(Object obj);
+    
+    public void delete(Object obj);
+    
+    public void registrar(Socio socio)throws Exception;
 }
