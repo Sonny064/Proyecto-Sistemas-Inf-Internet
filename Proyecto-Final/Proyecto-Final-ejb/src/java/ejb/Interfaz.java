@@ -28,6 +28,7 @@ public interface Interfaz {
     
     public void registrar(Socio socio)throws Exception;
     
-    public Object refrescarUsuario(Object usuario) throws AplicacionException;
+    public Object refrescarUsuario(Object usuario) throws AplicacionException ;
+        
     
 }
