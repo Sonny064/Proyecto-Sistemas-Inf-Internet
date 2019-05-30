@@ -5,6 +5,7 @@
  */
 package beans;
 
+import Entidades.Personal;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -26,7 +27,8 @@ public class Registro implements Serializable {
     private Interfaz negocio;
     
     private Socio socio;
-
+    private Personal personal;
+    
     private String reContra;
     private String contraseña;
     private String nif;
@@ -40,11 +42,18 @@ public class Registro implements Serializable {
     private String telefonofijo;
     private String telefonomovil;
     private String email;
+    
+    //Campos exclusivos del personal 
+    private String cargo;
+    private String experiencia;
+    private String descripcion;
+    
     /**
      * Creates a new instance of user
      */
     public Registro() {
      socio = new Socio() ;
+     personal = new Personal();
     }
 
     public Socio getSocio(){
@@ -55,6 +64,14 @@ public class Registro implements Serializable {
      socio = s;
     }
 
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+    
     public String getReContra() {
         return reContra;
     }
@@ -158,6 +175,30 @@ public class Registro implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
     
      public String registrar(){        
         if(contraseña.equals(reContra)){
@@ -175,4 +216,18 @@ public class Registro implements Serializable {
             return null;
         }
 }
+     
+     public String registrarPersonal(){
+     
+         Personal pl = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento);
+         
+         try {
+             negocio.registrarPersonal(pl, cargo, experiencia,descripcion);
+             return "INSERTAR WEB A LA QUE VOLVER";
+             
+         }catch(Exception e){
+              return null;
+            }
+     
+     }
 }
