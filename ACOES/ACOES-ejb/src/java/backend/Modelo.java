@@ -3,9 +3,11 @@ package backend;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.Date;
+import java.util.List;
 
-import entidades.*;
+import objects.*;
 
 @Stateless
 public class Modelo implements ModeloLocal {
@@ -17,9 +19,19 @@ public class Modelo implements ModeloLocal {
     public <T> T find(Class<T> entityClass, Object pk){
         return em.find(entityClass, pk);
     }
+    
+    @Override
+    public <T> List<T> findAll(Class<T> entityClass){
+        String long_name  = entityClass.getName();
+        String[] tokens   = long_name.split(".");
+        String class_name = tokens[tokens.length - 1];
+        
+        TypedQuery<T> query = em.createNamedQuery(class_name + ".findAll", entityClass);
+        return query.getResultList();
+    }
         
     @Override
-    public void add(Object obj){        
+    public void add(Object obj){
         if(obj instanceof Beneficiario){
             em.persist((Beneficiario)obj);
         } else if(obj instanceof Casapopulorum){
@@ -89,8 +101,8 @@ public class Modelo implements ModeloLocal {
     
     // Utils 
     @Override
-    public void registrar(Trabajador socio) throws Exception { 
-        Trabajador user = em.find(Trabajador.class, socio.getNif());
+    public void registrar(Socio socio) throws Exception { 
+        Socio user = em.find(Socio.class, socio.getNif());
         
         if(user == null){
             add(socio);
