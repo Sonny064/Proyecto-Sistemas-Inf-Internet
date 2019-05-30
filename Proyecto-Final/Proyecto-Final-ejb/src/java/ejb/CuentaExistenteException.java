@@ -5,10 +5,13 @@
  */
 package ejb;
 
-/**
- *
- * @author jesus
- */
-public class CuentaExistenteException extends AplicacionException {
+/*
+
+*/
+public class CuentaExistenteException extends Exception {
+    public CuentaExistenteException(){}
     
+    public CuentaExistenteException(String msj){
+        super(msj);
+    }
 }
