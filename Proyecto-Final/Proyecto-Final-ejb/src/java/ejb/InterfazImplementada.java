@@ -126,6 +126,30 @@ public class InterfazImplementada implements Interfaz {
         }
     }
     
+    /**
+     *
+     * @param usuario
+     * @return
+     * @throws AplicacionException
+     */
+    @Override
+    public synchronized Object refrescarUsuario(Object usuario) throws AplicacionException {
+        
+        if(usuario != null){
+            if(usuario instanceof Personal){
+                Personal user = em.find(Personal.class, ((Personal) usuario).getId());
+                em.refresh(user);
+                return user;
+            }
+            else if(usuario instanceof Socio){
+                Socio user = em.find(Socio.class, ((Socio) usuario).getNif());
+                em.refresh(user);
+                return user;
+            }
+        }
+        else throw new AplicacionException();
+        return null;
+    }
     
 }
 
