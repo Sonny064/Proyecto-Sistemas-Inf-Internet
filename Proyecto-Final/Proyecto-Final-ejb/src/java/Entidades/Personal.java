@@ -107,14 +107,12 @@ public class Personal implements Serializable {
         this.id = id;
     }
 
-    public Personal(String id, String nombre, String apellidos,String password, Date fechanacimiento, Date fechaentradaacoes, String cargo) {
+    public Personal(String id, String nombre, String apellidos,String password, Date fechanacimiento) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.password = password;
         this.fechanacimiento = fechanacimiento;
-        this.fechaentradaacoes = fechaentradaacoes;
-        this.cargo = cargo;
     }
 
     public String getId() {
