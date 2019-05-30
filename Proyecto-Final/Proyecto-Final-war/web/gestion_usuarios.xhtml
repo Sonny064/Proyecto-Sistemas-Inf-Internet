@@ -10,14 +10,14 @@
     <h:body>
         <h:form>
          <c:choose> 
-             <c:when test="#{entrada.permiso == 'admin'}">
+             <c:when test="#{sesion.getPermiso().equalsIgnoreCase("admin")}">
                  <h1> Gestionar Personal</h1>
                  <h1> Gestionar Socios </h1>
                  <h1> Gestionar Beneficiarios</h1>    
                  
              </c:when>
              
-            <c:when test="#{entrada.permiso == 'personal' }">
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase("personal")}">
                   <h1> Modificar mis datos</h1>
                   <h1> Eliminar mi cuenta</h1>
                   <h1> Gestionar Socios </h1>
@@ -25,7 +25,7 @@
                   
              </c:when>
              
-             <c:when test="#{entrada.permiso == 'socio'}">
+             <c:when test="#{sesion.getPermiso().equalsIgnoreCase("socio")}">
                  <h1> Modificar mis datos</h1>
                  <h1> Eliminar mi cuenta</h1>
              </c:when>
@@ -36,7 +36,7 @@
              
              
         </c:choose>
-             <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+             <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
         </h:form>
     </h:body>
 </html>

@@ -101,4 +101,16 @@ public class Sesion implements Serializable {
         }
         return false;
     }
+    
+    public synchronized String getPermiso() throws AplicacionException{
+        String permiso = "sin permiso";
+        if(socio !=null){
+            permiso = "socio";
+        }else if(empleado != null && empleado.getCargo().equalsIgnoreCase("admin")){
+            permiso = "admin";
+        }else if(empleado !=null){
+            permiso = "personal";
+        }
+      return permiso;
+    }
 }
