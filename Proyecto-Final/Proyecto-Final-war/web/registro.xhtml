@@ -25,12 +25,12 @@
                 
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="NIF/NIE" class="especial" lang="es"/>
-                <h:inputText id="nif" lang="es" class="form-control"  value="#{registro.socio.nif}" required="true"/>
+                <h:inputText id="nif" lang="es" class="form-control"  value="#{registro.nif}" required="true"/>
                 </div>
             
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Contraseña" class="especial" lang="es"/>
-                <h:inputSecret lang="es" class="form-control" value="#{registro.socio.password}" required="true"/>
+                <h:inputSecret lang="es" class="form-control" value="#{registro.contraseña}" required="true"/>
                 </div>
                 
                 <div class="form-group col-md-4">
@@ -44,17 +44,17 @@
             
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Nombre" class="especial" lang="es"/>
-                <h:inputText id="name" lang="es" class="form-control" value="#{registro.socio.nombre}"  required="true"/>
+                <h:inputText id="name" lang="es" class="form-control" value="#{registro.nombre}"  required="true"/>
                 </div>
                 
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Apellidos" class="especial" lang="es"/>
-                <h:inputText id="subname" lang="es" class="form-control" value="#{registro.socio.apellidos}" required="true"/>
+                <h:inputText id="subname" lang="es" class="form-control" value="#{registro.apellidos}" required="true"/>
                 </div>
                    
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Fecha de nacimiento" class="especial" lang="es"/>
-                <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.socio.fechadenacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.fechaNacimiento}" a:placeholder="DD/MM/AAAA" required="true">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
                 </h:inputText>
                 
@@ -66,12 +66,12 @@
                     
                 <div class="form-group col-md-3">
                 <h:outputLabel  value="Provincia" class="especial" lang="es"/>
-                <h:inputText id="prov" lang="es" class="form-control" value="#{registro.socio.provincia}" required="true"/>
+                <h:inputText id="prov" lang="es" class="form-control" value="#{registro.provincia}" required="true"/>
                 </div>
 
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Población" class="especial" lang="es"/>
-                <h:inputText id="pop" lang="es" class="form-control" value="#{registro.socio.poblacion}" required="true"/>
+                <h:inputText id="pop" lang="es" class="form-control" value="#{registro.poblacion}" required="true"/>
                 </div>
                     
                </div>   
@@ -80,12 +80,12 @@
                     
                   <div class="form-group col-md-3">
                   <h:outputLabel  value="Codigo Postal" class="especial" lang="es"/>
-                  <h:inputText id="pos" lang="es" class="form-control" value="#{registro.socio.codigopostal}" required="true"/>
+                  <h:inputText id="pos" lang="es" class="form-control" value="#{registro.codigopostal}" required="true"/>
                   </div>
                 
                   <div class="form-group col-md-4">
                   <h:outputLabel  value="Calle/numero" class="especial" lang="es"/>
-                  <h:inputText id="dir" lang="es" class="form-control" value="#{registro.socio.direccion}" required="true"/>
+                  <h:inputText id="dir" lang="es" class="form-control" value="#{registro.direccion}" required="true"/>
                   </div>
                     
                 </div>
@@ -94,12 +94,12 @@
                 
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Teléfono fijo" class="especial" lang="es"/>
-                <h:inputText id="fijo" lang="es" class="form-control" value="#{registro.socio.telefonofijo}" required="true"/>
+                <h:inputText id="fijo" lang="es" class="form-control" value="#{registro.telefonofijo}" required="true"/>
                 </div>
 
                 <div class="form-group col-md-4">
                 <h:outputLabel  value="Teléfono móvil" class="especial" lang="es"/>
-                <h:inputText id="movil" lang="es" class="form-control" value="#{registro.socio.telefonomovil}" required="true"/>
+                <h:inputText id="movil" lang="es" class="form-control" value="#{registro.telefonomovil}" required="true"/>
                 </div>
                      
                </div>
@@ -107,7 +107,7 @@
                <div class="form-row">
                 <div class="form-group col-md-7">
                 <h:outputLabel  value="Correo electrónico" class="especial" lang="es"/>
-                <h:inputText id="email" lang="es" class="form-control" value="#{registro.socio.email}" a:placeholder="ejemplo@gmail.com" required="true"/>
+                <h:inputText id="email" lang="es" class="form-control" value="#{registro.email}" a:placeholder="ejemplo@gmail.com" required="true"/>
                 </div>
                 
                </div>
@@ -119,7 +119,7 @@
                    </div> 
                     
                    <div class="form-group col-md">
-                    <h:commandButton  value="Continuar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{registro.fin()}"/>
+                    <h:commandButton  value="Continuar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{registro.registrar()}"/>
                    </div>  
                     
                 </div>
@@ -131,4 +131,5 @@
      </div>
    </h:body>
 </html>
+
 
