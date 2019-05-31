@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import Entidades.*;
 import java.util.Date;
 import java.util.List;
+import Entidades.Personal;
 import javax.persistence.Query;
 
 
@@ -127,6 +128,17 @@ public class InterfazImplementada implements Interfaz {
             throw new CuentaExistenteException();
         }
     }
+   
+    @Override
+    public void registrarPersonal(Personal personal) throws Exception { 
+        Personal user = em.find(Personal.class, personal.getId());
+        
+        if(user == null){
+            add(personal);
+        } else {
+            throw new CuentaExistenteException();
+        }
+    }
     
     /**
      *
@@ -153,20 +165,22 @@ public class InterfazImplementada implements Interfaz {
         return null;
     }
     
-    
-    public synchronized List<Personal> listar_personal(){
+    @Override
+    public List<Personal> listar_personal(){
         Query query = em.createQuery("SELECT e FROM Personal e");
         return query.getResultList();
     }
 
-    public synchronized List<Beneficiario> listar_beneficiarios(){
+    @Override
+    public List<Beneficiario> listar_beneficiarios(){
         Query query = em.createQuery("SELECT e FROM Beneficiario e");
-        return query.getResultList();
+        return (List<Beneficiario>) query.getResultList() ;
     }
 
-    public synchronized List<Socio> listar_socios(){
-        Query query = em.createQuery("SELECT e FROM Socio e");
-        return query.getResultList();
+    @Override
+    public List<Socio> listar_socios(){
+    Query query = em.createQuery("SELECT e FROM Socio e");
+    return query.getResultList();
     }
     
     

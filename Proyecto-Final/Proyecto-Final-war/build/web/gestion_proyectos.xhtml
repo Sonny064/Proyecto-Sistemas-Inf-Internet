@@ -2,34 +2,112 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Administración de Proyectos</title>
     </h:head>
     <h:body>
-        <h:body>
-        <h:form>
          <c:choose> 
-             <c:when test="#{entrada.permiso == 'admin'}">
-                 
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
+                <h:form>
+                    <table>
+                        <td align="left"><h:commandLink action="personal_asociacion.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
+                    </table>
+                </h:form>
+                
+                
+                <h2>Crear Nuevo Proyecto</h2>
+                <h:form>
+                    <h:outputLabel  value="ID" class="especial" lang="es"/>
+                    <h:inputText id="id" lang="es" class="form-control" value="#{añadir.id}"  required="true"/>
+                    
+                    <h:outputLabel  value="Nombre" class="especial" lang="es"/>
+                    <h:inputText id="nombreProyecto" lang="es" class="form-control" value="#{añadir.nombreProyecto}"  required="true"/>
+                    
+                    <h:outputLabel  value="Descripción" class="especial" lang="es"/>
+                    <h:inputTextarea id="descripcionProyecto" lang="es" class="form-control" value="#{añadir.descripcionProyecto}"  required="true"/>
+                
+                    <h:commandButton  value="Añadir" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.añadirProyecto()}"/>
+                
+                </h:form>
+                
+                <!-- AQUI ACTUALIZAR PROYECTO-->
+                
+                
+                
+                <!-- AQUI ELIMINAR PROYECTO-->
+                
+                
+                
+                <!-- AQUI AGREGAR PERSONAL A PROYECTO-->
+                
+                
+                
+                <h2>Consultar Proyectos</h2>
+                <h:form id="proyectos">
+                    <h:dataTable value="#{sesion.proyectos}" var="p" border="1">
+                        <h:column>
+                            <f:facet name="header">Proyecto </f:facet>
+                            <h:outputText value="#{p.nombreproyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">ID </f:facet>
+                            <h:outputText value="#{p.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha </f:facet>
+                            <h:outputText value="#{p.fechadecreacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripción </f:facet>
+                            <h:outputText value="#{p.descripciondelproyecto}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </c:when>
+             
+             
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
+                <h:form>
+                    <table>
+                        <td align="left"><h:commandLink action="personal_asociacion.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
+                    </table>
+                </h:form>
+                
+                <h2>Consultar Proyectos</h2>
+                <h:form id="proyectos">
+                    <h:dataTable value="#{sesion.proyectos}" var="p" border="1">
+                        <h:column>
+                            <f:facet name="header">Proyecto </f:facet>
+                            <h:outputText value="#{p.nombreproyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">ID </f:facet>
+                            <h:outputText value="#{p.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha </f:facet>
+                            <h:outputText value="#{p.fechadecreacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripción </f:facet>
+                            <h:outputText value="#{p.descripciondelproyecto}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
              </c:when>
              
-            <c:when test="#{entrada.permiso == 'personal' }">
-                  
-             </c:when>
-             
-             <c:when test="#{entrada.permiso == 'socio'}">
-                 
+             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
+                 <h2>Entrada irregular.</h2>
              </c:when>
                                       
              <c:otherwise>
-                 <h2> Entrada irregular</h2>  
+                 <h2>Entrada irregular.</h2>  
              </c:otherwise>
-             
-             
         </c:choose>
-             <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
-        </h:form>
     </h:body>
 </html>
 

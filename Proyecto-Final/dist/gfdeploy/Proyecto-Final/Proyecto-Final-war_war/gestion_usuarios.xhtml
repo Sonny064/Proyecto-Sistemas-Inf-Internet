@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     
     <h:head>
         <title>Administración de Usuarios</title>
@@ -17,21 +18,223 @@
                      <h:column>
                             <f:facet name="header">Nombre</f:facet>
                             <h:outputText value="#{p.nombre}"/>
-                        </h:column>
-                 </h:dataTable>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{p.apellidos}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Fecha nacimiento</f:facet>
+                            <h:outputText value="#{p.fechanacimiento}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Fecha de entrada en ACOES</f:facet>
+                            <h:outputText value="#{p.fechaentradaacoes}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Cargo</f:facet>
+                            <h:outputText value="#{p.cargo}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Foto</f:facet>
+                            <h:outputText value="#{p.foto}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Experiencia</f:facet>
+                            <h:outputText value="#{p.experiencia}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{p.descripcion}"/>
+                     </h:column>
+                     <h:column>
+                            <h:commandButton value="Modificar" action="#{contactos.editar(c)}"/>
+                     </h:column>
+                        
+                     <h:column>
+                            <h:commandButton value="Eliminar" action="#{contactos.eliminar(c)}"/>
+                     </h:column>
+                 </h:dataTable><br></br>
+                 <h1> Formulario nuevo Empleado</h1>
+                 <h:form>
+                    <div>
+                    <h:outputLabel  value="NIF/NIE&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="nif" lang="es" class="form-control"  value="#{registro.nif}" required="true"/>
+                     
+                
+                    <h:outputLabel  value="&nbsp;Contraseña&nbsp;" class="especial" lang="es"/>
+                    <h:inputSecret lang="es" class="form-control" value="#{registro.contraseña}" required="true"/>
+                
+                    <h:outputLabel  value="&nbsp;Repita su contraseña&nbsp;" class="especial" lang="es"/>
+                    <h:inputSecret lang="es" class="form-control" value="#{registro.reContra}" required="true"/>
+               
+                    </div><br></br>
+                     
+                    <div>
+                    <h:outputLabel  value="&nbsp;Nombre&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="name" lang="es" class="form-control" value="#{registro.nombre}"  required="true"/>
+                    
+                    <h:outputLabel  value="Apellidos&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="subname" lang="es" class="form-control" value="#{registro.apellidos}" required="true"/>
+               
+                    <h:outputLabel  value="&nbsp;Fecha de nacimiento&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.fechaNacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    </div> <br></br>
+                    <div>
+                    <h:outputLabel  value="&nbsp;Fecha de entrada en ACOES&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="pop" lang="es" class="form-control" value="#{registro.fechaEntrada}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    
+                    <h:outputLabel  value="&nbsp;Cargo&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="prov" lang="es" class="form-control" value="#{registro.cargo}" required="true"/>
+               
+                    </div><br></br>
+                    
+                    <div>
+                    <h:commandButton value="Insertar nuevo Empleado" action="#{registro.registrarPersonal()}"/>
+                    </div>
+                 </h:form>
+                 
                  
                  
                  <h1> Gestionar Socios </h1>
                  <h:dataTable value="#{sesion.listado_socios}" var="c">
+                      <h:column>
+                            <f:facet name="header">NIF/NIE</f:facet>
+                            <h:outputText value="#{c.nif}"/>
+                     </h:column>
                      <h:column>
                             <f:facet name="header">Nombre</f:facet>
                             <h:outputText value="#{c.nombre}"/>
-                        </h:column>
-                 </h:dataTable>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{c.apellidos}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Estado</f:facet>
+                            <h:outputText value="#{c.estado}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Provincia</f:facet>
+                            <h:outputText value="#{c.provincia}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Población</f:facet>
+                            <h:outputText value="#{c.poblacion}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Código Postal</f:facet>
+                            <h:outputText value="#{c.codigopostal}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Dirección</f:facet>
+                            <h:outputText value="#{c.direccion}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Teléfono fijo</f:facet>
+                            <h:outputText value="#{c.telefonofijo}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Teléfono móvil</f:facet>
+                            <h:outputText value="#{c.telefonomovil}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Relación</f:facet>
+                            <h:outputText value="#{c.relacion}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Sector</f:facet>
+                            <h:outputText value="#{c.sector}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Certificado</f:facet>
+                            <h:outputText value="#{c.certificado}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Fecha de alta</f:facet>
+                            <h:outputText value="#{c.fechadealta}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Fecha de baja</f:facet>
+                            <h:outputText value="#{c.fechadebaja}"/>
+                     </h:column>
+                     <h:column>
+                            <f:facet name="header">Observaciones</f:facet>
+                            <h:outputText value="#{c.observaciones}"/>
+                     </h:column>
+                     <h:column>
+                            <h:commandButton value="Modificar" action="#{contactos.modificar(c)}"/>
+                     </h:column>
+                        
+                     <h:column>
+                            <h:commandButton value="Eliminar" action="#{contactos.eliminar(c)}"/>
+                     </h:column>
                 
-                 
+                 </h:dataTable><br></br>
+                 <h1> Formulario nuevo Socio</h1>
+                 <h:form >
+                    <div>
+                    <h:outputLabel  value="NIF/NIE&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="nif" lang="es" class="form-control"  value="#{registro.nif}" required="true"/>
+                     
+                
+                    <h:outputLabel  value="&nbsp;Contraseña&nbsp;" class="especial" lang="es"/>
+                    <h:inputSecret lang="es" class="form-control" value="#{registro.contraseña}" required="true"/>
+                
+                    <h:outputLabel  value="&nbsp;Repita su contraseña&nbsp;" class="especial" lang="es"/>
+                    <h:inputSecret lang="es" class="form-control" value="#{registro.reContra}" required="true"/>
+               
+                    </div><br></br>
+                     
+                    <div>
+                    <h:outputLabel  value="&nbsp;Nombre&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="name" lang="es" class="form-control" value="#{registro.nombre}"  required="true"/>
+                    
+                    <h:outputLabel  value="Apellidos&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="subname" lang="es" class="form-control" value="#{registro.apellidos}" required="true"/>
+               
+                    <h:outputLabel  value="&nbsp;Fecha de nacimiento&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.fechaNacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    </div> <br></br>
+                    <div>
+                    <h:outputLabel  value="&nbsp;Provincia&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="prov" lang="es" class="form-control" value="#{registro.provincia}" required="true"/>
+               
+                    <h:outputLabel  value="&nbsp;Población&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="pop" lang="es" class="form-control" value="#{registro.poblacion}" required="true"/>
+                   
+                    
+                    <h:outputLabel  value="Codigo Postal&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="pos" lang="es" class="form-control" value="#{registro.codigopostal}" required="true"/>
+                 </div> <br></br>
+                 <div>
+                    <h:outputLabel  value="&nbsp;Calle/numero&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="dir" lang="es" class="form-control" value="#{registro.direccion}" required="true"/>
+                  
+                    <h:outputLabel  value="&nbsp;Teléfono fijo&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="fijo" lang="es" class="form-control" value="#{registro.telefonofijo}" required="true"/>
+              
+                    <h:outputLabel  value="&nbsp;Teléfono móvil&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="movil" lang="es" class="form-control" value="#{registro.telefonomovil}" required="true"/>
+                    </div><br></br>
+                    <div>
+                    <h:outputLabel  value="Correo electrónico&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="email" lang="es" class="form-control" value="#{registro.email}" a:placeholder="ejemplo@gmail.com" required="true"/>
+                    </div><br></br>
+                    <div>
+                    <h:commandButton value="Insertar nuevo Socio" action="#{registro.registrar()}"/>
+                    </div>
+                 </h:form>
                  <h1> Gestionar Beneficiarios</h1>
                  
+                <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="admin.xhtml?faces-redirect=true"/>
+                
                 
              </c:when>
              
@@ -39,6 +242,7 @@
                   <h1> Modificar mis datos</h1>
                   <h1> Eliminar mi cuenta</h1>
                   <h1> Gestionar Socios </h1>
+                  <h1> Búsqueda de Socio</h1>
                   <h1> Gestionar Beneficiarios</h1>
                   
              </c:when>
@@ -52,9 +256,13 @@
                  <h2> Entrada irregular</h2>  
              </c:otherwise>
              
-             
-        </c:choose>
+       
+        
+        </c:choose> 
              <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
+            
+         
+
         </h:form>
     </h:body>
 </html>

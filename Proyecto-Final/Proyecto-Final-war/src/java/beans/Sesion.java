@@ -16,6 +16,7 @@ import Entidades.Proyecto;
 import Entidades.Socio;
 import ejb.AplicacionException;
 import java.util.List;
+import java.util.ArrayList;
 import javax.faces.context.FacesContext;
 /**
  *
@@ -31,6 +32,10 @@ public class Sesion implements Serializable {
     private Personal empleado;
     private Socio socio;
     
+    private List<Personal> lista_personal = new ArrayList<>();
+    private List<Socio> lista_socios = new ArrayList<>();
+    private List<Beneficiario> lista_beneficiarios =  new ArrayList<>();
+     
     public Sesion(){}
 
     public Personal getEmpleado() {
@@ -119,14 +124,17 @@ public class Sesion implements Serializable {
     
     /* BÚSQUEDAS */
     public synchronized List<Personal> getListado_personal() {
-        return negocio.listar_personal();
+        lista_personal = negocio.listar_personal();
+        return lista_personal;
     }
      
     public synchronized List<Socio> getListado_socios() {
-        return negocio.listar_socios();
+        lista_socios = negocio.listar_socios();
+        return lista_socios;
     }
     public synchronized List<Beneficiario> getListado_beneficiarios() {
-        return negocio.listar_beneficiarios();
+       lista_beneficiarios = negocio.listar_beneficiarios();
+       return lista_beneficiarios;
     }
     
     public synchronized List<Proyecto> getProyectos() {

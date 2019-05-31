@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import Entidades.Socio;
 import ejb.Interfaz;
+import java.time.Clock;
 import java.util.Date;
 import javax.ejb.EJB;
 
@@ -43,8 +44,12 @@ public class Registro implements Serializable {
     private String telefonomovil;
     private String email;
     
+    
     //Campos exclusivos del personal 
     private String cargo;
+    private String experiencia;
+    private String descripcion;
+    private Date fechaEntrada;
     
     /**
      * Creates a new instance of user
@@ -117,6 +122,13 @@ public class Registro implements Serializable {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+     public Date getFechaEntrada() {
+        return fechaEntrada;
+    }
+
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
 
     public String getProvincia() {
         return provincia;
@@ -181,6 +193,21 @@ public class Registro implements Serializable {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+      public String getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
     
      public String registrar(){        
         if(contraseña.equals(reContra)){
@@ -200,12 +227,13 @@ public class Registro implements Serializable {
 }
      
      public String registrarPersonal(){
-     
-         Personal pl = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento,new Date(),cargo);
+         System.out.println("Se ha ejecutado.");
+         Personal p = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento,fechaEntrada,cargo);
          
          try {
-             negocio.registrarPersonal(pl);
-             return "INSERTAR WEB A LA QUE VOLVER";
+             negocio.registrarPersonal(p);
+             System.out.println("Se ha ejecutado.");
+             return null;
              
          }catch(Exception e){
               return null;
