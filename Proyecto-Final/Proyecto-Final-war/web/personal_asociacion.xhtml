@@ -5,31 +5,65 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
-        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Página para el Personal de la Asociación</title>
     </h:head>
-    <h:body>        
+    <h:body style="background-color: rgb(0, 139, 139);">      
         
         <c:choose>
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
-                <h2>Página de personal de la plataforma</h2> <br></br>
-                <div class="d-flex justify-content-center h-100">
-                    <h2>Bienvenid@: </h2> <h:outputText value="#{sesion.empleado.nombre}"/>
-                    <h:form>
-                    <tr>
-                        <td><h:commandButton  value="Modificar datos de usuarios" action="gestion_usuarios.xhtml?faces-redirect=true"></h:commandButton></td>
+
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <span class="navbar-text" >
+                        Actualmente logeado como : <h:outputText style="margin-right: 5px;" value="#{sesion.empleado.nombre}"/> 
+                                                   <h:outputText style="margin-right: 20px;" value="#{sesion.empleado.apellidos}"/>
+                        Rol :                      <h:outputText value="Personal Acoes"/>
+                    </span>
+                    
+                    <h:form><h:commandButton class="btn btn-sm btn-outline-secondary" style="margin-left: 1000px;"  value="Log out" action="#{sesion.invalidarSesion()}"/></h:form>
+                    
+                </nav>
                 
-                        <td><h:commandButton  value="Consultar Proyectos" action="gestion_proyectos.xhtml?faces-redirect=true"></h:commandButton></td>
-                
-                        <td><h:commandButton  value="Administrar Hojas de Gastos" action="gestion_fondos.xhtml?faces-redirect=true"></h:commandButton></td>
-                
-                        <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml?faces-redirect=true"></h:commandButton></td>
-                
-                        <td><h:commandButton  value="Consultar Centros" action="gestion_centros.xhtml?faces-redirect=true"></h:commandButton></td>
-                
-                        <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
-                    </tr>
-                    </h:form>
+                <div class="card-deck align-content-md-center">
+                        
+                        <div class="card" style="margin-left: 5em; margin-top: 5em;">
+                          <img class="card-img-top"  src="resources/imagenes/proyecto.jpg" alt="Card image cap"/>
+                          <div class="card-body">
+                            <h:link value="Consultar proyectos" outcome="gestion_proyectos.xhtml?faces-redirect=true"/>
+                            
+                          </div>
+                        </div>
+                    
+                        <div class="card" style="margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/envios.jpg"  alt="Card image cap"/>
+                          <div class="card-body">
+                              <h:link value="Consultar envios" outcome="gestion_envios.xhtml?faces-redirect=true"/>
+                              
+                          </div>
+                        </div>
+                    
+                        <div class="card" style="margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/centros.jpg"  alt="Card image cap"/>
+                          <div class="card-body">
+                              <h:link value="Consultar centros" outcome="gestion_centros.xhtml?faces-redirect=true"/>
+                              
+                          </div>
+                        </div>
+                    
+                        <div class="card" style="margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/papeleo.jpg" alt="Card image cap"/>
+                          <div class="card-body">
+                               <h:link value="Modificar datos de usuarios" outcome="gestion_usuarios.xhtml?faces-redirect=true"/>
+                            
+                          </div>
+                        </div>
+
+                        <div class="card" style="margin-right: 5em; margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/gastos.jpg"  alt="Card image cap"/>
+                          <div class="card-body">
+                              <h:link value="Administrar hojas de gastos" outcome="gestion_fondos.xhtml?faces-redirect=true"/>
+                              
+                          </div>
+                        </div>
                 </div>
             </c:when>
             <c:otherwise>
@@ -38,4 +72,3 @@
         </c:choose>
     </h:body>
 </html>
-
