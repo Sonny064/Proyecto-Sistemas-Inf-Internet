@@ -12,7 +12,7 @@
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
                 <h:form>
                     <table>
-                        <td align="left"><h:commandLink action="personal_asociacion.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="left"><h:commandLink action="admin.xhtml?faces-redirect=true">Volver</h:commandLink></td>
                         <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
                     </table>
                 </h:form>
@@ -21,7 +21,7 @@
                 <h2>Crear Nuevo Proyecto</h2>
                 <h:form>
                     <h:outputLabel  value="ID" class="especial" lang="es"/>
-                    <h:inputText id="id" lang="es" class="form-control" value="#{añadir.id}"  required="true"/>
+                    <h:inputText id="id" lang="es" class="form-control" value="#{añadir.idProyecto}"  required="true"/>
                     
                     <h:outputLabel  value="Nombre" class="especial" lang="es"/>
                     <h:inputText id="nombreProyecto" lang="es" class="form-control" value="#{añadir.nombreProyecto}"  required="true"/>
@@ -34,15 +34,56 @@
                 </h:form>
                 
                 <!-- AQUI ACTUALIZAR PROYECTO-->
+                <h2>Actualizar un Proyecto</h2>
+                <h:form>
+                    <h:outputLabel  value="ID" class="especial" lang="es"/>
+                    <h:inputText id="idActualizar" lang="es" class="form-control" value="#{añadir.idProyecto}"  required="true"/>
+                    
+                    <h:outputLabel  value="Nombre" class="especial" lang="es"/>
+                    <h:inputText id="nombreProyectoActualizar" lang="es" class="form-control" value="#{añadir.nombreProyecto}"  required="true"/>
+                    
+                    <h:outputLabel  value="Descripción" class="especial" lang="es"/>
+                    <h:inputTextarea id="descripcionProyectoActualizar" lang="es" class="form-control" value="#{añadir.descripcionProyecto}"  required="true"/>
                 
+                    <h:commandButton  value="Actualizar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.actualizarProyecto()}"/>
+                
+                </h:form>
                 
                 
                 <!-- AQUI ELIMINAR PROYECTO-->
+                <h2>Eliminar un Proyecto</h2>
+                <h:form id="eliminarProyecto">
+                    
+                    <h:outputLabel value="ID PROYECTO" class="especial" lang="es"/>
+                    <h:inputText id="idEliminarProyecto" lang="es" class="form-control" value="#{añadir.idProyecto}"  required="true"/>
                 
+                    <h:commandButton value="Eliminar Proyecto" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.eliminarProyecto()}"/>
+                </h:form>
                 
                 
                 <!-- AQUI AGREGAR PERSONAL A PROYECTO-->
+                <h2>Asignar Personal a un Proyecto</h2>
+                <h:form id="añadirPersonal">
+                    <h:outputLabel  value="ID PERSONAL" class="especial" lang="es"/>
+                    <h:inputText id="idPersonal" lang="es" class="form-control" value="#{añadir.idPersonal}"  required="true"/>
+                    
+                    <h:outputLabel  value="ID PROYECTO" class="especial" lang="es"/>
+                    <h:inputText id="idProyecto" lang="es" class="form-control" value="#{añadir.idProyecto}"  required="true"/>
                 
+                    <h:commandButton  value="Añadir" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.añadirPersonalAProyecto()}"/>
+                </h:form>
+                
+                <!-- AQUI ELIMINAR PERSONAL A PROYECTO-->
+                <h2>Eliminar Personal de un Proyecto</h2>
+                <h:form id="eliminarPersonal">
+                    <h:outputLabel  value="ID PERSONAL" class="especial" lang="es"/>
+                    <h:inputText id="idPersonal2" lang="es" class="form-control" value="#{añadir.idPersonal}"  required="true"/>
+                    
+                    <h:outputLabel  value="ID PROYECTO" class="especial" lang="es"/>
+                    <h:inputText id="idProyecto2" lang="es" class="form-control" value="#{añadir.idProyecto}"  required="true"/>
+                
+                    <h:commandButton  value="Eliminar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.eliminarPersonalDeProyecto()}"/>
+                </h:form>
                 
                 
                 <h2>Consultar Proyectos</h2>
