@@ -5,7 +5,9 @@
  */
 package beans;
 
+import Entidades.Personal;
 import Entidades.Proyecto;
+import ejb.AplicacionException;
 import ejb.Interfaz;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,17 +25,24 @@ import javax.inject.Named;
 public class Añadir implements Serializable{
     @EJB
     private Interfaz negocio;
+    private Sesion sesion;
     
     private Proyecto proyecto;
     
     /* Campos de un Proyecto */
-    private String id;
+    private String idProyecto;
     private String nombreProyecto;
     private Date fechaCreacionProyecto;
     private String descripcionProyecto;
     
+    private Personal personal;
+    
+    /* Campos de un Empleado */
+    private String idPersonal;
+    
     public Añadir(){
         proyecto = new Proyecto();
+        personal = new Personal();
     }
 
     public Proyecto getProyecto() {
@@ -44,12 +53,12 @@ public class Añadir implements Serializable{
         this.proyecto = proyecto;
     }
 
-    public String getId() {
-        return id;
+    public String getIdProyecto() {
+        return idProyecto;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdProyecto(String idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
     public String getNombreProyecto() {
@@ -75,16 +84,75 @@ public class Añadir implements Serializable{
     public void setDescripcionProyecto(String descripcionProyecto) {
         this.descripcionProyecto = descripcionProyecto;
     }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public String getIdPersonal() {
+        return idPersonal;
+    }
+
+    public void setIdPersonal(String idPersonal) {
+        this.idPersonal = idPersonal;
+    }
+    
+    
+    
+
+    
+    /* FUNCIONALIDADES */
     
     public String añadirProyecto(){
-        proyecto = new Proyecto(id, nombreProyecto, fechaCreacionProyecto, descripcionProyecto);
+        proyecto = new Proyecto(idProyecto, nombreProyecto, fechaCreacionProyecto, descripcionProyecto);
         
         try {
             negocio.añadirProyecto(proyecto);
-            return null;
+            return "gestion_proyectos.xhtml?faces-redirect=true";
         } catch(Exception e){
-            return null;
+            return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
+    
+    public String actualizarProyecto(){
+        try {
+            negocio.actualizarProyecto(idProyecto, nombreProyecto, descripcionProyecto);
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        } catch(Exception e){
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String eliminarProyecto(){
+        try {
+            negocio.eliminarProyecto(idProyecto);
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String añadirPersonalAProyecto(){
+        try{
+            negocio.añadirPersonalAProyecto(idProyecto, idPersonal);
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String eliminarPersonalDeProyecto(){
+        try{
+            negocio.eliminarPersonalDeProyecto(idProyecto, idPersonal);
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_proyectos.xhtml?faces-redirect=true";
+        }
+    }
+    
     
 }

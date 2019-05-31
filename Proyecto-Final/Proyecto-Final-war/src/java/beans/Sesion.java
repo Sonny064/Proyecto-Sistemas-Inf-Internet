@@ -138,12 +138,12 @@ public class Sesion implements Serializable {
     }
     
     public synchronized List<Proyecto> getProyectos() {
-        if (empleado != null)
-        {
-            return empleado.getProyectos();
-        }
-        return null;
+        return negocio.getProyectos();
     }
+    
+    /*public synchronized Personal getPersonal(String id){
+        return 
+    }*/
     
     
     
