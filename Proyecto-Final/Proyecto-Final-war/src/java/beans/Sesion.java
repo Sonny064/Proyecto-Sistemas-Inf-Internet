@@ -6,6 +6,7 @@
 package beans;
 
 import Entidades.Beneficiario;
+import Entidades.Envios;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -32,6 +33,8 @@ public class Sesion implements Serializable {
     private Personal empleado;
     private Socio socio;
     
+    private Envios envio;
+    
     private List<Personal> lista_personal = new ArrayList<>();
     private List<Socio> lista_socios = new ArrayList<>();
     private List<Beneficiario> lista_beneficiarios =  new ArrayList<>();
@@ -53,6 +56,15 @@ public class Sesion implements Serializable {
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
+
+    public Envios getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envios envio) {
+        this.envio = envio;
+    }
+    
     
     
     
@@ -139,6 +151,10 @@ public class Sesion implements Serializable {
     
     public synchronized List<Proyecto> getProyectos() {
         return negocio.getProyectos();
+    }
+    
+    public synchronized List<Envios> getEnvios(){
+        return negocio.getEnvios();
     }
     
     /*public synchronized Personal getPersonal(String id){

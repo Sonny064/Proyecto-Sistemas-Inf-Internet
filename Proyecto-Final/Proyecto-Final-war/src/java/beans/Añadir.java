@@ -5,8 +5,11 @@
  */
 package beans;
 
+import Entidades.Beneficiario;
+import Entidades.Envios;
 import Entidades.Personal;
 import Entidades.Proyecto;
+import Entidades.Socio;
 import ejb.AplicacionException;
 import ejb.Interfaz;
 import java.io.Serializable;
@@ -25,7 +28,6 @@ import javax.inject.Named;
 public class Añadir implements Serializable{
     @EJB
     private Interfaz negocio;
-    private Sesion sesion;
     
     private Proyecto proyecto;
     
@@ -40,9 +42,20 @@ public class Añadir implements Serializable{
     /* Campos de un Empleado */
     private String idPersonal;
     
+    
+    private Envios envio;
+    
+    /* Campos de un Envío */
+    private String tipoDeEnvio;
+    private String contenidoEnvio;
+    private Date fechaEnvio;
+    private Socio emisorEnvio;
+    private Beneficiario receptorEnvio;
+    
     public Añadir(){
         proyecto = new Proyecto();
         personal = new Personal();
+        envio = new Envios();
     }
 
     public Proyecto getProyecto() {
@@ -100,6 +113,54 @@ public class Añadir implements Serializable{
     public void setIdPersonal(String idPersonal) {
         this.idPersonal = idPersonal;
     }
+
+    public Envios getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envios envio) {
+        this.envio = envio;
+    }
+
+    public String getTipoDeEnvio() {
+        return tipoDeEnvio;
+    }
+
+    public void setTipoDeEnvio(String tipoDeEnvio) {
+        this.tipoDeEnvio = tipoDeEnvio;
+    }
+
+    public String getContenidoEnvio() {
+        return contenidoEnvio;
+    }
+
+    public void setContenidoEnvio(String contenidoEnvio) {
+        this.contenidoEnvio = contenidoEnvio;
+    }
+
+    public Date getFechaEnvio() {
+        return fechaEnvio;
+    }
+
+    public void setFechaEnvio(Date fechaEnvio) {
+        this.fechaEnvio = fechaEnvio;
+    }
+
+    public Socio getEmisorEnvio() {
+        return emisorEnvio;
+    }
+
+    public void setEmisorEnvio(Socio emisorEnvio) {
+        this.emisorEnvio = emisorEnvio;
+    }
+
+    public Beneficiario getReceptorEnvio() {
+        return receptorEnvio;
+    }
+
+    public void setReceptorEnvio(Beneficiario receptorEnvio) {
+        this.receptorEnvio = receptorEnvio;
+    }
     
     
     
@@ -122,7 +183,7 @@ public class Añadir implements Serializable{
         try {
             negocio.actualizarProyecto(idProyecto, nombreProyecto, descripcionProyecto);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(Exception e){
+        } catch(AplicacionException e){
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
@@ -154,5 +215,37 @@ public class Añadir implements Serializable{
         }
     }
     
+    
+    public String añadirEnvio(){
+        envio = new Envios(tipoDeEnvio, fechaEnvio); 
+       
+        try{
+            envio.setContenido(contenidoEnvio);
+            envio.setEmisor(emisorEnvio);
+            envio.setReceptor(receptorEnvio);
+            negocio.añadirEnvio(envio);
+            return "gestion_envios.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_envios.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String actualizarEnvio(){
+        try {
+            negocio.actualizarEnvio(tipoDeEnvio, contenidoEnvio, fechaEnvio);
+            return "gestion_envios.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_envios.xhtml?faces-redirect=true";
+        }
+    }
+    
+    public String eliminarEnvio(){
+        try {
+            negocio.eliminarEnvio(tipoDeEnvio);
+            return "gestion_envios.xhtml?faces-redirect=true";
+        } catch(AplicacionException e){
+            return "gestion_envios.xhtml?faces-redirect=true";
+        }
+    }
     
 }
