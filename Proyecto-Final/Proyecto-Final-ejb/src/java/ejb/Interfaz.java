@@ -34,12 +34,24 @@ public interface Interfaz {
     
     public Object refrescarUsuario(Object usuario) throws AplicacionException;
     
+    public Proyecto refrescarProyecto(Proyecto proyecto) throws AplicacionException;
+    
     public List<Personal> listar_personal();
 
     public List<Beneficiario> listar_beneficiarios();
 
     public List<Socio> listar_socios();
+
+    public List<Proyecto> getProyectos();
     
     public void añadirProyecto(Proyecto proyecto) throws Exception;
     
+    public void actualizarProyecto(String idProyecto, String nombreProyecto, String descripcionProyecto) throws AplicacionException;
+    
+    public void eliminarProyecto(String idProyecto) throws AplicacionException;    
+
+    public void añadirPersonalAProyecto(String idProyecto, String idPersonal) throws AplicacionException;
+    
+    public void eliminarPersonalDeProyecto(String idProyecto, String idPersonal) throws AplicacionException;
+
 }

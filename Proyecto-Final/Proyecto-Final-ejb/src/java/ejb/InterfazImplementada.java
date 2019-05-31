@@ -166,6 +166,17 @@ public class InterfazImplementada implements Interfaz {
     }
     
     @Override
+    public synchronized Proyecto refrescarProyecto(Proyecto proyecto) throws AplicacionException {
+        
+        if(proyecto != null){
+            Proyecto project = em.find(Proyecto.class, proyecto.getId());
+            em.refresh(project);
+            return project;
+        }
+        else throw new AplicacionException();
+    }
+    
+    @Override
     public List<Personal> listar_personal(){
         Query query = em.createQuery("SELECT e FROM Personal e");
         return query.getResultList();
@@ -183,6 +194,12 @@ public class InterfazImplementada implements Interfaz {
     return query.getResultList();
     }
     
+    @Override
+    public List<Proyecto> getProyectos(){
+        Query query = em.createQuery("SELECT p FROM Proyecto p");
+        return query.getResultList();
+    }
+    
     
     @Override
     public void añadirProyecto(Proyecto proyecto) throws Exception { 
@@ -194,6 +211,55 @@ public class InterfazImplementada implements Interfaz {
         } else {
             throw new AplicacionException();
         }
+    }
+    
+    @Override
+    public void actualizarProyecto(String idProyecto, String nombreProyecto, String descripcionProyecto){
+        Proyecto project = em.find(Proyecto.class, idProyecto);
+        
+        if(project != null){
+            project.setNombreproyecto(nombreProyecto);
+            project.setDescripciondelproyecto(descripcionProyecto);
+            update(project);
+        }
+    
+    }
+
+    @Override
+    public void eliminarProyecto(String idProyecto) throws AplicacionException { 
+        Proyecto project = em.find(Proyecto.class, idProyecto);
+        
+        if(project != null){
+            em.remove(project);
+        } else {
+            throw new AplicacionException();
+        }
+    }
+    
+    @Override
+    public void añadirPersonalAProyecto(String idProyecto, String idPersonal) throws AplicacionException {
+        Proyecto proyecto = em.find(Proyecto.class, idProyecto);
+        Personal personal = em.find(Personal.class, idPersonal);
+        
+        if(proyecto != null && personal != null){
+            if(!(proyecto.getPersonalProyecto().contains(personal) && personal.getProyectos().contains(proyecto))){
+                proyecto.getPersonalProyecto().add(personal);
+                personal.getProyectos().add(proyecto);   
+            }
+        } else throw new AplicacionException();
+    }
+    
+    @Override
+    public void eliminarPersonalDeProyecto(String idProyecto, String idPersonal) throws AplicacionException {
+        Proyecto proyecto = em.find(Proyecto.class, idProyecto);
+        Personal personal = em.find(Personal.class, idPersonal);
+        
+        if(proyecto != null && personal != null){
+            if(proyecto.getPersonalProyecto().contains(personal) && personal.getProyectos().contains(proyecto)){
+                proyecto.getPersonalProyecto().remove(personal);
+                personal.getProyectos().remove(proyecto);
+            }
+        } else throw new AplicacionException();
     }
     
 }
