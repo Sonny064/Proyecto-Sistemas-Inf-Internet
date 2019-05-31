@@ -6,10 +6,12 @@
 package ejb;
 
 import Entidades.Beneficiario;
+import Entidades.Envios;
 import Entidades.Personal;
 import Entidades.Proyecto;
 import javax.ejb.Local;
 import Entidades.Socio;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -44,6 +46,8 @@ public interface Interfaz {
 
     public List<Proyecto> getProyectos();
     
+    public List<Envios> getEnvios();
+    
     public void añadirProyecto(Proyecto proyecto) throws Exception;
     
     public void actualizarProyecto(String idProyecto, String nombreProyecto, String descripcionProyecto) throws AplicacionException;
@@ -53,5 +57,12 @@ public interface Interfaz {
     public void añadirPersonalAProyecto(String idProyecto, String idPersonal) throws AplicacionException;
     
     public void eliminarPersonalDeProyecto(String idProyecto, String idPersonal) throws AplicacionException;
+
+    
+    public void añadirEnvio(Envios envio) throws AplicacionException;
+    
+    public void actualizarEnvio(String tipoDeEnvio, String contenidoEnvio, Date fechaEnvio) throws AplicacionException;
+    
+    public void eliminarEnvio(String tipoDeEnvio) throws AplicacionException;
 
 }

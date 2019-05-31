@@ -200,6 +200,12 @@ public class InterfazImplementada implements Interfaz {
         return query.getResultList();
     }
     
+    @Override
+    public List<Envios> getEnvios(){
+        Query query = em.createQuery("SELECT e FROM Envios e");
+        return query.getResultList();
+    }
+    
     
     @Override
     public void añadirProyecto(Proyecto proyecto) throws Exception { 
@@ -261,6 +267,42 @@ public class InterfazImplementada implements Interfaz {
             }
         } else throw new AplicacionException();
     }
+    
+    
+    @Override
+    public void añadirEnvio(Envios envio) throws AplicacionException{ 
+        Envios delivery = em.find(Envios.class, envio.getTipodeenvio());
+        
+        if(delivery == null){
+            add(envio);
+        } else {
+            throw new AplicacionException();
+        }
+    }
+    
+    @Override
+    public void actualizarEnvio(String tipoDeEnvio, String contenidoEnvio, Date fechaEnvio){
+        Envios envio = em.find(Envios.class, tipoDeEnvio);
+        
+        if(envio != null){
+            envio.setContenido(contenidoEnvio);
+            envio.setFecha(fechaEnvio);
+            update(envio);
+        }
+    
+    }
+
+    @Override
+    public void eliminarEnvio(String tipoDeEnvio) throws AplicacionException { 
+        Envios envio = em.find(Envios.class, tipoDeEnvio);
+        
+        if(envio != null){
+            em.remove(envio);
+        } else {
+            throw new AplicacionException();
+        }
+    }
+    
     
 }
 
