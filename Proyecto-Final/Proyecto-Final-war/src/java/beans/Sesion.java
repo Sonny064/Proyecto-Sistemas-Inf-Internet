@@ -16,6 +16,7 @@ import ejb.Interfaz;
 import Entidades.Personal;
 import Entidades.Proyecto;
 import Entidades.Socio;
+import Entidades.Ingresosegresos;
 import ejb.AplicacionException;
 import java.util.List;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class Sesion implements Serializable {
     private List<Socio> lista_socios = new ArrayList<>();
     private List<Beneficiario> lista_beneficiarios = new ArrayList<>();
     private List<Centro> lista_centros = new ArrayList<>();
+    private List<Ingresosegresos> lista_ingresos = new ArrayList<>();
+    private List<Socio> lista_proveedores = new ArrayList<>();
 
     public Sesion() {
     }
@@ -122,6 +125,13 @@ public class Sesion implements Serializable {
         }
         return false;
     }
+    
+    public synchronized Boolean getPermisoEspecial() throws AplicacionException{
+        if(empleado !=null){
+            return empleado.getPermisoEspecial();
+        }
+        return false;
+    }
 
     public synchronized String getPermiso() throws AplicacionException {
         String permiso = "sin permiso";
@@ -150,6 +160,17 @@ public class Sesion implements Serializable {
         lista_beneficiarios = negocio.listar_beneficiarios();
         return lista_beneficiarios;
     }
+    
+    public synchronized List<Ingresosegresos> getListado_Ingresos() {
+        lista_ingresos = negocio.listar_ingresos();
+        return lista_ingresos;
+    }
+    
+    public synchronized List<Socio> getListado_Proveedores() {
+        lista_proveedores = negocio.listar_proveedores();
+        return lista_proveedores;
+    }
+    
 
     public synchronized List<Proyecto> getProyectos() {
         return negocio.getProyectos();

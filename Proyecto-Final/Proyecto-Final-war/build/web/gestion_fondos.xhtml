@@ -2,34 +2,198 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Administración de Fondos</title>
     </h:head>
     <h:body>
-        <h:body>
+        <c:choose> 
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
+                <h1> Gestionar Ingresos </h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_Ingresos}" var="p">
+                        <h:column>
+                            <f:facet name="header">Código</f:facet>
+                            <h:outputText value="#{p.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tipo</f:facet>
+                            <h:outputText value="#{p.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{p.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de pago</f:facet>
+                            <h:outputText value="#{p.fechadepago}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cantidad</f:facet>
+                            <h:outputText value="#{p.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{p.descripcion}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">NIF Socio que realizó el ingreso</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.nif}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.nombre}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.apellidos}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Centro al que pertenece</f:facet>
+                            <h:outputText value="#{p.ingresos_centro.id}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Nombre del Centro</f:facet>
+                            <h:outputText value="#{p.ingresos_centro.nombre}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Modificar" action="#{gestionIngresos.editar(p)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+               
+                <h1> Gestionar lista de Proveedores </h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_Proveedores}" var="c">
+                        <h:column>
+                            <f:facet name="header">NIF</f:facet>
+                            <h:outputText value="#{c.nif}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{c.nombre}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{c.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{gestion.editar(c)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+
+                <h1> Listar órdenes de pago </h1>
+                <h:form id="proyectos">
+                    <h:dataTable value="#{sesion.listado_Ingresos}" var="p">
+                        <h:column>
+                            <f:facet name="header">Código Ingreso</f:facet>
+                            <h:outputText value="#{p.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cantidad Ingreso</f:facet>
+                            <h:outputText value="#{p.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Ingreso destinado al Proyecto </f:facet>
+                            <h:outputText value="#{p.ingresos_proyecto.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nombre </f:facet>
+                            <h:outputText value="#{p.ingresos_proyecto.nombreproyecto}"/>
+                        </h:column>
+                        
+                    </h:dataTable>
+                </h:form>
+                <h:form>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="admin.xhtml?faces-redirect=true"/>
+                </h:form>
+
+            </c:when>
+
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
+                <h1> Gestionar hojas de Gastos </h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_Ingresos}" var="p">
+                        <h:column>
+                            <f:facet name="header">Código</f:facet>
+                            <h:outputText value="#{p.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tipo</f:facet>
+                            <h:outputText value="#{p.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{p.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de pago</f:facet>
+                            <h:outputText value="#{p.fechadepago}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Cantidad</f:facet>
+                            <h:outputText value="#{p.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{p.descripcion}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">NIF Socio que realizó el ingreso</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.nif}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.nombre}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{p.ingresos_socio.apellidos}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Centro al que pertenece</f:facet>
+                            <h:outputText value="#{p.ingresos_centro.id}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Nombre del Centro</f:facet>
+                            <h:outputText value="#{p.ingresos_centro.nombre}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Modificar" action="#{gestionIngresos.editar(p)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+            </c:when>
+
+            <c:otherwise>
+                <p><h1>No está autorizado para ver está página.</h1></p>
+            </c:otherwise>
+
             <h:form>
-                <c:choose> 
-                    <c:when test="#{entrada.permiso == 'admin'}">
-                        <h1> Gestionar hojas de Gastos </h1>
-                        <h1> Gestionar lista de Proveedores </h1>
-                        <h1> Listar órdenes de pago </h1>
-
-                    </c:when>
-
-                    <c:when test="#{entrada.permiso == 'personal' }">
-                        <h1> Gestionar hojas de Gastos </h1>
-                    </c:when>
-
-
-                    <c:otherwise>
-                        <h2> Entrada irregular</h2>  
-                    </c:otherwise>
-
-
-                </c:choose>
-                <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="personal_asociacion.xhtml?faces-redirect=true"/>
             </h:form>
-        </h:body>
+        </c:choose>
+        <h:form>
+            <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+        </h:form>
+    </h:body>
 </html>
 

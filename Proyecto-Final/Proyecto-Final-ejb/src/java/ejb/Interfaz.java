@@ -46,6 +46,10 @@ public interface Interfaz {
     public List<Centro> listar_centros();
 
     public List<Envios> getEnvios();
+    
+    public List<Ingresosegresos> listar_ingresos();
+    
+    public List<Socio> listar_proveedores();
 
     public void añadirProyecto(Proyecto proyecto) throws Exception;
 

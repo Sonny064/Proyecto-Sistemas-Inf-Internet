@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>
-            <h1> Edición de Usuario</h1>
+            Edición de Usuario
         </title>
     </h:head>
     <h:body>
@@ -39,6 +39,10 @@
                         <h:outputText value="Cargo"/>
                         <h:inputText id ="cargo" value="#{gestion.personal.cargo}"/>
                         <h:message for="cargo"/>
+                        
+                        <h:outputText value="Permiso especial"/>
+                        <h:inputText id ="perm" value="#{gestion.personal.permisoEspecial}"/>
+                        <h:message for="perm"/>
 
                         <h:outputText value="Foto"/>
                         <h:inputText id ="foto" value="#{gestion.personal.foto}"/>

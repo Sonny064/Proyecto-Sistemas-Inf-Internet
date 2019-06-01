@@ -61,7 +61,7 @@ public class Ingresosegresos implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHADEPAGO")
-    private Boolean fechadepago;
+    private Date fechadepago;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -90,7 +90,7 @@ public class Ingresosegresos implements Serializable {
         this.id = id;
     }
 
-    public Ingresosegresos(String id, String tipo, Date fecha, Boolean fechadepago, String cantidad) {
+    public Ingresosegresos(String id, String tipo, Date fecha, Date fechadepago, String cantidad) {
         this.id = id;
         this.tipo = tipo;
         this.fecha = fecha;
@@ -122,11 +122,11 @@ public class Ingresosegresos implements Serializable {
         this.fecha = fecha;
     }
 
-    public Boolean getFechadepago() {
-        return fechadepago;
+    public String getFechadepago() {
+        return fechadepago.toString();
     }
 
-    public void setFechadepago(Boolean fechadepago) {
+    public void setFechadepago(Date fechadepago) {
         this.fechadepago = fechadepago;
     }
 
