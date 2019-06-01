@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+   <h:head>
+        <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
+        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
+        <title>Login de la aplicacion</title>
+   </h:head>
+    <h:body>
+      <nav class="navbar navbar-expand-lg navbar-light customnav">
+          <img src="img/logo.png" alt="logo" style="height: 40px; margin-right: 25px"/>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null and sesion.isTrabajador()?'block':'none'}" href="/ACOES-war/faces/proyectos.xhtml">Proyectos</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/personal.trabajadors.xhtml">Centros</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/personal.xhtml">Personal</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/socios.xhtml">Socios</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/beneficiarios.xhtml">Beneficiarios</a>
+           <div class="container" style="position: absolute; right: 15px; max-width: 250px">
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()==null?'block':'none'}" href="/ACOES-war/faces/login.xhtml">Iniciar sesión</a>
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()==null?'block':'none'}" href="/ACOES-war/faces/personal.trabajador.xhtml">Registrarse</a>
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/perfil.xhtml">Hola #{sesion.nombre()}!</a>
+            <h:form>
+                <h:commandButton value="Salir" class="btn btn-primary btn-sm" style="display:#{sesion.getUser()!=null?'block':'none'}" action="#{sesion.close()}"/>
+            </h:form>
+           </div>
+      </nav>
+        <c:if test="#{sesion.isTrabajador()}">
+            <div class="container" style="margin-top: 25px">
+                <div class="row">
+                    <h:form style="padding-left: 1em;">
+                        <h:commandButton value="Refrescar" class="btn btn-primary btn-sm" action="#{personal.refresh()}"/>
+                    </h:form>
+                    <c:if test="#{sesion.admin()}">
+                    <h:form style="padding-left: 1em;">
+                        <h:commandButton value="Añadir" class="btn btn-primary btn-sm" action="#{personal.enableEditor()}"/>
+                    </h:form>
+                    </c:if>
+                </div>
+            </div>
+            <div class="container" style="display:#{personal.editor?'block':'none'}; margin-top: 1em">
+                <h:form>
+               <div class="form-row">
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Nombre" class="especial" lang="es"/>
+                 <h:inputText id="nombre" lang="es" class="form-control"  value="#{personal.trabajador.nombre}" required="true"/>
+                </div>
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Apellidos" class="especial" lang="es"/>
+                 <h:inputText id="apellidos" lang="es" class="form-control"  value="#{personal.trabajador.apellidos}" required="true"/>
+                </div>
+                <div class="form-group col-md-2">
+                 <h:outputLabel  value="NIF/NIE" class="especial" lang="es"/>
+                 <h:inputText id="nif" lang="es" class="form-control"  value="#{personal.trabajador.nif}" required="true"/>
+                </div>
+                <div class="form-group col-md-2" style="margin-top: auto">
+                    <h:outputLabel  value="Administrador" class="especial" lang="es" style="margin-right: 15px"/>
+                    <h:selectOneMenu value="#{personal.admin}">
+                        <f:selectItem itemValue="False" itemLabel="No" />
+                        <f:selectItem itemValue="True" itemLabel="Sí" />
+                    </h:selectOneMenu>
+                 </div>
+               </div>
+                  
+               <div class="form-row">
+                <div class="form-group col-md-4"> 
+                 <h:outputLabel  value="Fecha de nacimiento" class="especial" lang="es"/>
+                 <h:inputText id="fechaNacimiento" class="form-control" value="#{personal.trabajador.fechanacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                 </h:inputText>
+                </div>
+                <div class="form-group col-md-3" style="margin-top: auto">
+                    <h:outputLabel  value="Proyecto" class="especial" lang="es" style="margin-right: 15px"/>
+                    <h:selectOneMenu value="#{personal.selectedProyecto}">
+                        <f:selectItem itemValue="#{null}" itemLabel="Ninguno" />
+                        <f:selectItems value="#{personal.proyectos}" var="entry" itemValue="#{entry.getId()}" itemLabel="#{entry.getNombre()}"/>
+                    </h:selectOneMenu>
+                 </div>
+                 <div class="form-group col-md-3" style="margin-top: auto">
+                    <h:outputLabel  value="Centro" class="especial" lang="es" style="margin-right: 15px"/>
+                    <h:selectOneMenu value="#{personal.selectedCentro}">
+                        <f:selectItem itemValue="#{null}" itemLabel="Ninguno" />
+                        <f:selectItems value="#{personal.centros}" var="entry" itemValue="#{entry.getId()}" itemLabel="#{entry.getNombre()}"/>
+                    </h:selectOneMenu>
+                 </div>
+               </div>
+                
+               <div class="form-row">
+                <div class="form-group col-md-12"> 
+                 <h:outputLabel  value="Dirección" class="especial" lang="es"/>
+                 <h:inputText id="direccion" lang="es" class="form-control" value="#{personal.trabajador.direccion}" required="true"/>
+                </div>
+               </div>
+                
+               <div class="form-row">
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Población" class="especial" lang="es"/>
+                 <h:inputText id="plobacion" lang="es" class="form-control" value="#{personal.trabajador.poblacion}" required="true"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Provincia" class="especial" lang="es"/>
+                 <h:inputText id="provincia" lang="es" class="form-control" value="#{personal.trabajador.provincia}" required="true"/>
+                </div>
+                    
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Código Postal" class="especial" lang="es"/>
+                 <h:inputText id="cp" lang="es" class="form-control" value="#{personal.trabajador.codigopostal}" required="true"/>
+                </div>
+               </div>   
+                
+               <div class="form-row">
+                <div class="form-group col-md-6">
+                 <h:outputLabel value="Teléfono" class="especial" lang="es"/>
+                 <h:inputText id="telf" lang="es" class="form-control" value="#{personal.trabajador.telefono}" required="true"/>
+                </div>
+                 
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Email" class="especial" lang="es"/>
+                 <h:inputText id="mail" lang="es" class="form-control" value="#{personal.trabajador.email}" required="true"/>
+                </div>   
+               </div>
+             
+               <div class="form-row">
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Contraseña" class="especial" lang="es"/>
+                 <h:inputSecret lang="es" class="form-control" value="#{personal.password}" required="true"/>
+                </div>
+                
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Repita su contraseña" class="especial" lang="es"/>
+                 <h:inputSecret lang="es" class="form-control" value="#{personal.verify}" required="true"/>
+                </div>
+               </div>   
+                  
+              <div class="form-row">                                    
+               <div class="form-group col-md" style="text-align: center">
+                 <h:commandButton value="Añadir" class="btn btn-primary btn-sm" style="display:#{personal.trabajador.salt==null or personal.trabajador.salt==''?'block':'none'};" action="#{personal.insert()}"/>
+                 <h:commandButton value="Actualizar" class="btn btn-primary btn-sm" style="display:#{personal.trabajador.salt!=null and personal.trabajador.salt!=''?'block':'none'};" action="#{personal.update(personal.trabajador)}"/>
+                 <h:commandButton value="Cancelar" class="btn btn-secondary btn-sm" style="margin-left: 1em" action="#{personal.disableEditor()}"/>
+               </div>
+              </div>
+             </h:form>
+            </div>
+            
+            
+      <div class="container">
+        <div class="d-flex justify-content-center h-100" style="margin-top: 25px">
+            <h:dataTable style ="width: 100%" value="#{personal.list}" var="p"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+
+    			<h:column>
+    				<f:facet name="header">NIF</f:facet>
+    				#{p.nif}
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Nombre</f:facet>
+    				#{p.nombre}
+    			</h:column>
+    			
+                        <h:column>
+    				<f:facet name="header">Apellidos</f:facet>
+    				#{p.apellidos}
+    			</h:column>
+    			
+                        <h:column>
+    				<f:facet name="header">Proyecto</f:facet>
+    				#{p.proyecto.getNombre()}
+    			</h:column>
+                
+                        <h:column>
+    				<f:facet name="header">Centro</f:facet>
+    				#{p.centro.getNombre()}
+    			</h:column>
+                        
+                        <c:if test="#{sesion.admin()}">
+                        <h:column>
+                            <f:facet name="header">Acciones</f:facet>
+                            <h:form>
+                                <h:commandButton value="Actualizar" class="btn btn-primary btn-sm"  style="margin-right: 1em;" action="#{personal.enableEditor(p)}"/>
+                                <h:commandButton value="Eliminar" class="btn btn-primary btn-sm" action="#{personal.delete(p)}"/>
+                            </h:form>
+                        </h:column>
+                    </c:if>
+
+    		</h:dataTable>
+        </div>
+     </div>
+        </c:if>
+   </h:body>
+</html>

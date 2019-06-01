@@ -1,0 +1,39 @@
+.card {
+    height: 250px;
+    width: 400px;
+    background-color: #67cff2;
+}
+.cardregistro {
+    height: 665px;
+    width: 500px;
+    background-color: #67cff2;  
+}
+
+html,body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #c4f6fc;
+}
+
+.especial {
+    color: white!important;
+}
+
+.customnav {
+    background-color: #67cff2;
+}
+
+.menulist {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: .2rem;
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -15px 0;
+    border: solid #f7f7f9;
+    border-width: .2rem 0 0;
+}

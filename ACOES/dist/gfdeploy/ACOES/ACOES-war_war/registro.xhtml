@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
+        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
+        <title>Pagina de registro</title>
+    </h:head>
+    <h:body>
+      <nav class="navbar navbar-expand-lg navbar-light customnav">
+          <img src="img/logo.png" alt="logo" style="height: 40px; margin-right: 25px"/>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null and sesion.isTrabajador()?'block':'none'}" href="/ACOES-war/faces/proyectos.xhtml">Proyectos</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/centros.xhtml">Centros</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/personal.xhtml">Personal</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/socios.xhtml">Socios</a>
+           <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/beneficiarios.xhtml">Beneficiarios</a>
+           <div class="container" style="position: absolute; right: 15px; max-width: 250px">
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()==null?'block':'none'}" href="/ACOES-war/faces/login.xhtml">Iniciar sesión</a>
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()==null?'block':'none'}" href="/ACOES-war/faces/registro.xhtml">Registrarse</a>
+            <a class="navbar-brand especial" style="display:#{sesion.getUser()!=null?'block':'none'}" href="/ACOES-war/faces/perfil.xhtml">Hola #{sesion.nombre()}!</a>
+            <h:form>
+                <h:commandButton value="Salir" class="btn btn-primary btn-sm" style="display:#{sesion.getUser()!=null?'block':'none'}" action="#{sesion.close()}"/>
+            </h:form>
+           </div>
+      </nav>
+      <div class="container">
+       <div class="d-flex justify-content-center h-100">
+         <div class="cardregistro" style="margin-top: 100px">
+            <h:form>
+              <div class="card-header">
+              <h3 class="especial">Formulario de registro</h3>
+              </div>
+                
+              <div class="card-body">
+               <div class="form-row">
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Nombre" class="especial" lang="es"/>
+                 <h:inputText id="nombre" lang="es" class="form-control"  value="#{registro.nombre}" required="true"/>
+                </div>
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Apellidos" class="especial" lang="es"/>
+                 <h:inputText id="apellidos" lang="es" class="form-control"  value="#{registro.apellidos}" required="true"/>
+                </div>
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="NIF/NIE" class="especial" lang="es"/>
+                 <h:inputText id="nif" lang="es" class="form-control"  value="#{registro.nif}" required="true"/>
+                </div>
+               </div>
+                  
+               <div class="form-row">
+                <div class="form-group col-md-12"> 
+                 <h:outputLabel  value="Fecha de nacimiento" class="especial" lang="es"/>
+                 <h:inputText id="fechaNacimiento" class="form-control" value="#{registro.fechadenacimiento}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                 </h:inputText>
+                </div>
+               </div>
+                
+               <div class="form-row">
+                <div class="form-group col-md-12"> 
+                 <h:outputLabel  value="Dirección" class="especial" lang="es"/>
+                 <h:inputText id="direccion" lang="es" class="form-control" value="#{registro.direccion}" required="true"/>
+                </div>
+               </div>
+                
+               <div class="form-row">
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Población" class="especial" lang="es"/>
+                 <h:inputText id="plobacion" lang="es" class="form-control" value="#{registro.poblacion}" required="true"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Provincia" class="especial" lang="es"/>
+                 <h:inputText id="provincia" lang="es" class="form-control" value="#{registro.provincia}" required="true"/>
+                </div>
+                    
+                <div class="form-group col-md-4">
+                 <h:outputLabel  value="Código Postal" class="especial" lang="es"/>
+                 <h:inputText id="cp" lang="es" class="form-control" value="#{registro.codigopostal}" required="true"/>
+                </div>
+               </div>   
+                
+               <div class="form-row">
+                <div class="form-group col-md-6">
+                 <h:outputLabel value="Teléfono" class="especial" lang="es"/>
+                 <h:inputText id="telf" lang="es" class="form-control" value="#{registro.telefono}" required="true"/>
+                </div>
+                 
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Email" class="especial" lang="es"/>
+                 <h:inputText id="mail" lang="es" class="form-control" value="#{registro.email}" required="true"/>
+                </div>   
+               </div>
+             
+               <div class="form-row">
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Contraseña" class="especial" lang="es"/>
+                 <h:inputSecret lang="es" class="form-control" value="#{registro.password}" required="true"/>
+                </div>
+                
+                <div class="form-group col-md-6">
+                 <h:outputLabel  value="Repita su contraseña" class="especial" lang="es"/>
+                 <h:inputSecret lang="es" class="form-control" value="#{registro.verify}" required="true"/>
+                </div>
+               </div>   
+              </div>
+                  
+              <div class="form-row">                                    
+               <div class="form-group col-md" style="text-align: center">
+                <h:commandButton  value="Proceder" style="width: 200px" class="btn btn-primary btn-sm" action="#{registro.registrar()}"/>
+               </div>    
+              </div>
+           </h:form>
+         </div>
+       </div>
+     </div>
+   </h:body>
+</html>
+
