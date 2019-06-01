@@ -10,6 +10,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import Entidades.Socio;
+import Entidades.Beneficiario;
 import ejb.Interfaz;
 import java.time.Clock;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class Registro implements Serializable {
     
     private Socio socio;
     private Personal personal;
+    private Beneficiario beneficiario;
     
     private String reContra;
     private String contraseña;
@@ -45,11 +47,20 @@ public class Registro implements Serializable {
     private String email;
     
     
-    //Campos exclusivos del personal 
+    //Atributos exclusivos del personal 
     private String cargo;
     private String experiencia;
     private String descripcion;
     private Date fechaEntrada;
+    
+    //Atributos exclusivos de beneficiario
+    private String sexo;
+    private String comunidadProcedencia;
+    private String comunidadResidencia;
+    private String beca;
+    private String grado;
+    private Date fechaEntradaACOES;
+    
     
     /**
      * Creates a new instance of user
@@ -59,6 +70,7 @@ public class Registro implements Serializable {
      personal = new Personal();
     }
 
+    //Getters y Setters
     public Socio getSocio(){
      return socio;
     }
@@ -73,6 +85,14 @@ public class Registro implements Serializable {
 
     public void setPersonal(Personal personal) {
         this.personal = personal;
+    }
+    
+    public Beneficiario getBeneficiario(){
+     return beneficiario;
+    }
+    
+    public void setBeneficiario(Beneficiario b){
+     beneficiario = b;
     }
     
     public String getReContra() {
@@ -209,14 +229,66 @@ public class Registro implements Serializable {
         this.descripcion = descripcion;
     }
     
-     public String registrar(){        
+     public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getComunidadProcedencia() {
+        return comunidadProcedencia;
+    }
+
+    public void setComunidadProcedencia(String comunidadProcedencia) {
+        this.comunidadProcedencia = comunidadProcedencia;
+    }
+
+    public String getComunidadResidencia() {
+        return comunidadResidencia;
+    }
+
+    public void setComunidadResidencia(String comunidadResidencia) {
+        this.comunidadResidencia = comunidadResidencia;
+    }
+
+    public String getBeca() {
+        return beca;
+    }
+
+    public void setBeca(String beca) {
+        this.beca = beca;
+    }
+
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
+    public Date getFechaEntradaACOES() {
+        return fechaEntradaACOES;
+    }
+
+    public void setFechaEntradaACOES(Date fechaEntradaACOES) {
+        this.fechaEntradaACOES = fechaEntradaACOES;
+    }
+    
+    
+    
+    //Métodos implementados
+    
+     public String registrar(){  
         if(contraseña.equals(reContra)){
             
             Socio user = new Socio(nif,contraseña,nombre,apellidos,fechaNacimiento,"activo",provincia,poblacion,codigopostal,direccion,telefonofijo,telefonomovil,email,"socio","",false,new Date());
             
             try {
                 negocio.registrar(user);
-                return "login.xhtml";
+                return "login.xhtml?faces-redirect=true";
             } catch(Exception e){
                 return null;
             }
@@ -227,17 +299,32 @@ public class Registro implements Serializable {
 }
      
      public String registrarPersonal(){
-         System.out.println("Se ha ejecutado.");
+         if(contraseña.equals(reContra)){
          Personal p = new Personal(nif,nombre,apellidos,contraseña,fechaNacimiento,fechaEntrada,cargo);
          
          try {
-             negocio.registrarPersonal(p);
-             System.out.println("Se ha ejecutado.");
-             return null;
+             negocio.registrarUsuario(p);
+             return "gestion_usuarios.xhtml?faces-redirect=true";
              
          }catch(Exception e){
               return null;
             }
-     
+         
+         }else return null;
      }
+     
+     public String registrarBeneficiario(){
+         
+         Beneficiario b = new Beneficiario(nif,nombre,apellidos,sexo,fechaNacimiento,comunidadProcedencia,comunidadResidencia,beca,grado,fechaEntradaACOES);
+        try {
+                negocio.registrarUsuario(b);
+                return "gestion_usuarios.xhtml?faces-redirect=true";
+
+            } catch(Exception e){
+                return null;
+            }
+         
+        }
+     
+     
 }

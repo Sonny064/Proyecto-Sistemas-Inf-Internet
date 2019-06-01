@@ -2,34 +2,177 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     
     <h:head>
         <title>Administración de Envios</title>
     </h:head>
     <h:body>
-        <h:form>
-         <c:choose> 
-             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
-                 
-             </c:when>
-             
+        <c:choose> 
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
+                <h:form>
+                    <table>
+                        <td align="left"><h:commandLink action="admin.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
+                    </table>
+                </h:form>
+                
+                
+                <h2>Crear Nuevo Envío</h2>
+                <h:form>
+                    <h:outputLabel  value="Tipo de Envío" class="especial" lang="es"/>
+                    <h:inputText id="tipodeenvio" lang="es" class="form-control" value="#{añadir.tipoDeEnvio}"  required="true"/>
+                    
+                    <h:outputLabel  value="Contenido" class="especial" lang="es"/>
+                    <h:inputText id="contenido" lang="es" class="form-control" value="#{añadir.contenidoEnvio}"  required="true"/>
+                    
+                    <h:outputLabel  value="Fecha" class="especial" lang="es"/>
+                    <h:inputText id="fechaEnvio" class="form-control" value="#{añadir.fechaEnvio}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    
+                    <h:outputLabel  value="Emisor" class="especial" lang="es"/>
+                    <h:inputText id="emisor" lang="es" class="form-control" value="#{añadir.emisorEnvio}"  required="true"/>
+                    
+                    <h:outputLabel  value="Receptor" class="especial" lang="es"/>
+                    <h:inputText id="receptor" lang="es" class="form-control" value="#{añadir.receptorEnvio}"  required="true"/>
+                    
+                    <h:commandButton  value="Añadir" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.añadirEnvio()}"/>
+                
+                </h:form>
+                
+                <!-- AQUI ACTUALIZAR ENVIO-->
+                <h2>Actualizar un Envio</h2>
+                <h:form>
+                    <h:outputLabel  value="Tipo de Envío" class="especial" lang="es"/>
+                    <h:inputText id="tipodeenvio2" lang="es" class="form-control" value="#{añadir.tipoDeEnvio}"  required="true"/>
+                    
+                    <h:outputLabel  value="Contenido" class="especial" lang="es"/>
+                    <h:inputText id="contenido2" lang="es" class="form-control" value="#{añadir.contenidoEnvio}"  required="true"/>
+                    
+                    <h:outputLabel  value="Fecha" class="especial" lang="es"/>
+                    <h:inputText id="fechaEnvio2" class="form-control" value="#{añadir.fechaEnvio}" a:placeholder="DD/MM/AAAA" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                
+                    <h:commandButton  value="Actualizar" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.actualizarEnvio()}"/>
+                
+                </h:form>
+                
+                
+                <!-- AQUI ELIMINAR ENVIO-->
+                <h2>Eliminar un Envio</h2>
+                <h:form id="eliminarProyecto">
+                    
+                    <h:outputLabel value="Tipo de Envío" class="especial" lang="es"/>
+                    <h:inputText id="tipodeenvio3" lang="es" class="form-control" value="#{añadir.tipoDeEnvio}"  required="true"/>
+                
+                    <h:commandButton value="Eliminar Envío" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.eliminarEnvio()}"/>
+                </h:form>
+                
+                <!--<h2>Consultar Envios</h2>
+                <h:form id="consultarEnviosAdmin">
+                    <h:dataTable value="{sesion.envios}" var="e" border="1">
+                        <h:column>
+                            <f:facet name="header">Tipo de Envio </f:facet>
+                            <h:outputText value="{e.tipodeenvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Contenido </f:facet>
+                            <h:outputText value="{e.contenido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha </f:facet>
+                            <h:outputText value="{e.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Emisor </f:facet>
+                            <h:outputText value="{e.emisor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Receptor </f:facet>
+                            <h:outputText value="{e.receptor}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>-->
+            </c:when>
+            
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
-                  
-             </c:when>
-             
-             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
-                 
-             </c:when>
+                <h:form>
+                    <table>
+                        <td align="left"><h:commandLink action="personal_asociacion.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
+                    </table>
+                </h:form>
+                
+                <!--<h2>Consultar Envios</h2>
+                <h:form id="consultarEnviosPersonal">
+                    <h:dataTable value="{sesion.envios}" var="e" border="1">
+                        <h:column>
+                            <f:facet name="header">Tipo de Envio </f:facet>
+                            <h:outputText value="{e.tipodeenvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Contenido </f:facet>
+                            <h:outputText value="{e.contenido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha </f:facet>
+                            <h:outputText value="{e.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Emisor </f:facet>
+                            <h:outputText value="{e.emisor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Receptor </f:facet>
+                            <h:outputText value="{e.receptor}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>-->
+            </c:when>
+            
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
+                <h:form>
+                    <table>
+                        <td align="left"><h:commandLink action="socio.xhtml?faces-redirect=true">Volver</h:commandLink></td>
+                        <td align="right"><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></td>
+                    </table>
+                </h:form>
+                
+                <!--<h:form id="consultarEnviosSocio">
+                    <h:dataTable value="{sesion.envios}" var="e" border="1">
+                        <h:column>
+                            <f:facet name="header">Tipo de Envio </f:facet>
+                            <h:outputText value="{e.tipodeenvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Contenido </f:facet>
+                            <h:outputText value="{e.contenido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha </f:facet>
+                            <h:outputText value="{e.fecha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Emisor </f:facet>
+                            <h:outputText value="{e.emisor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Receptor </f:facet>
+                            <h:outputText value="{e.receptor}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>-->
+                
+            </c:when>
                                       
-             <c:otherwise>
-                 <h2> Entrada irregular</h2>  
-             </c:otherwise>
-             
-             
+            <c:otherwise>
+                 <h2>Entrada irregular.</h2>  
+            </c:otherwise>
         </c:choose>
-             <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
-        </h:form>
     </h:body>
 </html>
 

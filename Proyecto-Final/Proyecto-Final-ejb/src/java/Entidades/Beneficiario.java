@@ -139,7 +139,7 @@ public class Beneficiario implements Serializable {
         this.id = id;
     }
 
-    public Beneficiario(String id, String nombre, String apellidos, String sexo, Date fechadenacimiento, String comunidaddeprocedencia, String comunidadderesidencia, String beca, String gradodelcurso, Date fechadeentradaacoes, Date fechadesalidaacoes) {
+    public Beneficiario(String id, String nombre, String apellidos, String sexo, Date fechadenacimiento, String comunidaddeprocedencia, String comunidadderesidencia, String beca, String gradodelcurso, Date fechadeentradaacoes) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -150,7 +150,6 @@ public class Beneficiario implements Serializable {
         this.beca = beca;
         this.gradodelcurso = gradodelcurso;
         this.fechadeentradaacoes = fechadeentradaacoes;
-        this.fechadesalidaacoes = fechadesalidaacoes;
     }
 
     public String getId() {

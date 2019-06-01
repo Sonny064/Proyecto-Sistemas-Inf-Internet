@@ -5,28 +5,49 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
-        <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Página de Socio</title>
     </h:head>
-    <h:body>        
+    <h:body style="background-color: rgb(0, 139, 139);">        
         
         <c:choose>
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
-                <h2>Página de socio de la plataforma</h2> <br></br>
-                <div class="d-flex justify-content-center h-100">
-                    <h2>Bienvenid@: </h2> <h:outputText value="#{sesion.socio.nombre}"/>
-                    <h:form>
-                    <tr>
-                        <td><h:commandButton  value="Modificar mi cuenta" action="gestion_usuarios.xhtml?faces-redirect=true"></h:commandButton></td>
                 
-                        <!-- <td><h:commandButton  value="Realizar Donativo" action=""></h:commandButton></td> -->
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <span class="navbar-text" >
+                        Actualmente logeado como : <h:outputText style="margin-right: 5px;" value="#{sesion.socio.nombre}"/> 
+                                                   <h:outputText style="margin-right: 20px;" value="#{sesion.socio.apellidos}"/>
+                        Rol :                      <h:outputText value="Socio"/>
+                    </span>
+                    
+                    <h:form><h:commandButton class="btn btn-sm btn-outline-secondary" style="margin-left: 1000px;"  value="Log out" action="#{sesion.invalidarSesion()}"/></h:form>
+                    
+                </nav>
                 
-                        <td><h:commandButton  value="Consultar Envío" action="gestion_envios.xhtml?faces-redirect=true"></h:commandButton></td>
+                <div class="card-deck align-content-md-center">
+                        <div class="card" style="margin-left: 5em; margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/papeleo.jpg" alt="Card image cap"/>
+                          <div class="card-body">
+                               <h:link value="Modificar datos personales" outcome="gestion_usuarios.xhtml?faces-redirect=true"/>
+                            
+                          </div>
+                        </div>
+                        <div class="card" style="margin-top: 5em;">
+                          <img class="card-img-top"  src="resources/imagenes/envio.jpg" alt="Card image cap"/>
+                          <div class="card-body">
+                            <h:link value="Consultar envio" outcome="gestion_envios.xhtml?faces-redirect=true"/>
+                            
+                          </div>
+                        </div>
+                        <div class="card" style="margin-right: 5em; margin-top: 5em;">
+                          <img class="card-img-top" src="resources/imagenes/donacion.jpg"  alt="Card image cap"/>
+                          <div class="card-body">
+                              <h:link value="Realizar donativo" outcome="socio.xhtml"/>
+                              
+                          </div>
+                        </div>
+                      </div>
+
                 
-                        <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
-                    </tr>
-                    </h:form>
-                </div>
             </c:when>
             <c:otherwise>
                 <p><h1>No está autorizado para ver está página.</h1></p>

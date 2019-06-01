@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>
+            <h1> Edición de Usuario</h1>
+        </title>
+    </h:head>
+    <h:body>
+
+        <c:choose> 
+            <c:when test="#{gestion.tipo.equalsIgnoreCase('personal')}">
+          
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nombre"/>
+                        <h:inputText id ="nombre" value="#{gestion.personal.nombre}"/>
+                        <h:message for="nombre"/>
+
+                        <h:outputText value="Apellidos"/>
+                        <h:inputText id ="telefono" value="#{gestion.personal.apellidos}"/>
+                        <h:message for="telefono"/>
+
+                        <h:outputText value="Fecha de nacimiento"/>
+                        <h:inputText id ="fechaNacimiento" value="#{gestion.personal.fechanacimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                        <h:message for="fechaNacimiento"/>
+                        
+                        <h:outputText value="Fecha de entrada ACOES"/>
+                        <h:inputText id ="fechaEntrada" value="#{gestion.personal.fechaentradaacoes}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                        <h:message for="fechaEntrada"/>
+                        
+                        <h:outputText value="Cargo"/>
+                        <h:inputText id ="cargo" value="#{gestion.personal.cargo}"/>
+                        <h:message for="cargo"/>
+                        
+                        <h:outputText value="Foto"/>
+                        <h:inputText id ="foto" value="#{gestion.personal.foto}"/>
+                        <h:message for="foto"/>
+                        
+                        <h:outputText value="Experiencia"/>
+                        <h:inputText id ="exp" value="#{gestion.personal.experiencia}"/>
+                        <h:message for="exp"/>
+                        
+                        <h:outputText value="Descripción"/>
+                        <h:inputText id ="desc" value="#{gestion.personal.descripcion}"/>
+                        <h:message for="desc"/>
+                        <div>
+                        <h:commandButton value="Guardar" action="#{gestion.guardarEdicion(gestion.personal)}"/>
+                        <h:commandButton value="Cancelar" action="gestion_usuarios.xhtml?faces-redirect=true"/>
+                        </div>
+
+                    </h:panelGrid>
+                </h:form>
+            </c:when>
+            
+            <c:when test="#{gestion.tipo.equalsIgnoreCase('socio')}">
+            <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nombre"/>
+                        <h:inputText id ="nombre" value="#{gestion.socio.nombre}"/>
+                        <h:message for="nombre"/>
+
+                        <h:outputText value="Apellidos"/>
+                        <h:inputText id ="telefono" value="#{gestion.socio.apellidos}"/>
+                        <h:message for="telefono"/>
+
+                        <h:outputText value="Estado"/>
+                        <h:inputText id ="estado" value="#{gestion.socio.estado}"/>
+                        <h:message for="estado"/>
+                        
+                        <h:outputText value="Provincia"/>
+                        <h:inputText id ="pro" value="#{gestion.socio.provincia}"/>
+                        <h:message for="pro"/>
+                        
+                        <h:outputText value="Población"/>
+                        <h:inputText id ="po" value="#{gestion.socio.poblacion}"/>
+                        <h:message for="po"/>
+                        
+                        <h:outputText value="Código Postal"/>
+                        <h:inputText id ="code" value="#{gestion.socio.codigopostal}"/>
+                        <h:message for="code"/>
+                        
+                        <h:outputText value="Dirección"/>
+                        <h:inputText id ="dir" value="#{gestion.socio.direccion}"/>
+                        <h:message for="dir"/>
+                        
+                        <h:outputText value="Teléfono fijo"/>
+                        <h:inputText id ="fijo" value="#{gestion.socio.telefonofijo}"/>
+                        <h:message for="fijo"/>
+                        
+                        <h:outputText value="Teléfono móvil"/>
+                        <h:inputText id ="movil" value="#{gestion.socio.telefonomovil}"/>
+                        <h:message for="movil"/>
+                        
+                        <h:outputText value="E-mail"/>
+                        <h:inputText id ="mail" value="#{gestion.socio.email}"/>
+                        <h:message for="mail"/>
+                        
+                        <h:outputText value="Relación"/>
+                        <h:inputText id ="relacion" value="#{gestion.socio.relacion}"/>
+                        <h:message for="relacion"/>
+                        
+                        <h:outputText value="Sector"/>
+                        <h:inputText id ="sector" value="#{gestion.socio.sector}"/>
+                        <h:message for="sector"/>
+                        
+                        <h:outputText value="Certificado"/>
+                        <h:inputText id ="cert" value="#{gestion.socio.certificado}"/>
+                        <h:message for="cert"/>
+                        
+                        <h:outputText value="Fecha de alta"/>
+                        <h:inputText id ="fechaalta" value="#{gestion.socio.fechadealta}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        <h:message for="fechaalta"/>
+                        </h:inputText>
+                        <br></br>
+                        <h:outputText value="Fecha de baja"/>
+                        <h:inputText id ="fechabaja" value="#{gestion.socio.fechadebaja}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                        <h:message for="fechabaja"/>
+                        
+                        
+                        <h:outputText value="Observaciones"/>
+                        <h:inputText id ="obs" value="#{gestion.socio.observaciones}"/>
+                        <h:message for="obs"/>
+                        
+                        <div>
+                        <h:commandButton value="Guardar" action="#{gestion.guardarEdicion(gestion.socio)}"/>
+                        <h:commandButton value="Cancelar" action="gestion_usuarios.xhtml?faces-redirect=true"/>
+                        </div>
+
+                    </h:panelGrid>
+                </h:form> 
+            </c:when>
+            <c:when test="#{gestion.tipo.equalsIgnoreCase('beneficiario')}">
+                 <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nombre"/>
+                        <h:inputText id ="nombre" value="#{gestion.beneficiario.nombre}"/>
+                        <h:message for="nombre"/>
+
+                        <h:outputText value="Apellidos"/>
+                        <h:inputText id ="telefono" value="#{gestion.beneficiario.apellidos}"/>
+                        <h:message for="telefono"/>
+
+                        <h:outputText value="Sexo"/>
+                        <h:inputText id ="sex" value="#{gestion.beneficiario.sexo}"/>
+                        <h:message for="sex"/>
+                        
+                        <h:outputText value="Fecha de nacimiento"/>
+                        <h:inputText id ="fechanacimiento" value="#{gestion.beneficiario.fechadenacimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        <h:message for="fechanacimiento"/>
+                        </h:inputText>
+                        <br></br>
+                        <h:outputText value="Comunidad de procedencia"/>
+                        <h:inputText id ="compro" value="#{gestion.beneficiario.comunidaddeprocedencia}"/>
+                        <h:message for="compro"/>
+                        
+                        <h:outputText value="Comunidad de residencia"/>
+                        <h:inputText id ="comre" value="#{gestion.beneficiario.comunidadderesidencia}"/>
+                        <h:message for="comre"/>
+                        
+                        <h:outputText value="Beca"/>
+                        <h:inputText id ="beca" value="#{gestion.beneficiario.beca}"/>
+                        <h:message for="beca"/>
+                        
+                        <h:outputText value="Grado que cursa"/>
+                        <h:inputText id ="grado" value="#{gestion.beneficiario.gradodelcurso}"/>
+                        <h:message for="grado"/>
+                                                                      
+                        <h:outputText value="Fecha entrada en ACOES"/>
+                        <h:inputText id ="fechaalta" value="#{gestion.beneficiario.fechadeentradaacoes}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        <h:message for="fechaalta"/>
+                        </h:inputText>
+                        <br></br>
+                        <h:outputText value="Fecha salida de ACOES"/>
+                        <h:inputText id ="fechabaja" value="#{gestion.beneficiario.fechadesalidaacoes}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:inputText>
+                        <h:message for="fechabaja"/>
+                                               
+                        <h:outputText value="Estado"/>
+                        <h:inputText id ="estado" value="#{gestion.beneficiario.estado}"/>
+                        <h:message for="estado"/>
+                        
+                        <h:outputText value="Observaciones"/>
+                        <h:inputText id ="obs" value="#{gestion.beneficiario.observaciones}"/>
+                        <h:message for="obs"/>
+                        
+                        <div>
+                            <h:commandButton value="Guardar" action="#{gestion.guardarEdicion(gestion.beneficiario)}"/>
+                        <h:commandButton value="Cancelar" action="gestion_usuarios.xhtml?faces-redirect=true"/>
+                        </div>
+
+                    </h:panelGrid>
+                </h:form>
+            
+            </c:when>
+            
+            <c:otherwise>
+                <p>No está autorizado para ver esta página.</p>
+            </c:otherwise>
+        </c:choose>
+
+    </h:body>
+</html>
+

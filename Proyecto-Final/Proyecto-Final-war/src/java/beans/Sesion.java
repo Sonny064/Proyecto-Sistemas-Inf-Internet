@@ -66,14 +66,12 @@ public class Sesion implements Serializable {
     }
     
     
-    
-    
     public synchronized void setUsuario(Object usuario) throws AplicacionException {
         if(usuario instanceof Personal){
             this.empleado = (Personal) usuario;
         }
         else if (usuario instanceof Socio){
-            this.socio = (Socio) usuario;
+            this.socio = (Socio) usuario; 
         }
         else throw new AplicacionException();
     }
@@ -88,7 +86,11 @@ public class Sesion implements Serializable {
         else throw new AplicacionException();
     }
     
-        
+    
+    public synchronized void eliminarUsuario(Object o){
+        negocio.delete(o);
+    }
+    
     public String invalidarSesion(){
 
         if(empleado != null){
@@ -155,12 +157,7 @@ public class Sesion implements Serializable {
     
     public synchronized List<Envios> getEnvios(){
         return negocio.getEnvios();
-    }
-    
-    /*public synchronized Personal getPersonal(String id){
-        return 
-    }*/
-    
+    }    
     
     
 }

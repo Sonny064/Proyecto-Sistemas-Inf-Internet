@@ -91,26 +91,26 @@ public class InterfazImplementada implements Interfaz {
     @Override
     public void delete(Object obj){        
         if(obj instanceof Beneficiario){
-            em.remove((Beneficiario)obj);
+            em.remove(em.merge((Beneficiario)obj));
         } else if(obj instanceof Casapopulorum){
-            em.remove((Casapopulorum)obj);
+            em.remove(em.merge((Casapopulorum)obj));
         } else if(obj instanceof Centro){
-            em.remove((Centro)obj);
+            em.remove(em.merge((Centro)obj));
         } else if(obj instanceof Centroeducacion){
-            em.remove((Centroeducacion)obj);
+            em.remove(em.merge((Centroeducacion)obj));
         } else if(obj instanceof Envios) {
-            em.remove((Envios)obj);
+            em.remove(em.merge((Envios)obj));
         } else if(obj instanceof Proyecto) {
-            em.remove((Proyecto)obj);
+            em.remove(em.merge((Proyecto)obj));
         } else if(obj instanceof Socio) {
-            em.remove((Socio)obj);
+            em.remove(em.merge((Socio)obj));
         } else if(obj instanceof Personal) {
-            em.remove((Personal)obj);
+            em.remove(em.merge((Personal)obj));
         } else if(obj instanceof Ingresosegresos) {
-            em.remove((Ingresosegresos)obj);
+            em.remove(em.merge((Ingresosegresos)obj));
         }
     }
-    
+  
     // Utils 
     @Override
     public void registrar(Socio socio) throws Exception { 
@@ -128,17 +128,30 @@ public class InterfazImplementada implements Interfaz {
             throw new CuentaExistenteException();
         }
     }
-   
-    @Override
-    public void registrarPersonal(Personal personal) throws Exception { 
-        Personal user = em.find(Personal.class, personal.getId());
-        
-        if(user == null){
-            add(personal);
-        } else {
+    
+    
+    public void registrarUsuario(Object o)throws Exception{
+         if(o instanceof Beneficiario){
+            Beneficiario user = em.find(Beneficiario.class, ((Beneficiario) o).getId());
+            if(user == null){
+                add((Beneficiario) o);
+            }else {
             throw new CuentaExistenteException();
-        }
+            }
+            
+            }else if(o instanceof Personal){
+             Personal user = em.find(Personal.class, ((Personal) o).getId());
+             if(user == null){
+                add((Personal) o);
+            }else {
+            throw new CuentaExistenteException();
+            }
+                   
+            }
+        
     }
+   
+   
     
     /**
      *
