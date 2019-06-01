@@ -116,18 +116,13 @@ public class InterfazImplementada implements Interfaz {
         Socio user = em.find(Socio.class, socio.getNif());
 
         if (user == null) {
-            socio.setEstado("Activo");
-            socio.setRelacion("Miembro");
-            socio.setSector("A");
-            socio.setCertificado(Boolean.FALSE);
-            socio.setFechadealta(new Date());
-
             add(socio);
         } else {
             throw new CuentaExistenteException();
         }
     }
 
+    @Override
     public void registrarUsuario(Object o) throws Exception {
         if (o instanceof Beneficiario) {
             Beneficiario user = em.find(Beneficiario.class, ((Beneficiario) o).getId());
