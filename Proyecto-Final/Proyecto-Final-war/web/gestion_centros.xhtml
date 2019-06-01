@@ -2,34 +2,113 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Administración de Centros</title>
     </h:head>
-    <h:body>
+        <h:body>
         <h:form>
-            <c:choose> 
-                <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
-
-                </c:when>
-
-                <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal') }">
-
-                </c:when>
-
-                <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
-
-                </c:when>
-
-                <c:otherwise>
-                    <h2> Entrada irregular</h2>  
-                </c:otherwise>
-
-
-            </c:choose>
-            <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
+         <c:choose> 
+             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
+                 <h1> Gestion de centros</h1>
+                 <h:dataTable value="#{sesion.listado_centros}" var="c">
+                     
+                     <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            <h:outputText value="#{c.id}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{c.nombre}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Localizacion</f:facet>
+                            <h:outputText value="#{c.localizacion}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Fecha de creacion</f:facet>
+                            <h:outputText value="#{c.fechacreacion}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <h:commandButton value="Modificar" action="#{contactos.editar(c)}"/>
+                     </h:column>
+                     
+                     
+                 </h:dataTable><br></br>
+                 
+                 
+                 <h1> Añadir un nuevo centro</h1>
+                 <h:form>
+                    <div>
+                    <h:outputLabel  value="ID&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="id" lang="es" class="form-control"  value="#{añadir.idCentro}" required="true"/>
+                     
+                
+                    <h:outputLabel  value="&nbsp;Nombre&nbsp;" class="especial" lang="es"/>
+                    <h:inputText lang="es" class="form-control" value="#{añadir.nombreCentro}" required="true"/>
+                
+                    <h:outputLabel  value="&nbsp;Fecha de creacion&nbsp;" class="especial" lang="es"/>
+                    <h:inputText lang="es" class="form-control" value="#{añadir.fechaCentro}" required="true">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    
+                    <h:outputLabel  value="&nbsp;Localizacion&nbsp;" class="especial" lang="es"/>
+                    <h:inputText id="name" lang="es" class="form-control" value="#{añadir.localizacionCentro}"  required="true"/>
+               
+                    </div>
+                    
+                    <div>
+                        <h:commandButton value="Añadir Centro" action="#{añadir.añadirCentro()}"/>
+                    </div>
+                 </h:form>
+                 
+                 
+             </c:when>
+             
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal') }">
+                  
+                <h1> Gestion de centros</h1>
+                 <h:dataTable value="#{sesion.listado_centros}" var="c">
+                     
+                     <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            <h:outputText value="#{c.id}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{c.nombre}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Localizacion</f:facet>
+                            <h:outputText value="#{c.localizacion}"/>
+                     </h:column>
+                     
+                     <h:column>
+                            <f:facet name="header">Fecha de creacion</f:facet>
+                            <h:outputText value="#{c.fechacreacion}"/>
+                     </h:column>
+                
+                 </h:dataTable>
+                
+             </c:when>
+             
+             <c:otherwise>
+                 <h2> Entrada irregular</h2>  
+             </c:otherwise>
+             
+             
+        </c:choose>
+             <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
         </h:form>
     </h:body>
-
+        
 </html>
+
 
