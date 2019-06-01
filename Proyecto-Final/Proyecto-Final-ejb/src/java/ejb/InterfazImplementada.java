@@ -12,7 +12,6 @@ import Entidades.*;
 import java.util.Date;
 import java.util.List;
 import Entidades.Personal;
-import Entidades.Ingresosegresos;
 import javax.persistence.Query;
 
 /**
@@ -199,13 +198,13 @@ public class InterfazImplementada implements Interfaz {
         Query query = em.createQuery("SELECT e FROM Socio e");
         return query.getResultList();
     }
-
+    
     @Override
-    public List<Centro> listar_centros() {
-        Query query = em.createQuery("SELECT e FROM Centro e");
-        return query.getResultList();
+    public List<Centro> listar_centros(){
+    Query query = em.createQuery("SELECT e FROM Centro e");
+    return query.getResultList();
     }
-
+    
     @Override
     public List<Ingresosegresos> listar_ingresos() {
         Query query = em.createQuery("SELECT e FROM Ingresosegresos e");
@@ -330,14 +329,11 @@ public class InterfazImplementada implements Interfaz {
     }
 
     @Override
-    public void añadirCentro(Centro centro) throws AplicacionException {
-
+    public void añadirCentro(Centro centro)throws AplicacionException{
+    
         Centro center = em.find(Centro.class, centro.getId());
-
-        if (center == null) {
-            add(centro);
-        } else {
-            throw new AplicacionException();
-        }
+    
+        if (center == null){add(centro);}
+        else{throw new AplicacionException();}
     }
 }

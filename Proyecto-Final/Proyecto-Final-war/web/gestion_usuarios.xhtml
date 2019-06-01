@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head>
         <title>Administración de Usuarios</title>
@@ -33,10 +34,6 @@
                         <h:column>
                             <f:facet name="header">Cargo</f:facet>
                             <h:outputText value="#{p.cargo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Permiso especial</f:facet>
-                            <h:outputText value="#{p.permisoEspecial}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">Foto</f:facet>
@@ -406,7 +403,7 @@
 
 
                 <h:form>
-                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="socio.xhtml?faces-redirect=true"/>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="personal_asociacion.xhtml?faces-redirect=true"/>
                 </h:form>
                 <br></br>
 
@@ -421,6 +418,10 @@
                 <h1> Eliminar mi cuenta</h1>
                 <h:form>
                     <h:commandButton value="Eliminar definitivamente mi cuenta " action="#{sesion.eliminarCuenta(sesion.usuario)}" onclick = "alert('Tu cuenta ha sido eliminada.');"/>
+                </h:form>
+                
+                <h:form>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="socio.xhtml?faces-redirect=true"/>
                 </h:form>
 
             </c:when>

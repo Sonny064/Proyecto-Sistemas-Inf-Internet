@@ -61,6 +61,7 @@ public class Ingresosegresos implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FECHADEPAGO")
+    @Temporal(TemporalType.DATE)
     private Date fechadepago;
     @Basic(optional = false)
     @NotNull
@@ -122,8 +123,8 @@ public class Ingresosegresos implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getFechadepago() {
-        return fechadepago.toString();
+    public Date getFechadepago() {
+        return fechadepago;
     }
 
     public void setFechadepago(Date fechadepago) {

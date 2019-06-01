@@ -181,6 +181,9 @@
 
                     </h:dataTable>
                 </h:form>
+                <h:form>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="personal_asociacion.xhtml?faces-redirect=true"/>
+                </h:form>
             </c:when>
 
             <c:otherwise>
@@ -192,7 +195,7 @@
             </h:form>
         </c:choose>
         <h:form>
-            <p><h:commandLink action="#{entrada.invalidarSesion()}">Log out</h:commandLink></p>
+            <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
         </h:form>
     </h:body>
 </html>

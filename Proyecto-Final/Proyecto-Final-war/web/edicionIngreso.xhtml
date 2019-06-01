@@ -14,7 +14,7 @@ and open the template in the editor.
         </head>
     <body>
          <c:choose> 
-             <c:when test="#{sesion.permisoEspecial}">
+             <c:when test="#{sesion.permiso.equalsIgnoreCase('personal') || sesion.permiso.equalsIgnoreCase('admin')}">
 
                 <h:form>
                     <h:panelGrid columns="3">

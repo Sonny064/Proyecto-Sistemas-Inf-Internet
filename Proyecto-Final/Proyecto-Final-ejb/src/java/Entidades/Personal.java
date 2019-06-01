@@ -91,10 +91,7 @@ public class Personal implements Serializable {
     @Size(max = 200)
     @Column(name = "DESCRIPCION")
     private String descripcion;
-    @NotNull
-    private Boolean permisoEspecial;
-
-       
+    
     //Relaciones
     @ManyToMany(mappedBy = "personalProyecto")
     private List<Proyecto> proyectos;
@@ -118,7 +115,6 @@ public class Personal implements Serializable {
         this.fechanacimiento = fechanacimiento;
         this.fechaentradaacoes=fechaentradaacoes;
         this.cargo=cargo;
-        this.permisoEspecial = false;
     }
 
     public String getId() {
@@ -215,14 +211,6 @@ public class Personal implements Serializable {
 
     public void setListadoCentros(List<Centro> listadoCentros) {
         this.listadoCentros = listadoCentros;
-    }
-    
-     public Boolean getPermisoEspecial() {
-        return permisoEspecial;
-    }
-
-    public void setPermisoEspecial(Boolean permisoEspecial) {
-        this.permisoEspecial = permisoEspecial;
     }
 
     @Override
