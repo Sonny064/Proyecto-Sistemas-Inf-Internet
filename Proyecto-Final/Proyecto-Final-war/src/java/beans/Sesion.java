@@ -6,6 +6,7 @@
 package beans;
 
 import Entidades.Beneficiario;
+import Entidades.Centro;
 import Entidades.Envios;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -38,6 +39,7 @@ public class Sesion implements Serializable {
     private List<Personal> lista_personal = new ArrayList<>();
     private List<Socio> lista_socios = new ArrayList<>();
     private List<Beneficiario> lista_beneficiarios = new ArrayList<>();
+    private List<Centro> lista_centros = new ArrayList<>();
 
     public Sesion() {
     }
@@ -151,6 +153,11 @@ public class Sesion implements Serializable {
 
     public synchronized List<Proyecto> getProyectos() {
         return negocio.getProyectos();
+    }
+    
+    public synchronized List<Centro> getListado_centros(){
+       lista_centros = negocio.listar_centros();
+       return lista_centros;
     }
 
     public synchronized List<Envios> getEnvios() {
