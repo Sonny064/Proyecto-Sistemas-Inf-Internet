@@ -12,6 +12,7 @@ import ejb.Interfaz;
 import javax.ejb.EJB;
 import Entidades.Personal;
 import Entidades.Beneficiario;
+import Entidades.Centro;
 import Entidades.Socio;
 import ejb.AplicacionException;
 
@@ -28,6 +29,7 @@ public class GestionUsuarios implements Serializable {
     private Personal personal;
     private Socio socio;
     private Beneficiario beneficiario;
+    private Centro centro;
     private String tipo;
 
     public Personal getPersonal() {
@@ -54,6 +56,15 @@ public class GestionUsuarios implements Serializable {
         this.beneficiario = beneficiario;
     }
 
+    public Centro getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    
     public String getTipo() {
         return tipo;
     }
@@ -69,11 +80,12 @@ public class GestionUsuarios implements Serializable {
         } else if (o instanceof Socio) {
             this.socio = (Socio) o;
             tipo = "socio";
-
         } else if (o instanceof Beneficiario) {
             this.beneficiario = (Beneficiario) o;
             tipo = "beneficiario";
-        } else {
+        } else if (o instanceof Centro) {
+            this.centro = (Centro) o;
+        }  else {
             throw new AplicacionException();
         }
     }
@@ -82,7 +94,16 @@ public class GestionUsuarios implements Serializable {
         setUsuario(c);
         return "edicionUsuario.xhtml?faces-redirect=true";
     }
+    
+    public String editarCentro(Object c) throws AplicacionException{
+        setUsuario(c);
+        return "edicionCentro.xhtml?faces-redirect=true";
+    }
 
+    public String guardarCentro(Object o) {
+        negocio.update(o);
+        return "gestion_centros.xhtml?faces-redirect=true";
+    }
     public String guardarEdicion(Object o) {
         negocio.update(o);
         return "gestion_usuarios.xhtml?faces-redirect=true";
