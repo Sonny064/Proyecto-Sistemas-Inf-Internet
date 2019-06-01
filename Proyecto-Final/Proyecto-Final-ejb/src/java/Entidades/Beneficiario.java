@@ -111,7 +111,7 @@ public class Beneficiario implements Serializable {
     private Date fechadesalidaacoes;
     @Lob
     @Column(name = "FOTO")
-    private Serializable foto;
+    private String foto;
     @Size(max = 50)
     @Column(name = "ESTADO")
     private String estado;
@@ -240,11 +240,11 @@ public class Beneficiario implements Serializable {
         this.fechadesalidaacoes = fechadesalidaacoes;
     }
 
-    public Serializable getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(Serializable foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

@@ -11,16 +11,16 @@
             <h:form>
                 <c:choose> 
                     <c:when test="#{entrada.permiso == 'admin'}">
+                        <h1> Gestionar hojas de Gastos </h1>
+                        <h1> Gestionar lista de Proveedores </h1>
+                        <h1> Listar órdenes de pago </h1>
 
                     </c:when>
 
                     <c:when test="#{entrada.permiso == 'personal' }">
-
+                        <h1> Gestionar hojas de Gastos </h1>
                     </c:when>
 
-                    <c:when test="#{entrada.permiso == 'socio'}">
-
-                    </c:when>
 
                     <c:otherwise>
                         <h2> Entrada irregular</h2>  

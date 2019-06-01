@@ -33,12 +33,6 @@
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:inputText>
 
-                    <h:outputLabel  value="Emisor" class="especial" lang="es"/>
-                    <h:inputText id="emisor" lang="es" class="form-control" value="#{añadir.emisorEnvio}"  required="true"/>
-
-                    <h:outputLabel  value="Receptor" class="especial" lang="es"/>
-                    <h:inputText id="receptor" lang="es" class="form-control" value="#{añadir.receptorEnvio}"  required="true"/>
-
                     <h:commandButton  value="Añadir" style="margin-left: 12em;" class="btn btn-primary btn-sm"  action="#{añadir.añadirEnvio()}"/>
 
                 </h:form>
