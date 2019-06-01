@@ -8,6 +8,7 @@ package beans;
 import Entidades.Beneficiario;
 import Entidades.Envios;
 import Entidades.Personal;
+import Entidades.Centro;
 import Entidades.Proyecto;
 import Entidades.Socio;
 import ejb.AplicacionException;
@@ -50,11 +51,20 @@ public class Añadir implements Serializable {
     private Date fechaEnvio;
     private Socio emisorEnvio;
     private Beneficiario receptorEnvio;
+    
+    private Centro centro;
+    
+    /*Campos de un centro*/
+    private String idCentro;
+    private String nombreCentro;
+    private String localizacionCentro;
+    private Date fechaCentro;
 
     public Añadir() {
         proyecto = new Proyecto();
         personal = new Personal();
         envio = new Envios();
+        centro = new Centro();
     }
 
     public Proyecto getProyecto() {
@@ -160,6 +170,46 @@ public class Añadir implements Serializable {
     public void setReceptorEnvio(Beneficiario receptorEnvio) {
         this.receptorEnvio = receptorEnvio;
     }
+    
+     public Centro getCentro() {
+        return centro;
+    }
+
+    public void setCentro(Centro centro) {
+        this.centro = centro;
+    }
+
+    public String getIdCentro() {
+        return idCentro;
+    }
+
+    public void setIdCentro(String idCentro) {
+        this.idCentro = idCentro;
+    }
+
+    public String getNombreCentro() {
+        return nombreCentro;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
+    }
+
+    public String getLocalizacionCentro() {
+        return localizacionCentro;
+    }
+
+    public void setLocalizacionCentro(String localizacionCentro) {
+        this.localizacionCentro = localizacionCentro;
+    }
+
+    public Date getFechaCentro() {
+        return fechaCentro;
+    }
+
+    public void setFechaCentro(Date fechaCentro) {
+        this.fechaCentro = fechaCentro;
+    }
 
     /* FUNCIONALIDADES */
     public String añadirProyecto() {
@@ -238,6 +288,17 @@ public class Añadir implements Serializable {
             return "gestion_envios.xhtml?faces-redirect=true";
         } catch (AplicacionException e) {
             return "gestion_envios.xhtml?faces-redirect=true";
+        }
+    }
+    
+        public String añadirCentro(){
+    
+        try {
+            Centro center = new Centro (idCentro,nombreCentro,fechaCentro,localizacionCentro);
+            negocio.añadirCentro(center);
+            return "gestion_centros.xhtml?faces-redirect=true";
+        }catch(AplicacionException e){
+            return "gestion_centros.xhtml?faces-redirect=true";
         }
     }
 
