@@ -5,12 +5,8 @@
  */
 package ejb;
 
-import Entidades.Beneficiario;
-import Entidades.Envios;
-import Entidades.Personal;
-import Entidades.Proyecto;
+import Entidades.*;
 import javax.ejb.Local;
-import Entidades.Socio;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +42,8 @@ public interface Interfaz {
     public List<Socio> listar_socios();
 
     public List<Proyecto> getProyectos();
+    
+    public List<Centro> listar_centros();
 
     public List<Envios> getEnvios();
 
@@ -64,5 +62,7 @@ public interface Interfaz {
     public void actualizarEnvio(String tipoDeEnvio, String contenidoEnvio, Date fechaEnvio) throws AplicacionException;
 
     public void eliminarEnvio(String tipoDeEnvio) throws AplicacionException;
+    
+    public void añadirCentro(Centro centro) throws AplicacionException;
 
 }
