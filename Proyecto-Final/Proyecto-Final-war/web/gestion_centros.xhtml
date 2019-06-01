@@ -8,10 +8,11 @@
         <title>Administración de Centros</title>
     </h:head>
         <h:body>
-        <h:form>
+        
          <c:choose> 
              <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
                  <h1> Gestion de centros</h1>
+                 <h:form>
                  <h:dataTable value="#{sesion.listado_centros}" var="c">
                      
                      <h:column>
@@ -35,29 +36,33 @@
                      </h:column>
                      
                      <h:column>
-                            <h:commandButton value="Modificar" action="#{contactos.editar(c)}"/>
+                         <h:commandButton value="Modificar" action="#{gestion.editarCentro(c)}"/>
+                     </h:column>
+                      <h:column>
+                          <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(c)}"/>
                      </h:column>
                      
-                     
-                 </h:dataTable><br></br>
+                 </h:dataTable>
+                 </h:form><br></br>
                  
                  
                  <h1> Añadir un nuevo centro</h1>
-                 <h:form>
+                  <h:form>
                     <div>
-                    <h:outputLabel  value="ID&nbsp;" class="especial" lang="es"/>
+                    
+                    <h:outputLabel  value="ID" class="especial" lang="es"/>
                     <h:inputText id="id" lang="es" class="form-control"  value="#{añadir.idCentro}" required="true"/>
                      
                 
-                    <h:outputLabel  value="&nbsp;Nombre&nbsp;" class="especial" lang="es"/>
+                    <h:outputLabel  value="Nombre" class="especial" lang="es"/>
                     <h:inputText lang="es" class="form-control" value="#{añadir.nombreCentro}" required="true"/>
                 
-                    <h:outputLabel  value="&nbsp;Fecha de creacion&nbsp;" class="especial" lang="es"/>
+                    <h:outputLabel  value="Fecha de creacion" class="especial" lang="es"/>
                     <h:inputText lang="es" class="form-control" value="#{añadir.fechaCentro}" required="true">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:inputText>
                     
-                    <h:outputLabel  value="&nbsp;Localizacion&nbsp;" class="especial" lang="es"/>
+                    <h:outputLabel  value="Localizacion" class="especial" lang="es"/>
                     <h:inputText id="name" lang="es" class="form-control" value="#{añadir.localizacionCentro}"  required="true"/>
                
                     </div>
@@ -65,7 +70,7 @@
                     <div>
                         <h:commandButton value="Añadir Centro" action="#{añadir.añadirCentro()}"/>
                     </div>
-                 </h:form>
+                    </h:form>
                  
                  
              </c:when>
@@ -105,8 +110,9 @@
              
              
         </c:choose>
+            <h:form>
              <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
-        </h:form>
+           </h:form>
     </h:body>
         
 </html>
