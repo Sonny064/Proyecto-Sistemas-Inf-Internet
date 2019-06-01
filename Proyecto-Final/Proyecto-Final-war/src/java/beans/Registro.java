@@ -12,7 +12,6 @@ import javax.inject.Named;
 import Entidades.Socio;
 import Entidades.Beneficiario;
 import ejb.Interfaz;
-import java.time.Clock;
 import java.util.Date;
 import javax.ejb.EJB;
 
@@ -31,6 +30,13 @@ public class Registro implements Serializable {
     private Personal personal;
     private Beneficiario beneficiario;
 
+    //Atributos de socio
+    private static final String ESTADO = "activo";
+    private static final String RELACION = "socio";
+    private static final String SECTOR = "NULL";
+    private static final Boolean CERTIFICADO = false;
+    private static final Date FECHAALTA = new Date();
+    
     private String reContra;
     private String contraseña;
     private String nif;
@@ -65,6 +71,7 @@ public class Registro implements Serializable {
     public Registro() {
         socio = new Socio();
         personal = new Personal();
+        beneficiario = new Beneficiario();
     }
 
     //Getters y Setters
@@ -280,7 +287,7 @@ public class Registro implements Serializable {
     public String registrar() {
         if (contraseña.equals(reContra)) {
 
-            Socio user = new Socio(nif, contraseña, nombre, apellidos, fechaNacimiento, "activo", provincia, poblacion, codigopostal, direccion, telefonofijo, telefonomovil, email, "socio", "", false, new Date());
+            Socio user = new Socio(nif, contraseña, nombre, apellidos, fechaNacimiento,ESTADO, provincia, poblacion, codigopostal, direccion, telefonofijo, telefonomovil, email,RELACION,SECTOR,CERTIFICADO,FECHAALTA);
 
             try {
                 negocio.registrar(user);
