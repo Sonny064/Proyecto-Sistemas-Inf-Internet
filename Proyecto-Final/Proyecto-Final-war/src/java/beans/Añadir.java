@@ -49,9 +49,6 @@ public class Añadir implements Serializable {
     private String tipoDeEnvio;
     private String contenidoEnvio;
     private Date fechaEnvio;
-    private Socio emisorEnvio;
-    private Beneficiario receptorEnvio;
-    
     private Centro centro;
     
     /*Campos de un centro*/
@@ -154,22 +151,6 @@ public class Añadir implements Serializable {
     public void setFechaEnvio(Date fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
-
-    public Socio getEmisorEnvio() {
-        return emisorEnvio;
-    }
-
-    public void setEmisorEnvio(Socio emisorEnvio) {
-        this.emisorEnvio = emisorEnvio;
-    }
-
-    public Beneficiario getReceptorEnvio() {
-        return receptorEnvio;
-    }
-
-    public void setReceptorEnvio(Beneficiario receptorEnvio) {
-        this.receptorEnvio = receptorEnvio;
-    }
     
      public Centro getCentro() {
         return centro;
@@ -260,13 +241,11 @@ public class Añadir implements Serializable {
     }
 
     public String añadirEnvio() {
-        envio = new Envios(tipoDeEnvio, fechaEnvio);
+        Envios deliver = new Envios(tipoDeEnvio, fechaEnvio);
+        deliver.setContenido(contenidoEnvio);
 
         try {
-            envio.setContenido(contenidoEnvio);
-            envio.setEmisor(emisorEnvio);
-            envio.setReceptor(receptorEnvio);
-            negocio.añadirEnvio(envio);
+            negocio.añadirEnvio(deliver);
             return "gestion_envios.xhtml?faces-redirect=true";
         } catch (AplicacionException e) {
             return "gestion_envios.xhtml?faces-redirect=true";
