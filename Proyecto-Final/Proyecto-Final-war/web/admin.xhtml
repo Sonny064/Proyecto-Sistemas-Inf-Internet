@@ -11,62 +11,62 @@
         <c:choose>
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
 
-                  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <span class="navbar-text" >
                         Actualmente logeado como : <h:outputText style="margin-right: 5px;" value="#{sesion.empleado.nombre}"/> 
-                                                   <h:outputText style="margin-right: 20px;" value="#{sesion.empleado.apellidos}"/>
+                        <h:outputText style="margin-right: 20px;" value="#{sesion.empleado.apellidos}"/>
                         Rol :                      <h:outputText value="Administrador"/>
                     </span>
-                    
+
                     <h:form><h:commandButton class="btn btn-sm btn-outline-secondary" style="margin-left: 1000px;"  value="Log out" action="#{sesion.invalidarSesion()}"/></h:form>
-                    
-                  </nav>
 
-                        
-                  <div class="card-deck align-content-md-center">
-                        
-                        <div class="card" style="margin-left: 5em; margin-top: 5em;">
-                          <img class="card-img-top"  src="resources/imagenes/usuarios.jpg" alt="Card image cap"/>
-                          <div class="card-body">
+                </nav>
+
+
+                <div class="card-deck align-content-md-center">
+
+                    <div class="card" style="margin-left: 5em; margin-top: 5em;">
+                        <img class="card-img-top"  src="resources/imagenes/usuarios.jpg" alt="Card image cap"/>
+                        <div class="card-body">
                             <h:link value="Administrar Usuarios" outcome="gestion_usuarios.xhtml?faces-redirect=true"/>
-                            
-                          </div>
-                        </div>
-                    
-                        <div class="card" style="margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/proyecto.jpg"  alt="Card image cap"/>
-                          <div class="card-body">
-                              <h:link value="Administrar Proyectos" outcome="gestion_proyectos.xhtml?faces-redirect=true"/>
-                              
-                          </div>
-                        </div>
-                    
-                        <div class="card" style="margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/fondos.jpg"  alt="Card image cap"/>
-                          <div class="card-body">
-                              <h:link value="Administrar Fondos" outcome="gestion_fondos.xhtml?faces-redirect=true"/>
-                              
-                          </div>
-                        </div>
-                    
-                        <div class="card" style="margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/envios.jpg" alt="Card image cap"/>
-                          <div class="card-body">
-                               <h:link value="Administrar Envios" outcome="gestion_envios.xhtml?faces-redirect=true"/>
-                            
-                          </div>
-                        </div>
 
-                        <div class="card" style="margin-right: 5em; margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/centros.jpg"  alt="Card image cap"/>
-                          <div class="card-body">
-                              <h:link value="Administrar Centros" outcome="gestion_centros.xhtml?faces-redirect=true"/>
-                              
-                          </div>
                         </div>
-                   </div>
-                  </c:when>
-                  <c:otherwise>
+                    </div>
+
+                    <div class="card" style="margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/proyecto.jpg"  alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Administrar Proyectos" outcome="gestion_proyectos.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/fondos.jpg"  alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Administrar Fondos" outcome="gestion_fondos.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/envios.jpg" alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Administrar Envios" outcome="gestion_envios.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-right: 5em; margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/centros.jpg"  alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Administrar Centros" outcome="gestion_centros.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
                 <p><h1>No está autorizado para ver está página.</h1></p>
             </c:otherwise>
         </c:choose>

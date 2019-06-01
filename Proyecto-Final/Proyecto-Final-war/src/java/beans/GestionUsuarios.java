@@ -19,17 +19,17 @@ import ejb.AplicacionException;
  *
  * @author marina muñoz
  */
-
-@Named(value="gestion")
+@Named(value = "gestion")
 @SessionScoped
-public class gestionUsuarios implements Serializable{
+public class GestionUsuarios implements Serializable {
+
     @EJB
     private Interfaz negocio;
     private Personal personal;
     private Socio socio;
     private Beneficiario beneficiario;
     private String tipo;
-    
+
     public Personal getPersonal() {
         return personal;
     }
@@ -61,31 +61,31 @@ public class gestionUsuarios implements Serializable{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    public synchronized void setUsuario(Object o) throws AplicacionException{
-        if(o instanceof Personal){
+
+    public synchronized void setUsuario(Object o) throws AplicacionException {
+        if (o instanceof Personal) {
             this.personal = (Personal) o;
             tipo = "personal";
-        }
-        else if (o instanceof Socio){
+        } else if (o instanceof Socio) {
             this.socio = (Socio) o;
             tipo = "socio";
-     
-        }else if (o instanceof Beneficiario){
+
+        } else if (o instanceof Beneficiario) {
             this.beneficiario = (Beneficiario) o;
-            tipo ="beneficiario";
+            tipo = "beneficiario";
+        } else {
+            throw new AplicacionException();
         }
-        else throw new AplicacionException();
     }
-    
-     public String editar(Object c) throws AplicacionException{
+
+    public String editar(Object c) throws AplicacionException {
         setUsuario(c);
         return "edicionUsuario.xhtml?faces-redirect=true";
     }
-    
-     public String guardarEdicion(Object o){
-         negocio.update(o);
-         return "gestion_usuarios.xhtml?faces-redirect=true";
-     }
-        
+
+    public String guardarEdicion(Object o) {
+        negocio.update(o);
+        return "gestion_usuarios.xhtml?faces-redirect=true";
+    }
+
 }

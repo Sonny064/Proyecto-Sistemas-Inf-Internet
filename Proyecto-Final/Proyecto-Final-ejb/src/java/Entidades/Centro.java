@@ -33,11 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "CENTRO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Centro.findAll", query = "SELECT c FROM Centro c")
-    , @NamedQuery(name = "Centro.findById", query = "SELECT c FROM Centro c WHERE c.id = :id")
-    , @NamedQuery(name = "Centro.findByNombre", query = "SELECT c FROM Centro c WHERE c.nombre = :nombre")
-    , @NamedQuery(name = "Centro.findByFechacreacion", query = "SELECT c FROM Centro c WHERE c.fechacreacion = :fechacreacion")
-    , @NamedQuery(name = "Centro.findByLocalizacion", query = "SELECT c FROM Centro c WHERE c.localizacion = :localizacion")})
+    @NamedQuery(name = "Centro.findAll", query = "SELECT c FROM Centro c"),
+    @NamedQuery(name = "Centro.findById", query = "SELECT c FROM Centro c WHERE c.id = :id"),
+    @NamedQuery(name = "Centro.findByNombre", query = "SELECT c FROM Centro c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Centro.findByFechacreacion", query = "SELECT c FROM Centro c WHERE c.fechacreacion = :fechacreacion"),
+    @NamedQuery(name = "Centro.findByLocalizacion", query = "SELECT c FROM Centro c WHERE c.localizacion = :localizacion")})
 public class Centro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,21 +63,16 @@ public class Centro implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "LOCALIZACION")
     private String localizacion;
-    
+
     //Relaciones//
-    @ManyToMany (mappedBy = "listadoCentros")
+    @ManyToMany(mappedBy = "listadoCentros")
     private List<Personal> personal;
 
     @ManyToMany
     private List<Beneficiario> propietario_centro;
 
-
-    @OneToMany(mappedBy="ingresos_centro")
+    @OneToMany(mappedBy = "ingresos_centro")
     private List<Ingresosegresos> ingresos;
-
-   
-    
-    
 
     public Centro() {
     }
@@ -124,7 +119,7 @@ public class Centro implements Serializable {
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
     }
-    
+
     public List<Personal> getPersonal() {
         return personal;
     }
@@ -173,5 +168,5 @@ public class Centro implements Serializable {
     public String toString() {
         return "Entidades.Centro[ id=" + id + " ]";
     }
-    
+
 }

@@ -35,20 +35,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "BENEFICIARIO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Beneficiario.findAll", query = "SELECT b FROM Beneficiario b")
-    , @NamedQuery(name = "Beneficiario.findById", query = "SELECT b FROM Beneficiario b WHERE b.id = :id")
-    , @NamedQuery(name = "Beneficiario.findByNombre", query = "SELECT b FROM Beneficiario b WHERE b.nombre = :nombre")
-    , @NamedQuery(name = "Beneficiario.findByApellidos", query = "SELECT b FROM Beneficiario b WHERE b.apellidos = :apellidos")
-    , @NamedQuery(name = "Beneficiario.findBySexo", query = "SELECT b FROM Beneficiario b WHERE b.sexo = :sexo")
-    , @NamedQuery(name = "Beneficiario.findByFechadenacimiento", query = "SELECT b FROM Beneficiario b WHERE b.fechadenacimiento = :fechadenacimiento")
-    , @NamedQuery(name = "Beneficiario.findByComunidaddeprocedencia", query = "SELECT b FROM Beneficiario b WHERE b.comunidaddeprocedencia = :comunidaddeprocedencia")
-    , @NamedQuery(name = "Beneficiario.findByComunidadderesidencia", query = "SELECT b FROM Beneficiario b WHERE b.comunidadderesidencia = :comunidadderesidencia")
-    , @NamedQuery(name = "Beneficiario.findByBeca", query = "SELECT b FROM Beneficiario b WHERE b.beca = :beca")
-    , @NamedQuery(name = "Beneficiario.findByGradodelcurso", query = "SELECT b FROM Beneficiario b WHERE b.gradodelcurso = :gradodelcurso")
-    , @NamedQuery(name = "Beneficiario.findByFechadeentradaacoes", query = "SELECT b FROM Beneficiario b WHERE b.fechadeentradaacoes = :fechadeentradaacoes")
-    , @NamedQuery(name = "Beneficiario.findByFechadesalidaacoes", query = "SELECT b FROM Beneficiario b WHERE b.fechadesalidaacoes = :fechadesalidaacoes")
-    , @NamedQuery(name = "Beneficiario.findByEstado", query = "SELECT b FROM Beneficiario b WHERE b.estado = :estado")
-    , @NamedQuery(name = "Beneficiario.findByObservaciones", query = "SELECT b FROM Beneficiario b WHERE b.observaciones = :observaciones")})
+    @NamedQuery(name = "Beneficiario.findAll", query = "SELECT b FROM Beneficiario b"),
+    @NamedQuery(name = "Beneficiario.findById", query = "SELECT b FROM Beneficiario b WHERE b.id = :id"),
+    @NamedQuery(name = "Beneficiario.findByNombre", query = "SELECT b FROM Beneficiario b WHERE b.nombre = :nombre"),
+    @NamedQuery(name = "Beneficiario.findByApellidos", query = "SELECT b FROM Beneficiario b WHERE b.apellidos = :apellidos"),
+    @NamedQuery(name = "Beneficiario.findBySexo", query = "SELECT b FROM Beneficiario b WHERE b.sexo = :sexo"),
+    @NamedQuery(name = "Beneficiario.findByFechadenacimiento", query = "SELECT b FROM Beneficiario b WHERE b.fechadenacimiento = :fechadenacimiento"),
+    @NamedQuery(name = "Beneficiario.findByComunidaddeprocedencia", query = "SELECT b FROM Beneficiario b WHERE b.comunidaddeprocedencia = :comunidaddeprocedencia"),
+    @NamedQuery(name = "Beneficiario.findByComunidadderesidencia", query = "SELECT b FROM Beneficiario b WHERE b.comunidadderesidencia = :comunidadderesidencia"),
+    @NamedQuery(name = "Beneficiario.findByBeca", query = "SELECT b FROM Beneficiario b WHERE b.beca = :beca"),
+    @NamedQuery(name = "Beneficiario.findByGradodelcurso", query = "SELECT b FROM Beneficiario b WHERE b.gradodelcurso = :gradodelcurso"),
+    @NamedQuery(name = "Beneficiario.findByFechadeentradaacoes", query = "SELECT b FROM Beneficiario b WHERE b.fechadeentradaacoes = :fechadeentradaacoes"),
+    @NamedQuery(name = "Beneficiario.findByFechadesalidaacoes", query = "SELECT b FROM Beneficiario b WHERE b.fechadesalidaacoes = :fechadesalidaacoes"),
+    @NamedQuery(name = "Beneficiario.findByEstado", query = "SELECT b FROM Beneficiario b WHERE b.estado = :estado"),
+    @NamedQuery(name = "Beneficiario.findByObservaciones", query = "SELECT b FROM Beneficiario b WHERE b.observaciones = :observaciones")})
 public class Beneficiario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -118,19 +118,19 @@ public class Beneficiario implements Serializable {
     @Size(max = 200)
     @Column(name = "OBSERVACIONES")
     private String observaciones;
-    
+
     //Relaciones//
     @ManyToOne
     private Socio socio;
 
-    @OneToMany(mappedBy="receptor")
-    private List <Envios> envian;
+    @OneToMany(mappedBy = "receptor")
+    private List<Envios> envian;
 
-    @ManyToMany (mappedBy= "propietario_proyecto")
-    private List <Proyecto> proyecto;
-    
-    @ManyToMany (mappedBy= "propietario_centro")
-    private List <Centro> centro;
+    @ManyToMany(mappedBy = "propietario_proyecto")
+    private List<Proyecto> proyecto;
+
+    @ManyToMany(mappedBy = "propietario_centro")
+    private List<Centro> centro;
 
     public Beneficiario() {
     }
@@ -263,8 +263,7 @@ public class Beneficiario implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
-    
+
     public Socio getSocio() {
         return socio;
     }
@@ -321,5 +320,5 @@ public class Beneficiario implements Serializable {
     public String toString() {
         return "Entidades.Beneficiario[ id=" + id + " ]";
     }
-    
+
 }

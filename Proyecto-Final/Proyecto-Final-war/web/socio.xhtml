@@ -8,46 +8,46 @@
         <title>Página de Socio</title>
     </h:head>
     <h:body style="background-color: rgb(0, 139, 139);">        
-        
+
         <c:choose>
             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
-                
+
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <span class="navbar-text" >
                         Actualmente logeado como : <h:outputText style="margin-right: 5px;" value="#{sesion.socio.nombre}"/> 
-                                                   <h:outputText style="margin-right: 20px;" value="#{sesion.socio.apellidos}"/>
+                        <h:outputText style="margin-right: 20px;" value="#{sesion.socio.apellidos}"/>
                         Rol :                      <h:outputText value="Socio"/>
                     </span>
-                    
-                    <h:form><h:commandButton class="btn btn-sm btn-outline-secondary" style="margin-left: 1000px;"  value="Log out" action="#{sesion.invalidarSesion()}"/></h:form>
-                    
-                </nav>
-                
-                <div class="card-deck align-content-md-center">
-                        <div class="card" style="margin-left: 5em; margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/papeleo.jpg" alt="Card image cap"/>
-                          <div class="card-body">
-                               <h:link value="Modificar datos personales" outcome="gestion_usuarios.xhtml?faces-redirect=true"/>
-                            
-                          </div>
-                        </div>
-                        <div class="card" style="margin-top: 5em;">
-                          <img class="card-img-top"  src="resources/imagenes/envio.jpg" alt="Card image cap"/>
-                          <div class="card-body">
-                            <h:link value="Consultar envio" outcome="gestion_envios.xhtml?faces-redirect=true"/>
-                            
-                          </div>
-                        </div>
-                        <div class="card" style="margin-right: 5em; margin-top: 5em;">
-                          <img class="card-img-top" src="resources/imagenes/donacion.jpg"  alt="Card image cap"/>
-                          <div class="card-body">
-                              <h:link value="Realizar donativo" outcome="socio.xhtml"/>
-                              
-                          </div>
-                        </div>
-                      </div>
 
-                
+                    <h:form><h:commandButton class="btn btn-sm btn-outline-secondary" style="margin-left: 1000px;"  value="Log out" action="#{sesion.invalidarSesion()}"/></h:form>
+
+                </nav>
+
+                <div class="card-deck align-content-md-center">
+                    <div class="card" style="margin-left: 5em; margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/papeleo.jpg" alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Modificar datos personales" outcome="gestion_usuarios.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+                    <div class="card" style="margin-top: 5em;">
+                        <img class="card-img-top"  src="resources/imagenes/envio.jpg" alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Consultar envio" outcome="gestion_envios.xhtml?faces-redirect=true"/>
+
+                        </div>
+                    </div>
+                    <div class="card" style="margin-right: 5em; margin-top: 5em;">
+                        <img class="card-img-top" src="resources/imagenes/donacion.jpg"  alt="Card image cap"/>
+                        <div class="card-body">
+                            <h:link value="Realizar donativo" outcome="socio.xhtml"/>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </c:when>
             <c:otherwise>
                 <p><h1>No está autorizado para ver está página.</h1></p>

@@ -22,37 +22,36 @@ import javax.inject.Named;
  *
  * @author Carlos
  */
-
-@Named(value="añadir")
+@Named(value = "añadir")
 @SessionScoped
-public class Añadir implements Serializable{
+public class Añadir implements Serializable {
+
     @EJB
     private Interfaz negocio;
-    
+
     private Proyecto proyecto;
-    
+
     /* Campos de un Proyecto */
     private String idProyecto;
     private String nombreProyecto;
     private Date fechaCreacionProyecto;
     private String descripcionProyecto;
-    
+
     private Personal personal;
-    
+
     /* Campos de un Empleado */
     private String idPersonal;
-    
-    
+
     private Envios envio;
-    
+
     /* Campos de un Envío */
     private String tipoDeEnvio;
     private String contenidoEnvio;
     private Date fechaEnvio;
     private Socio emisorEnvio;
     private Beneficiario receptorEnvio;
-    
-    public Añadir(){
+
+    public Añadir() {
         proyecto = new Proyecto();
         personal = new Personal();
         envio = new Envios();
@@ -161,91 +160,85 @@ public class Añadir implements Serializable{
     public void setReceptorEnvio(Beneficiario receptorEnvio) {
         this.receptorEnvio = receptorEnvio;
     }
-    
-    
-    
 
-    
     /* FUNCIONALIDADES */
-    
-    public String añadirProyecto(){
+    public String añadirProyecto() {
         proyecto = new Proyecto(idProyecto, nombreProyecto, fechaCreacionProyecto, descripcionProyecto);
-        
+
         try {
             negocio.añadirProyecto(proyecto);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(Exception e){
+        } catch (Exception e) {
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
-    
-    public String actualizarProyecto(){
+
+    public String actualizarProyecto() {
         try {
             negocio.actualizarProyecto(idProyecto, nombreProyecto, descripcionProyecto);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
-    
-    public String eliminarProyecto(){
+
+    public String eliminarProyecto() {
         try {
             negocio.eliminarProyecto(idProyecto);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
-    
-    public String añadirPersonalAProyecto(){
-        try{
+
+    public String añadirPersonalAProyecto() {
+        try {
             negocio.añadirPersonalAProyecto(idProyecto, idPersonal);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
-    
-    public String eliminarPersonalDeProyecto(){
-        try{
+
+    public String eliminarPersonalDeProyecto() {
+        try {
             negocio.eliminarPersonalDeProyecto(idProyecto, idPersonal);
             return "gestion_proyectos.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_proyectos.xhtml?faces-redirect=true";
         }
     }
-    
-    
-    public String añadirEnvio(){
-        envio = new Envios(tipoDeEnvio, fechaEnvio); 
-       
-        try{
+
+    public String añadirEnvio() {
+        envio = new Envios(tipoDeEnvio, fechaEnvio);
+
+        try {
             envio.setContenido(contenidoEnvio);
             envio.setEmisor(emisorEnvio);
             envio.setReceptor(receptorEnvio);
             negocio.añadirEnvio(envio);
             return "gestion_envios.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_envios.xhtml?faces-redirect=true";
         }
     }
-    
-    public String actualizarEnvio(){
+
+    public String actualizarEnvio() {
         try {
             negocio.actualizarEnvio(tipoDeEnvio, contenidoEnvio, fechaEnvio);
             return "gestion_envios.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_envios.xhtml?faces-redirect=true";
         }
     }
-    
-    public String eliminarEnvio(){
+
+    public String eliminarEnvio() {
         try {
             negocio.eliminarEnvio(tipoDeEnvio);
             return "gestion_envios.xhtml?faces-redirect=true";
-        } catch(AplicacionException e){
+        } catch (AplicacionException e) {
             return "gestion_envios.xhtml?faces-redirect=true";
         }
     }
-    
+
 }

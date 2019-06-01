@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "CASAPOPULORUM")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Casapopulorum.findAll", query = "SELECT c FROM Casapopulorum c")
-    , @NamedQuery(name = "Casapopulorum.findById", query = "SELECT c FROM Casapopulorum c WHERE c.id = :id")
-    , @NamedQuery(name = "Casapopulorum.findByNumerocamas", query = "SELECT c FROM Casapopulorum c WHERE c.numerocamas = :numerocamas")
-    , @NamedQuery(name = "Casapopulorum.findByExtension", query = "SELECT c FROM Casapopulorum c WHERE c.extension = :extension")})
+    @NamedQuery(name = "Casapopulorum.findAll", query = "SELECT c FROM Casapopulorum c"),
+    @NamedQuery(name = "Casapopulorum.findById", query = "SELECT c FROM Casapopulorum c WHERE c.id = :id"),
+    @NamedQuery(name = "Casapopulorum.findByNumerocamas", query = "SELECT c FROM Casapopulorum c WHERE c.numerocamas = :numerocamas"),
+    @NamedQuery(name = "Casapopulorum.findByExtension", query = "SELECT c FROM Casapopulorum c WHERE c.extension = :extension")})
 public class Casapopulorum implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -110,5 +110,5 @@ public class Casapopulorum implements Serializable {
     public String toString() {
         return "Entidades.Casapopulorum[ id=" + id + " ]";
     }
-    
+
 }

@@ -4,254 +4,434 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
     <h:head>
         <title>Administración de Usuarios</title>
     </h:head>
     <h:body>
-         <c:choose> 
-             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
-                 <h1> Gestionar Personal</h1>
-                 <h:form>
-                 <h:dataTable value="#{sesion.listado_personal}" var="p">
-                     <h:column>
+        <c:choose> 
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('admin')}">
+                <h1> Gestionar Personal</h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_personal}" var="p">
+                        <h:column>
                             <f:facet name="header">Nombre</f:facet>
                             <h:outputText value="#{p.nombre}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Apellidos</f:facet>
                             <h:outputText value="#{p.apellidos}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha nacimiento</f:facet>
                             <h:outputText value="#{p.fechanacimiento}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha de entrada en ACOES</f:facet>
                             <h:outputText value="#{p.fechaentradaacoes}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Cargo</f:facet>
                             <h:outputText value="#{p.cargo}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Foto</f:facet>
                             <h:outputText value="#{p.foto}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Experiencia</f:facet>
                             <h:outputText value="#{p.experiencia}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Descripción</f:facet>
                             <h:outputText value="#{p.descripcion}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <h:commandButton value="Modificar" action="#{gestion.editar(p)}"/>
-                     </h:column>
-                        
-                     <h:column>
+                        </h:column>
+
+                        <h:column>
                             <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(p)}"/>
-                     </h:column>
-                 </h:dataTable>
-                 </h:form><br></br>
-                 <h1> Formulario nuevo Empleado</h1>
-                 <h:form>
-                 <h:commandButton value="Acceso al formulario" action="registroEmpleado.xhtml?faces-redirect=true"/>
-                 </h:form>
-                 <br></br>
-                 <h1> Gestionar Socios </h1>
-                 <h:form>
-                 <h:dataTable value="#{sesion.listado_socios}" var="c">
-                      <h:column>
+                        </h:column>
+                    </h:dataTable>
+                </h:form><br></br>
+                <h1> Formulario nuevo Empleado</h1>
+                <h:form>
+                    <h:commandButton value="Acceso al formulario" action="registroEmpleado.xhtml?faces-redirect=true"/>
+                </h:form>
+                <br></br>
+                <h1> Gestionar Socios </h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_socios}" var="c">
+                        <h:column>
                             <f:facet name="header">NIF/NIE</f:facet>
                             <h:outputText value="#{c.nif}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Nombre</f:facet>
                             <h:outputText value="#{c.nombre}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Apellidos</f:facet>
                             <h:outputText value="#{c.apellidos}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Estado</f:facet>
                             <h:outputText value="#{c.estado}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Provincia</f:facet>
                             <h:outputText value="#{c.provincia}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Población</f:facet>
                             <h:outputText value="#{c.poblacion}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Código Postal</f:facet>
                             <h:outputText value="#{c.codigopostal}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Dirección</f:facet>
                             <h:outputText value="#{c.direccion}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Teléfono fijo</f:facet>
                             <h:outputText value="#{c.telefonofijo}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Teléfono móvil</f:facet>
                             <h:outputText value="#{c.telefonomovil}"/>
-                     </h:column>
-                     
-                    <h:column>
+                        </h:column>
+
+                        <h:column>
                             <f:facet name="header">Email</f:facet>
                             <h:outputText value="#{c.email}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Relación</f:facet>
                             <h:outputText value="#{c.relacion}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Sector</f:facet>
                             <h:outputText value="#{c.sector}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Certificado</f:facet>
                             <h:outputText value="#{c.certificado}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha de alta</f:facet>
                             <h:outputText value="#{c.fechadealta}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha de baja</f:facet>
                             <h:outputText value="#{c.fechadebaja}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Observaciones</f:facet>
                             <h:outputText value="#{c.observaciones}"/>
-                     </h:column>
-                     <h:column>
-                        <h:commandButton value="Editar" action="#{gestion.editar(c)}"/>
-                     </h:column>
-                        
-                     <h:column>
-                         <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(c)}"/>
-                     </h:column>
-                
-                 </h:dataTable>
-                 </h:form><br></br>
-                 <h1> Formulario nuevo Socio</h1>
-                 <h:form>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{gestion.editar(c)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(c)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form><br></br>
+                <h1> Formulario nuevo Socio</h1>
+                <h:form>
                     <h:commandButton value="Acceder al formulario " action="registro.xhtml?faces-redirect=true"/>
-                 </h:form>
-                 
-                 <br></br>
-                 <h1> Gestionar Beneficiarios</h1>
-                 <h:form>
-                     <h:dataTable value="#{sesion.listado_beneficiarios}" var="b">
-                      <h:column>
+                </h:form>
+
+                <br></br>
+                <h1> Gestionar Beneficiarios</h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_beneficiarios}" var="b">
+                        <h:column>
                             <f:facet name="header">Id</f:facet>
                             <h:outputText value="#{b.id}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Nombre</f:facet>
                             <h:outputText value="#{b.nombre}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Apellidos</f:facet>
                             <h:outputText value="#{b.apellidos}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Sexo</f:facet>
                             <h:outputText value="#{b.sexo}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha de nacimiento</f:facet>
                             <h:outputText value="#{b.fechadenacimiento}"/>
-                     </h:column>                              
-                     <h:column>
+                        </h:column>                              
+                        <h:column>
                             <f:facet name="header">Comunidad de procedencia</f:facet>
                             <h:outputText value="#{b.comunidaddeprocedencia}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Comunidad de residencia</f:facet>
                             <h:outputText value="#{b.comunidadderesidencia}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Beca</f:facet>
                             <h:outputText value="#{b.beca}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Grado que cursa</f:facet>
                             <h:outputText value="#{b.gradodelcurso}"/>
-                     </h:column>
-                     
-                    <h:column>
+                        </h:column>
+
+                        <h:column>
                             <f:facet name="header">Fecha de entrada en ACOES</f:facet>
                             <h:outputText value="#{b.fechadeentradaacoes}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Fecha de salida de ACOES</f:facet>
                             <h:outputText value="#{b.fechadesalidaacoes}"/>
-                     </h:column>
-                     <h:column>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Observaciones</f:facet>
                             <h:outputText value="#{b.observaciones}"/>
-                     </h:column>
-                    
-                     <h:column>
-                        <h:commandButton value="Editar" action="#{gestion.editar(b)}"/>
-                     </h:column>
-                        
-                     <h:column>
-                         <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(b)}"/>
-                     </h:column>
-                
-                 </h:dataTable>
-                 </h:form>
-                 <br></br>
-                 <h1> Formulario nuevo Beneficiario</h1>
-                 <h:form>
-                     <h:commandButton value="Acceder al formulario " action="registroBeneficiario.xhtml?faces-redirect=true"/>
-                 </h:form>
-                 <br></br>
-                <h:form>
-                  
-                <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="admin.xhtml?faces-redirect=true"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{gestion.editar(b)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(b)}"/>
+                        </h:column>
+
+                    </h:dataTable>
                 </h:form>
-                
-             </c:when>
-             
-            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
-                  <h1> Modificar mis datos</h1>
-                  <h1> Eliminar mi cuenta</h1>
-                  <h1> Gestionar Socios </h1>
-                  <h1> Búsqueda de Socio</h1>
-                  <h1> Gestionar Beneficiarios</h1>
-                  
-                    
-             </c:when>
-             
-             <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
-                 <h1> Modificar mis datos</h1>
-                 <h1> Eliminar mi cuenta</h1>
+                <br></br>
+                <h1> Formulario nuevo Beneficiario</h1>
+                <h:form>
+                    <h:commandButton value="Acceder al formulario " action="registroBeneficiario.xhtml?faces-redirect=true"/>
+                </h:form>
+                <br></br>
+                <h:form>
+
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="admin.xhtml?faces-redirect=true"/>
+                </h:form>
+
             </c:when>
-                                      
-             <c:otherwise>
-                 <h2> Entrada irregular</h2>  
-             </c:otherwise>
-             
-       
-        
+
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('personal')}">
+                <h1> Modificar mis datos</h1>
+                <h:form>
+                    <h:commandButton value="Acceder al formulario " action="#{gestion.editar(sesion.usuario)}"/>
+                </h:form>
+
+                <h1> Eliminar mi cuenta</h1>
+                <h:form>
+                    <h:commandButton value="Eliminar definitivamente mi cuenta " action="#{sesion.eliminarCuenta(sesion.usuario)}" onclick = "alert('Tu cuenta ha sido eliminada.');"/>
+                </h:form>
+                <h1> Gestionar Socios </h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_socios}" var="c">
+                        <h:column>
+                            <f:facet name="header">NIF/NIE</f:facet>
+                            <h:outputText value="#{c.nif}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{c.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{c.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Estado</f:facet>
+                            <h:outputText value="#{c.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Provincia</f:facet>
+                            <h:outputText value="#{c.provincia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Población</f:facet>
+                            <h:outputText value="#{c.poblacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Código Postal</f:facet>
+                            <h:outputText value="#{c.codigopostal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Dirección</f:facet>
+                            <h:outputText value="#{c.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Teléfono fijo</f:facet>
+                            <h:outputText value="#{c.telefonofijo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Teléfono móvil</f:facet>
+                            <h:outputText value="#{c.telefonomovil}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{c.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Relación</f:facet>
+                            <h:outputText value="#{c.relacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Sector</f:facet>
+                            <h:outputText value="#{c.sector}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Certificado</f:facet>
+                            <h:outputText value="#{c.certificado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de alta</f:facet>
+                            <h:outputText value="#{c.fechadealta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de baja</f:facet>
+                            <h:outputText value="#{c.fechadebaja}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Observaciones</f:facet>
+                            <h:outputText value="#{c.observaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{gestion.editar(c)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(c)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form><br></br>
+
+
+                <h1> Formulario nuevo Socio</h1>
+                <h:form>
+                    <h:commandButton value="Acceder al formulario " action="registro.xhtml?faces-redirect=true"/>
+                </h:form>
+                <br></br>
+                <h1> Búsqueda de Socio</h1>
+
+
+                <br></br>
+                <h1> Gestionar Beneficiarios</h1>
+                <h:form>
+                    <h:dataTable value="#{sesion.listado_beneficiarios}" var="b">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            <h:outputText value="#{b.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{b.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Apellidos</f:facet>
+                            <h:outputText value="#{b.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Sexo</f:facet>
+                            <h:outputText value="#{b.sexo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de nacimiento</f:facet>
+                            <h:outputText value="#{b.fechadenacimiento}"/>
+                        </h:column>                              
+                        <h:column>
+                            <f:facet name="header">Comunidad de procedencia</f:facet>
+                            <h:outputText value="#{b.comunidaddeprocedencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Comunidad de residencia</f:facet>
+                            <h:outputText value="#{b.comunidadderesidencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Beca</f:facet>
+                            <h:outputText value="#{b.beca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Grado que cursa</f:facet>
+                            <h:outputText value="#{b.gradodelcurso}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Fecha de entrada en ACOES</f:facet>
+                            <h:outputText value="#{b.fechadeentradaacoes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fecha de salida de ACOES</f:facet>
+                            <h:outputText value="#{b.fechadesalidaacoes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Observaciones</f:facet>
+                            <h:outputText value="#{b.observaciones}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{gestion.editar(b)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="Eliminar" action="#{sesion.eliminarUsuario(b)}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+                <br></br>
+                <h1> Formulario nuevo Beneficiario</h1>
+                <h:form>
+                    <h:commandButton value="Acceder al formulario " action="registroBeneficiario.xhtml?faces-redirect=true"/>
+                </h:form>
+                <br></br>
+
+
+                <h1> Búsqueda de Beneficiario</h1>
+
+
+                <h:form>
+                    <h:link value="Cancelar" class="btn btn-primary btn-sm" outcome="socio.xhtml?faces-redirect=true"/>
+                </h:form>
+                <br></br>
+
+            </c:when>
+
+            <c:when test="#{sesion.getPermiso().equalsIgnoreCase('socio')}">
+                <h1> Modificar mis datos</h1>
+                <h:form>
+                    <h:commandButton value="Acceder al formularion " action="#{gestion.editar(sesion.usuario)}"/>
+                </h:form>
+
+                <h1> Eliminar mi cuenta</h1>
+                <h:form>
+                    <h:commandButton value="Eliminar definitivamente mi cuenta " action="#{sesion.eliminarCuenta(sesion.usuario)}" onclick = "alert('Tu cuenta ha sido eliminada.');"/>
+                </h:form>
+
+            </c:when>
+
+            <c:otherwise>
+                <h2> Entrada irregular</h2>  
+            </c:otherwise>
+
+
+
         </c:choose> 
-        
+
         <h:form>
-             <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
-            
-         
+            <p><h:commandLink action="#{sesion.invalidarSesion()}">Log out</h:commandLink></p>
 
         </h:form>
     </h:body>

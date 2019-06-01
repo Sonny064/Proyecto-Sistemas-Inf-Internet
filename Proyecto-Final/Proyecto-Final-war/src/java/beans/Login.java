@@ -14,28 +14,25 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 /**
  *
  * @author jesus
  */
-@Named(value="login")
+@Named(value = "login")
 @RequestScoped
 public class Login {
-    
+
     private Socio socio;
     private Personal empleado;
     @Inject
     private Sesion sesion;
-    
+
     @EJB
     private Interfaz interfaz;
-    
-    
+
     private String nif;
     private String contra;
     private String permiso;
-
 
     /**
      * Creates a new instance of entrada
@@ -60,7 +57,7 @@ public class Login {
     public void setContra(String contra) {
         this.contra = contra;
     }
-    
+
     public String getPermiso() {
         return permiso;
     }
@@ -84,26 +81,25 @@ public class Login {
     public void setPersonal(Personal personal) {
         this.empleado = personal;
     }
-    
+
     //Terminar de implementar
-    public String log () throws AplicacionException{
-        
-       empleado = interfaz.buscarPersonal(getNif());
-       socio = interfaz.buscarSocio(getNif());
-       
-       if(socio != null && socio.getPassword().equals(contra)){
-           sesion.setUsuario(interfaz.refrescarUsuario(socio));
+    public String log() throws AplicacionException {
+
+        empleado = interfaz.buscarPersonal(getNif());
+        socio = interfaz.buscarSocio(getNif());
+
+        if (socio != null && socio.getPassword().equals(contra)) {
+            sesion.setUsuario(interfaz.refrescarUsuario(socio));
             return "socio.xhtml?faces-redirect=true";
- 
-        }else if(empleado != null && empleado.getCargo().equalsIgnoreCase("ADMIN") && empleado.getPassword().equals(contra)){
+
+        } else if (empleado != null && empleado.getCargo().equalsIgnoreCase("ADMIN") && empleado.getPassword().equals(contra)) {
             sesion.setUsuario(interfaz.refrescarUsuario(empleado));
             return "admin.xhtml?faces-redirect=true";
-        }
-        else if(empleado != null && empleado.getPassword().equals(contra)){
+        } else if (empleado != null && empleado.getPassword().equals(contra)) {
             sesion.setUsuario(interfaz.refrescarUsuario(empleado));
             return "personal_asociacion.xhtml?faces-redirect=true";
         }
-       
+
         return null;
     }
 }

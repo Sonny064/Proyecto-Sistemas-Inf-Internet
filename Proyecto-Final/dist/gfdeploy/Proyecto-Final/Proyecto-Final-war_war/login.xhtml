@@ -3,70 +3,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-   <h:head>
+    <h:head>
         <link rel='stylesheet' type='text/css' href='resources/css/bootstrap.min.css'></link>
         <link rel='stylesheet' type='text/css' href='resources/css/propia.css'></link>
         <title>Login de la aplicacion</title>
-   </h:head>
+    </h:head>
     <h:body>    
-      <div class="container">
-       <div class="d-flex justify-content-center h-100">
-         <div class="card">
-           <h:form>
-               <div class="card-header">
-                   <h3 class ="especial">Iniciar sesión</h3> 
-                   
-               </div>
-               
-               <div class="card-body">
-                <div class="form-group row">
-                    <h:inputText class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{login.nif}" a:placeholder="NIF"/>
-                </div>
+        <div class="container">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <h:form>
+                        <div class="card-header">
+                            <h3 class ="especial">Iniciar sesión</h3> 
 
-                <div class="form-group row">
-                   <h:inputSecret class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{login.contra}" a:placeholder="Contraseña"/> 
-                </div>
+                        </div>
 
-                <div class="form-group row">
-                   <h:commandButton value="Continuar" class="btn btn-primary btn-sm" style="margin-left: 1em" action="#{login.log}"/>
-                   
-                   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 3em;">
-                    Donación anónima
-                   </button>
-                </div>
-               </div>
-               
-               <div class="card-fotter">
-                <div class="form-text">
-                    <h:link class="d-flex justify-content-center links" value="Registro" outcome="registro.xhtml"/>
-                    <h:link class="d-flex justify-content-center links"  value="¿Olvido su contraseña?" lang="es" outcome="olvido.xhtml"/>
-                </div>
-               </div>
-               
-                                          <!-- Ventana emergente -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <h:inputText class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{login.nif}" a:placeholder="NIF"/>
+                            </div>
+
+                            <div class="form-group row">
+                                <h:inputSecret class="form-control" style="margin-left: 1em; margin-right: 1em" lang="es" value="#{login.contra}" a:placeholder="Contraseña"/> 
+                            </div>
+
+                            <div class="form-group row">
+                                <h:commandButton value="Continuar" class="btn btn-primary btn-sm" style="margin-left: 1em" action="#{login.log}"/>
+
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 3em;">
+                                    Donación anónima
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-fotter">
+                            <div class="form-text">
+                                <h:link class="d-flex justify-content-center links" value="Registro" outcome="registro.xhtml"/>
+                                <h:link class="d-flex justify-content-center links"  value="¿Olvido su contraseña?" lang="es" outcome="olvido.xhtml"/>
+                            </div>
+                        </div>
+
+                        <!-- Ventana emergente -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                    Si no desea formar parte de nuestro proyecto pero le gustaría ayudar a ACOES
-                                    le podemos ofrecer el número de cuenta de esta ONG , aceptaremos cualquier 
-                                    tipo de donativo en la cuenta siguiente : ESXX XXXX XXXX XX XXXXXXXXX.
+                                        Si no desea formar parte de nuestro proyecto pero le gustaría ayudar a ACOES
+                                        le podemos ofrecer el número de cuenta de esta ONG , aceptaremos cualquier 
+                                        tipo de donativo en la cuenta siguiente : ESXX XXXX XXXX XX XXXXXXXXX.
                                     </div>
                                     <div class="form-group row">
-                                    <h:link value="Cerrar pestaña" style="margin-left: 2em; margin-right: 1em" class="btn btn-primary btn-sm" outcome="login.xhtml"/>
+                                        <h:link value="Cerrar pestaña" style="margin-left: 2em; margin-right: 1em" class="btn btn-primary btn-sm" outcome="login.xhtml"/>
                                     </div>
                                 </div>
-                              </div>
                             </div>
-               
-           </h:form>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
         </div>
-      </div>
-     </div>
-       
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-      
-   </h:body>
+
+    </h:body>
 </html>
